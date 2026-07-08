@@ -1,0 +1,7 @@
+.git/
+.wrangler/
+.gitignore
+README.md
+CONTRIBUTING.md
+WORKFLOW_TO_MOVE.yml
+node_modules/
