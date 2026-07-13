@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Themis White Paper — Shikigami Technologies</title>
+<meta name="description" content="Themis: Shikigami Contract Intelligence — target architecture and product roadmap for pre-bid financial survival and post-award execution.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div style="font-family:'Space Grotesk',sans-serif; background:#06090F; color:#F4F7FB; overflow-x:hidden; width:100%;">
+
+  <!-- ================= NAV ================= -->
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:18px 48px; background:rgba(6,9,15,0.72); backdrop-filter:blur(14px); border-bottom:1px solid #121826;">
+    <a href="/" style="display:flex; align-items:center; gap:14px; text-decoration:none;">
+      <svg width="34" height="34" viewBox="0 0 120 120" style="display:block; overflow:visible;">
+        <polygon points="60,14 60,60 18,60" fill="#2E9BFF"></polygon>
+        <polygon points="60,14 102,60 60,60" fill="#1C6FCC"></polygon>
+        <polygon points="60,60 18,60 60,118" fill="#124E96"></polygon>
+        <polygon points="60,60 102,60 60,118" fill="#6FC0FF"></polygon>
+        <g fill="#F4F7FB"><circle cx="60" cy="60" r="4"></circle><circle cx="60" cy="14" r="3"></circle><circle cx="102" cy="60" r="3"></circle><circle cx="60" cy="118" r="3"></circle><circle cx="18" cy="60" r="3"></circle></g>
+      </svg>
+      <span style="font-size:19px; font-weight:600; letter-spacing:0.14em; color:#F4F7FB;">SHIKIGAMI</span>
+    </a>
+    <a href="/#products" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;">Back to products</a>
+  </nav>
+
+  <!-- ================= HEADER ================= -->
+  <header style="max-width:820px; margin:0 auto; padding:100px 24px 40px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.3em; color:#2E9BFF; text-transform:uppercase; margin-bottom:20px;">White paper</div>
+    <h1 style="margin:0 0 16px; font-size:44px; font-weight:600; line-height:1.1; letter-spacing:-0.02em;">Themis: Shikigami Contract Intelligence</h1>
+    <p style="margin:0; font-size:18px; line-height:1.5; color:#2E9BFF;">Target Architecture and Product Roadmap — Pre-Bid Financial Survival and Post-Award Execution</p>
+  </header>
+
+  <!-- ================= DISCLAIMER ================= -->
+  <div style="max-width:820px; margin:0 auto; padding:0 24px 20px;">
+    <div style="background:#12181F; border:1px solid #2E9BFF44; border-radius:12px; padding:22px 26px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#2E9BFF; margin-bottom:10px;">A note on this document</div>
+      <p style="margin:0; font-size:14.5px; line-height:1.6; color:#B7C4D6;">Themis is under active development. This paper describes the platform's <strong style="color:#F4F7FB;">target architecture and design intent</strong> — the problem it is built to solve and the system being engineered to solve it — rather than a finished, certified, or currently deployed product. Sections describing security and compliance posture describe design goals, not completed certifications.</p>
+    </div>
+  </div>
+
+  <!-- ================= BODY ================= -->
+  <main style="max-width:820px; margin:0 auto; padding:20px 24px 120px;">
+
+    <section style="margin-top:50px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#2E9BFF; text-transform:uppercase; margin-bottom:14px;">1. Executive Summary</div>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">In the federal and commercial contracting space, winning a bid can quickly become a small business's first major financial crisis. Shikigami Contract Intelligence (Themis) is a contract intelligence platform being engineered to protect small businesses before and after they pursue a government or commercial contract.</p>
+      <p style="margin:0; font-size:16.5px; line-height:1.7; color:#B7C4D6;">By unifying contract technical analysis, dynamic capability evaluation, financial cash-survival modeling, and post-award execution planning, Themis is designed to answer the central operational question: <em style="color:#F4F7FB;">Can this company afford to bid, win, and execute this contract without losing money, missing deadlines, or putting the business at risk?</em> Themis is not being built to simply generate AI contract summaries; the goal is a deterministic execution blueprint that safeguards contractors from underpriced bids and unfinanceable obligations.</p>
+    </section>
+
+    <section style="margin-top:56px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#2E9BFF; text-transform:uppercase; margin-bottom:14px;">2. The Procurement and Execution Problem</div>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">A solicitation may initially appear profitable when a contractor prices the visible scope, but hidden requirements — such as buried FAR/DFARS clauses, unstated security clearances, customer dependencies, and required software dependencies — frequently create significant, unbudgeted expenses.</p>
+      <p style="margin:0; font-size:16.5px; line-height:1.7; color:#B7C4D6;">Furthermore, a contract can be profitable on paper but impossible to finance in reality. Contractors must float payroll, software licenses, equipment, and subcontractor costs while awaiting system access, formal customer acceptance, and final payment. If a company lacks sufficient working capital or a safe cash gap, it can default on an otherwise profitable contract. A single missed milestone eliminates expected profit, damages the vendor's past-performance record, and threatens the survival of a small business lacking dedicated legal, financial, and compliance departments.</p>
+    </section>
+
+    <section style="margin-top:56px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#2E9BFF; text-transform:uppercase; margin-bottom:14px;">3. Planned Architectural and Algorithmic Methodology</div>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">Themis is being designed to evaluate the reality of the contract and the reality of the company simultaneously, through a controlled opportunity lifecycle — from secure document submission and mapping to personalized bid recommendations and post-award execution planning.</p>
+
+      <h3 style="margin:32px 0 12px; font-size:20px; font-weight:600; color:#F4F7FB;">The Document-Processing Pipeline <span style="font-weight:400; color:#5B6B82; font-size:15px;">(planned)</span></h3>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">To reduce the hallucination risks associated with generative AI, Themis separates its processing pipeline into distinct evidence, rules, AI reasoning, and financial calculation layers:</p>
+      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:16px;">
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Secure Intake &amp; Mapping:</strong> Ingests native PDFs, Statements of Work (SOW), and ZIP packages; calculates file hashes; screens for malware; identifies duplicate documents; performs OCR on scanned pages.</span></div>
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Versioned Rules Layer:</strong> Evaluates relevant FAR/DFARS clauses, agency-specific requirements, and security obligations against a maintained library of authoritative, time-stamped sources.</span></div>
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">AI Reasoning Layer:</strong> Extracts requirements, identifies contradictions, detects missing information, and flags hidden cost drivers. The design principle is that no high-risk conclusion is generated without a source citation, a confidence level, and a clearly identified assumption.</span></div>
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Deterministic Calculation Layer:</strong> Evaluates labor, infrastructure schedules, expected profit margins, and cash-flow gaps using structured mathematical inputs rather than generative-AI-produced numbers.</span></div>
+      </div>
+
+      <h3 style="margin:32px 0 12px; font-size:20px; font-weight:600; color:#F4F7FB;">Adaptive Profiling and The Decision Engine <span style="font-weight:400; color:#5B6B82; font-size:15px;">(planned)</span></h3>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">Instead of forcing users to complete generic forms, Themis is designed to generate an adaptive questionnaire based on the specific contract requirements and the contractor's saved permanent company profile.</p>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">The Decision Engine is designed to process these inputs into a transparent, weighted viability score:</p>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:16px;">
+        <div style="background:#0A0F17; border:1px solid #161C27; border-radius:10px; padding:16px 18px;"><div style="font-size:22px; font-weight:700; color:#2E9BFF;">25%</div><div style="font-size:14px; color:#B7C4D6; margin-top:4px;">Technical Capability</div></div>
+        <div style="background:#0A0F17; border:1px solid #161C27; border-radius:10px; padding:16px 18px;"><div style="font-size:22px; font-weight:700; color:#2E9BFF;">20%</div><div style="font-size:14px; color:#B7C4D6; margin-top:4px;">Mandatory Compliance</div></div>
+        <div style="background:#0A0F17; border:1px solid #161C27; border-radius:10px; padding:16px 18px;"><div style="font-size:22px; font-weight:700; color:#2E9BFF;">15%</div><div style="font-size:14px; color:#B7C4D6; margin-top:4px;">Schedule Feasibility</div></div>
+        <div style="background:#0A0F17; border:1px solid #161C27; border-radius:10px; padding:16px 18px;"><div style="font-size:22px; font-weight:700; color:#2E9BFF;">15%</div><div style="font-size:14px; color:#B7C4D6; margin-top:4px;">Cash Feasibility</div></div>
+        <div style="background:#0A0F17; border:1px solid #161C27; border-radius:10px; padding:16px 18px;"><div style="font-size:22px; font-weight:700; color:#2E9BFF;">10%</div><div style="font-size:14px; color:#B7C4D6; margin-top:4px;">Scope Clarity</div></div>
+        <div style="background:#0A0F17; border:1px solid #161C27; border-radius:10px; padding:16px 18px;"><div style="font-size:22px; font-weight:700; color:#2E9BFF;">10%</div><div style="font-size:14px; color:#B7C4D6; margin-top:4px;">Staffing / Access</div></div>
+        <div style="background:#0A0F17; border:1px solid #161C27; border-radius:10px; padding:16px 18px; grid-column:span 2;"><div style="font-size:22px; font-weight:700; color:#2E9BFF;">5%</div><div style="font-size:14px; color:#B7C4D6; margin-top:4px;">Strategic Fit</div></div>
+      </div>
+      <p style="margin:0; font-size:16.5px; line-height:1.7; color:#B7C4D6;">The design enforces "hard stops" (e.g., an unfinanceable cash-flow gap or a missing mandatory certification) that override numerical scores, producing one of five personalized recommendations: <strong style="color:#F4F7FB;">Strong Bid, Bid With Conditions, Team or Subcontract, Needs Information,</strong> or <strong style="color:#F4F7FB;">Do Not Bid</strong>.</p>
+    </section>
+
+    <section style="margin-top:56px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#2E9BFF; text-transform:uppercase; margin-bottom:14px;">4. Data Sovereignty and Security Design Goals</div>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">Because pre-bid government solicitations and proprietary financial models frequently contain Controlled Unclassified Information (CUI), Themis is being architected with the Department of Defense's Cybersecurity Maturity Model Certification (CMMC) framework and NIST SP 800-171 Revision 3 requirements as design targets.</p>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">The platform's roadmap includes three deployment tiers, planned to address different customer security postures:</p>
+      <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Standard Cloud Deployment:</strong> Encrypted processing, tenant isolation, and customer-selected data retention for public opportunities and commercial documents.</span></div>
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Private Hybrid Desktop:</strong> Original files remain on the customer's hardware; local software performs OCR and document organization, transmitting only extracted, controlled text to the cloud intelligence service.</span></div>
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Offline Enterprise (Zero-Cloud):</strong> Fully localized AI models and rule libraries, transmitting no data to external services, for customers requiring air-gapped operation.</span></div>
+      </div>
+      <p style="margin:0 0 20px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">As the platform matures toward these deployment tiers, the design calls for FIPS-validated cryptography for data at rest and in transit, multi-factor authentication, and role-based access controls, with the goal of aligning with CMMC Level 2 requirements ahead of applicable enforcement timelines.</p>
+      <div style="background:#1A1310; border:1px solid #E0A02644; border-radius:10px; padding:16px 20px;">
+        <p style="margin:0; font-size:14px; line-height:1.6; color:#E0B36B;"><strong>No deployment tier, cryptographic module, or compliance framework described in this section has been formally assessed, certified, or independently audited as of this writing.</strong> This section describes the architecture Themis is being built toward, not a current compliance status.</p>
+      </div>
+    </section>
+
+    <section style="margin-top:56px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#2E9BFF; text-transform:uppercase; margin-bottom:14px;">5. Planned Operational Outcomes and Post-Award Execution</div>
+      <p style="margin:0 0 16px; font-size:16.5px; line-height:1.7; color:#B7C4D6;">The intended value of Themis extends beyond the bid phase. The design calls for original bid assumptions to convert into active execution controls the moment a contractor wins an award.</p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Pre-Bid Deliverables (planned):</strong> A true-cost estimate, cash-survival analysis, requirements and risk registers, proposed scope protections (assumptions/exclusions), and clarification questions.</span></div>
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Financial-Survival Analysis (planned):</strong> Distinguishing operational profit from available cash, explicitly calculating maximum expected cash gaps to prevent financial overextension.</span></div>
+        <div style="display:flex; gap:12px; font-size:15px; line-height:1.6; color:#B7C4D6;"><span style="width:6px; height:6px; margin-top:8px; flex-shrink:0; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span><span><strong style="color:#F4F7FB;">Post-Award Operations (planned):</strong> A milestone schedule, dependency tracker, and payment/invoice calendars, with alerts designed to identify schedule slippage before contractual milestones are missed, and new customer requests cross-referenced against the original scope to flag potential out-of-scope change orders.</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer style="border-top:1px solid #121826; background:#080B12;">
+    <div style="max-width:1200px; margin:0 auto; padding:64px 48px 40px; display:flex; justify-content:space-between; gap:48px; flex-wrap:wrap;">
+      <div style="max-width:320px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+          <svg width="28" height="28" viewBox="0 0 120 120" style="display:block;"><polygon points="60,14 60,60 18,60" fill="#2E9BFF"></polygon><polygon points="60,14 102,60 60,60" fill="#1C6FCC"></polygon><polygon points="60,60 18,60 60,118" fill="#124E96"></polygon><polygon points="60,60 102,60 60,118" fill="#6FC0FF"></polygon></svg>
+          <span style="font-size:16px; font-weight:600; letter-spacing:0.14em;">SHIKIGAMI</span>
+        </div>
+        <p style="margin:0; font-size:13.5px; line-height:1.6; color:#6B7C93;">Shikigami Technologies LLC — AI systems, federal contracting intelligence, and algorithmic research. Carolina, Puerto Rico.</p>
+      </div>
+      <div style="display:flex; gap:64px; flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#4A5768; text-transform:uppercase; margin-bottom:4px;">Company</div>
+          <a href="/#top" style="font-size:14px; color:#8FA3BD; text-decoration:none;">About</a>
+          <a href="/#research" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Research</a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#4A5768; text-transform:uppercase; margin-bottom:4px;">Contact</div>
+          <a href="mailto:hello@shikigamitechnologies.com" style="font-size:14px; color:#8FA3BD; text-decoration:none;">hello@shikigamitechnologies.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #121826;">
+      <div style="max-width:1200px; margin:0 auto; padding:22px 48px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#4A5768;">© 2026 Shikigami Technologies LLC. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
