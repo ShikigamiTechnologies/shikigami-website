@@ -5,6 +5,8 @@ README.md
 CONTRIBUTING.md
 WORKFLOW_TO_MOVE.yml
 node_modules/
+package.json
+package-lock.json
 worker.js
 wrangler.jsonc
 migrations/
