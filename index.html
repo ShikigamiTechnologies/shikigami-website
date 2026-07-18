@@ -25,6 +25,7 @@
     <div style="display:flex; align-items:center; gap:38px;">
       <a href="#research" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Research</a>
       <a href="#products" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Products</a>
+      <a href="#cypher-pricing" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Pricing</a>
       <a href="#academy" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Academy</a>
       <a href="#federal" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Federal</a>
       <a href="#contact" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Get in touch</a>
@@ -169,13 +170,14 @@
           <div style="font-size:30px; font-weight:600; margin-bottom:6px;">Cypher</div>
           <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#2E9BFF; text-transform:uppercase;">Document Intelligence Platform</div>
         </div>
-        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#9BADC5;">AI-powered invoice and document processing deployed locally on client hardware. Cypher reads invoice PDFs, extracts structured data via Azure Document Intelligence, matches purchase orders through cross-document verification, flags fraud and anomalies across six detection rules, and generates Excel master workbooks and PDF audit summaries. Zero cloud dependency — all data stays on the client's machine.</p>
+        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#9BADC5;">Local-first invoice and document control for regional operations. Cypher combines Azure Document Intelligence with a local OCR fallback, lets operators validate or custom-name extracted fields, explains repeated purchase orders across stores and invoices, tracks unmatched obligations and vendor debt, and produces canonical PDF evidence plus Excel reporting. Every scan and decision remains recoverable on authorized client infrastructure.</p>
         <div style="display:flex; flex-direction:column; gap:10px; min-width:220px;">
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Azure OCR + GPT-4o extraction pipeline</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Automated PO cross-document matching</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Fraud and anomaly detection (6 rules)</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Local SQLite + Excel output, no cloud required</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Deployed: active client, 30-location operation</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Azure primary OCR with local Ollama fallback</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Cross-store PO relationship and duplicate context</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Store and vendor debt visibility with aging</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Audit-ready PDF evidence and Excel reporting</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Designed for 30+ location regional operations</div>
+          <a href="#cypher-pricing" style="display:inline-block; margin-top:8px; color:#2E9BFF; font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none;">View Cypher plans →</a>
         </div>
       </div>
       <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
@@ -206,17 +208,17 @@
       </div>
       <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
         <div style="min-width:220px;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#2E9BFF; border:1px solid #2E9BFF44; border-radius:20px; padding:4px 12px; display:inline-block; margin-bottom:14px;">COMING SOON</div>
-          <div style="font-size:30px; font-weight:600; margin-bottom:6px;">Anor</div>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#2E9BFF; text-transform:uppercase;">Contractor Viability Intelligence</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#F2B84B; border:1px solid #F2B84B55; border-radius:20px; padding:4px 12px; display:inline-block; margin-bottom:14px;">PHASE 0 — PRIVATE BETA</div>
+          <a href="anor.html" style="display:inline-block; font-size:30px; font-weight:600; margin-bottom:6px; color:#F4F7FB; text-decoration:none;">Anor →</a>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#2E9BFF; text-transform:uppercase;">DoD Contract Execution Assurance</div>
         </div>
-        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#9BADC5;">Pre-award vendor risk assessment for federal contracting officers. Before signing the award, Anor cross-references the contract's technical requirements against the vendor's demonstrated capabilities, financial survivability indicators, certification compliance, and past performance patterns from public contract data. Surfaces the vendors that will fail before they fail.</p>
+        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#9BADC5;">Post-award assurance for defense contractors. Anor connects every material obligation to its exact source, approved owner, due event, required proof, and change history—without replacing the contractor's ERP, document repository, or project tools.</p>
         <div style="display:flex; flex-direction:column; gap:10px; min-width:220px;">
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Technical capability gap analysis vs contract scope</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Financial viability scoring (cash flow survival modeling)</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Certification and compliance verification</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Past performance pattern from public contract history</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Award risk score with conditional award framework</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Source-linked obligation register</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Contract-specific flowdown decisions</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Owner, due-event, and evidence assurance</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Modification impact and reapproval history</div>
+          <a href="anor.html" style="display:inline-block; margin-top:8px; color:#2E9BFF; font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none;">Explore Anor and request private beta →</a>
         </div>
       </div>
       <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
@@ -238,6 +240,48 @@
     </div>
   </section>
 
+
+  <!-- ================= CYPHER PRICING ================= -->
+  <section id="cypher-pricing" style="border-top:1px solid #121826; position:relative; overflow:hidden;">
+    <div style="position:absolute; right:-180px; top:20px; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle, rgba(46,155,255,0.11), transparent 68%); pointer-events:none;"></div>
+    <div style="position:relative; max-width:1200px; margin:0 auto; padding:110px 48px;">
+      <div class="reveal pricing-intro">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.3em; color:#2E9BFF; text-transform:uppercase; margin-bottom:20px;">04 — Cypher pricing</div>
+          <h2 style="margin:0; font-size:44px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Start controlled. Expand when the evidence supports it.</h2>
+        </div>
+        <p style="margin:0; font-size:16px; line-height:1.7; color:#9BADC5;">Pricing is based on locations, users, document volume, integrations, and support requirements. Cloud OCR consumption is billed separately or supplied through the client’s account.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="price-card reveal">
+          <div class="price-kicker">PILOT</div><h3>Validation deployment</h3>
+          <div class="price"><span>From</span>$7,500</div><div class="price-term">60–90 day engagement</div>
+          <ul><li>One regional workflow and controlled users</li><li>Real-document accuracy baseline</li><li>Store, vendor, PO, and evidence configuration</li><li>Acceptance report and rollout recommendation</li></ul>
+          <a href="mailto:hello@shikigamitechnologies.com?subject=Cypher%20pilot" class="price-cta hov-outline">Plan a pilot</a>
+        </article>
+        <article class="price-card reveal">
+          <div class="price-kicker">CORE</div><h3>Regional control</h3>
+          <div class="price"><span>From</span>$12,000</div><div class="price-term">per year</div>
+          <ul><li>Local-first OCR and document archive</li><li>Personalized fields and PO validation</li><li>Debt dashboard by store and vendor</li><li>Validation PDF and Excel reporting</li></ul>
+          <a href="mailto:hello@shikigamitechnologies.com?subject=Cypher%20Core" class="price-cta hov-outline">Request Core</a>
+        </article>
+        <article class="price-card price-card-featured reveal">
+          <div class="price-badge">MOST COMPLETE</div><div class="price-kicker">OPERATIONS+</div><h3>Multi-user operations</h3>
+          <div class="price"><span>From</span>$24,000</div><div class="price-term">per year</div>
+          <ul><li>Everything in Core</li><li>Supervisor dashboard and role governance</li><li>Validated shared-storage snapshots</li><li>Weekly summaries and priority support</li></ul>
+          <a href="mailto:hello@shikigamitechnologies.com?subject=Cypher%20Operations%20Plus" class="price-cta price-cta-primary hov-primary">Discuss Operations+</a>
+        </article>
+        <article class="price-card price-card-enterprise reveal">
+          <div class="price-kicker">ENTERPRISE</div><h3>Scaled control system</h3>
+          <div class="price price-custom">Custom</div><div class="price-term">annual agreement</div>
+          <ul><li>Everything in Operations+</li><li>Enhanced audit and evidence manifests</li><li>Offline activation and retention controls</li><li>Custom exports, deployment profile, and SLA</li></ul>
+          <a href="mailto:hello@shikigamitechnologies.com?subject=Cypher%20Enterprise" class="price-cta hov-outline">Build an Enterprise plan</a>
+        </article>
+      </div>
+      <div class="reveal pricing-note"><strong>Need government or federal controls?</strong><span>Government and Federal editions remain separately scoped for endpoint, retention, accessibility, and evidence requirements.</span></div>
+    </div>
+  </section>
 
   <!-- ================= ACADEMY / LEARNING ================= -->
   <section id="academy" style="border-top:1px solid #121826;">
@@ -315,7 +359,7 @@
         <g fill="#F4F7FB"><circle cx="60" cy="60" r="4"></circle><circle cx="60" cy="14" r="3"></circle><circle cx="102" cy="60" r="3"></circle><circle cx="60" cy="118" r="3"></circle><circle cx="18" cy="60" r="3"></circle></g>
       </svg>
       <h2 class="reveal" style="margin:0 auto; font-size:52px; font-weight:600; line-height:1.06; letter-spacing:-0.02em; max-width:720px; text-wrap:balance;">Let's build what's next in intelligence</h2>
-      <p class="reveal" style="margin:24px auto 0; max-width:560px; font-size:18px; line-height:1.6; color:#9BADC5;">Partner with us on a deployment, ask about Themis or Anor, or tell us what you're working on.</p>
+      <p class="reveal" style="margin:24px auto 0; max-width:620px; font-size:18px; line-height:1.6; color:#9BADC5;">Plan a Cypher pilot or Enterprise deployment, ask about Themis or Anor, or tell us what you're working on.</p>
       <div style="display:flex; gap:16px; justify-content:center; margin-top:40px; flex-wrap:wrap;">
         <a href="mailto:hello@shikigamitechnologies.com" style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.06em; color:#06090F; background:#2E9BFF; padding:16px 32px; border-radius:9px; text-decoration:none; font-weight:500;" class="hov-primary">hello@shikigamitechnologies.com</a>
       </div>
@@ -342,9 +386,10 @@
       <div style="display:flex; flex-direction:column; gap:12px;">
         <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#4A5768; text-transform:uppercase; margin-bottom:4px;">Platform</div>
         <a href="#products" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Cypher</a>
+          <a href="#cypher-pricing" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Cypher pricing</a>
           <a href="#products" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Themis</a>
           <a href="/pricing-themis.html" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Themis pricing</a>
-          <a href="#products" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Anor</a>
+          <a href="anor.html" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Anor</a>
           <a href="#products" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Sentient</a>
       </div>
       <div style="display:flex; flex-direction:column; gap:12px;">

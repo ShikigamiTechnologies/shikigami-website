@@ -2,3 +2,5 @@
 Thumbs.db
 *.tmp
 .env
+.wrangler/
+node_modules/
