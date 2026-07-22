@@ -3,4 +3,5 @@ Thumbs.db
 *.tmp
 .env
 .wrangler/
+.wrangler-dry-run/
 node_modules/

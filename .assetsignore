@@ -1,5 +1,6 @@
 .git/
 .wrangler/
+.wrangler-dry-run/
 .gitignore
 README.md
 CONTRIBUTING.md
