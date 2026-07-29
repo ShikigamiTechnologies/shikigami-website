@@ -12,3 +12,4 @@ worker-configuration.d.ts
 worker.js
 wrangler.jsonc
 migrations/
+scripts/
