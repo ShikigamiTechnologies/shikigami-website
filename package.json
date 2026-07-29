@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "check": "node scripts/check-site.mjs",
+    "build": "wrangler deploy --dry-run --env staging --outdir .wrangler-dry-run",
+    "types": "wrangler types"
+  },
   "devDependencies": {
     "wrangler": "^4.112.0"
   },

@@ -8,6 +8,14 @@ const editions = new Set(["core", "operations", "enterprise", "government", "fed
 const sizes = new Set(["1–19", "20–49", "50–199", "200–500", "501+"]);
 const contracts = new Set(["None yet", "1–3", "4–10", "11–25", "26+"]);
 const encoder = new TextEncoder();
+const publicPaths = ["/", "/cypher", "/anor", "/ironcrew", "/kizuna", "/pricing-themis", "/privacy", "/security", "/terms", "/acceptable-use"];
+const securityHeaders = {
+  "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:",
+  "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+  "referrer-policy": "strict-origin-when-cross-origin",
+  "strict-transport-security": "max-age=31536000; includeSubDomains",
+  "x-content-type-options": "nosniff",
+};
 
 function bytesToHex(bytes) { return [...bytes].map((b) => b.toString(16).padStart(2, "0")).join(""); }
 function bytesToBase64(bytes) {
@@ -126,6 +134,20 @@ export default {
   async fetch(request, env) {
     const path = new URL(request.url).pathname;
     try {
+      if (env.DEPLOYMENT_ENV === "staging" && path.startsWith("/api/")) {
+        return json({ message: "Provider APIs are disabled in public staging." }, 503);
+      }
+      if (path === "/robots.txt") {
+        return new Response("User-agent: *\nAllow: /\nSitemap: https://shikigamitechnologies.com/sitemap.xml\n", {
+          headers: { "content-type": "text/plain;charset=utf-8", ...securityHeaders },
+        });
+      }
+      if (path === "/sitemap.xml") {
+        const entries = publicPaths.map((value) => `<url><loc>https://shikigamitechnologies.com${value}</loc></url>`).join("");
+        return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries}</urlset>`, {
+          headers: { "content-type": "application/xml;charset=utf-8", "cache-control": "public,max-age=3600", ...securityHeaders },
+        });
+      }
       if (path === "/api/anor-beta") {
         if (request.method === "POST") return await submitAnor(request, env);
         return json({ message: "Method not allowed." }, 405, { allow: "POST" });
@@ -138,7 +160,10 @@ export default {
         if (request.method === "POST") return await createBatch(request, env);
         return json({ message: "Method not allowed." }, 405, { allow: "POST" });
       }
-      return env.ASSETS.fetch(request);
+      const asset = await env.ASSETS.fetch(request);
+      const response = new Response(asset.body, asset);
+      for (const [name, value] of Object.entries(securityHeaders)) response.headers.set(name, value);
+      return response;
     } catch (error) {
       console.error(JSON.stringify({ event: "worker_request_failed", path, message: error?.message }));
       return json({ message: "The service is temporarily unavailable." }, 503);
