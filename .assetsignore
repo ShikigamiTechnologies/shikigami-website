@@ -1,6 +1,9 @@
 .git/
+node_modules/
 .wrangler/
 .wrangler-dry-run/
+.cypher-migration-test*/
+.cypher-migration-guard-test/
 .gitignore
 README.md
 CONTRIBUTING.md
@@ -13,3 +16,12 @@ worker.js
 wrangler.jsonc
 migrations/
 scripts/
+tests/
+vitest.config.mjs
+CYPHER_CAPABILITY_MATRIX.md
+CYPHER_ONLINE_GO_LIVE_RUNBOOK.md
+CYPHER_ONLINE_MIGRATION_PLAN.md
+CYPHER_PRODUCT_CONSTITUTION.md
+CYPHER_MARKET_READINESS_REVIEW_2026-08-15.md
+.dev.vars
+.dev.vars.*
