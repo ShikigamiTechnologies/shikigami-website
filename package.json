@@ -2,6 +2,7 @@
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.20.1",
     "@types/node": "^26.1.2",
+    "supabase": "2.114.0",
     "vitest": "^4.1.10",
     "wrangler": "^4.118.0"
   },
@@ -17,6 +18,11 @@
     "check:site": "node scripts/check-site.mjs",
     "check": "npm run check:site && node --check worker.js && node --check assets/js/cypher-admin.js && node --check assets/js/cypher-app.js && node --check assets/js/cypher-auth.js && node --check assets/js/cypher-passkey.js && wrangler types --check",
     "build": "wrangler deploy --dry-run --env= --outdir .wrangler-dry-run",
-    "types": "wrangler types"
+    "types": "wrangler types",
+    "supabase:start": "supabase start",
+    "supabase:reset": "supabase db reset --local",
+    "supabase:test": "supabase test db",
+    "supabase:lint": "supabase db lint --local --level warning --fail-on error",
+    "supabase:advisors": "supabase db advisors --local --type all --level warn --fail-on error"
   }
 }

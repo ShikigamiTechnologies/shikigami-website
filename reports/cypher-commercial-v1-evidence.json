@@ -1,0 +1,62 @@
+{
+  "schema": "cypher-commercial-v1-evidence/1",
+  "accepted_base": "55f305347814015f8fd7a78d3ee8b9f49a38edca",
+  "generated_at": "2026-08-15T22:43:00Z",
+  "authority": {
+    "mutable_system": "Supabase Postgres/Auth/private Storage",
+    "legacy_boundary": "Existing D1/R2 Worker remains an unchanged baseline and read-only export source; the new service layer performs no D1/R2 writes",
+    "external_effects": []
+  },
+  "blockers_repaired": [
+    "Composite tenant foreign keys bind validations, artifacts, exports, and evidence packages",
+    "private.finalize_validation requires approved review state plus service-verified original, manifest, and PDF Storage receipts",
+    "Append-only evidence and guarded obligation, exception, relationship, and delivery transitions replace client rewrite access",
+    "Canonical package and delivery attempt receipt hashes are computed server-side from deterministic bound fields",
+    "Delivery requests derive the evidence package hash and atomically create one delivery plus outbox command; destination verification requires an append-only service-role observation",
+    "Dependency-safe cascades preserve append-only client semantics while permitting complete tenant teardown"
+  ],
+  "workflows": {
+    "controlled_intake": ["immutable hash key", "idempotent in-memory contract", "quarantine state", "outbox contract", "database intake/outbox atomic wiring remains a production integration gap"],
+    "bilingual_extraction_validation": ["en/es/bilingual runs", "nonempty page/bounding-box/text-span grounding", "append-only corrections"],
+    "cross_location_relationships": ["composite tenant foreign keys", "explainable candidates", "no automatic disposition"],
+    "exceptions_duplicates": ["human decision states", "assignment", "append-only events"],
+    "vendor_obligations_aging": ["unconfirmed excluded from debt", "human confirmation constraint", "deterministic aging"],
+    "evidence_exports": ["versioned package", "atomic finalize", "CSV/XLSX/JSON contracts"],
+    "destination_delivery": ["simulated connector only", "atomic idempotent request/outbox RPC", "package-derived source hash", "service-only destination observation", "verified and delivered_unverified states", "immutable lost-response replay", "retry/cancel/revoke guards"]
+  },
+  "verification": [
+    { "command": "npm test", "result": "pass", "evidence": "3 files, 28 tests" },
+    { "command": "npm run check", "result": "pass", "evidence": "17 site assertions; syntax and generated Worker types current" },
+    { "command": "npm audit --audit-level=moderate", "result": "pass", "evidence": "0 vulnerabilities" },
+    { "command": "npm run supabase:reset", "result": "pass", "evidence": "fresh replay of both migrations" },
+    { "command": "npm run supabase:test twice consecutively", "result": "pass", "evidence": "1 repeatable behavioral pgTAP suite, 23 assertions per run" },
+    { "command": "npm run supabase:lint", "result": "pass", "evidence": "no schema errors" },
+    { "command": "npm run supabase:advisors", "result": "pass", "evidence": "no security or performance issues at warn level" },
+    { "command": "git diff --check", "result": "pass", "evidence": "no whitespace errors" }
+  ],
+  "security_assertions": [
+    "RLS enabled on every new public table with explicit least-privilege grants and policies",
+    "no raw user_metadata authorization",
+    "no public bucket or browser service-role secret",
+    "evidence, extraction, correction, obligation, and delivery business relations use composite tenant foreign keys",
+    "all new definer functions are private, have empty search_path, check auth.uid-bound membership, revoke PUBLIC/anon, and grant authenticated explicitly",
+    "finalization requires a service-written Storage HEAD and SHA-256 verification receipt; bytes remain operated through the Storage API",
+    "delivery rows and source hashes are created only by an auth.uid-bound RPC from validated evidence packages, and verified status requires a matching service-role destination digest",
+    "a service receipt explicitly recording no destination digest results in delivered_unverified, never verified",
+    "an exact attempt-key replay returns its immutable receipt before connector and terminal guards, while changed replay inputs conflict",
+    "destination behavior is locally simulated and no external network or real destination was exercised"
+  ],
+  "payload_digest": {
+    "algorithm": "sha256",
+    "canonicalization": "recursively sort object keys, preserve array order, UTF-8 encode JSON.stringify output, and exclude the top-level payload_digest member",
+    "sha256": "81b571f2c36dc783e4fb46ec83f3d18160cf8b9c754d7a578e16d38d24f727a8"
+  },
+  "residual_unknowns": [
+    "No production provider or customer corpus was used, so OCR accuracy and the 300-document benchmark remain unproven",
+    "The XLSX contract declares the OOXML media/schema interface but does not yet serialize a binary workbook",
+    "The service layer is a framework-neutral application contract and is not wired into the legacy Cloudflare Worker routes to avoid prohibited dual writes",
+    "Controlled intake and its outbox mutation are atomic only in the in-memory application contract; no database intake RPC currently wires those two writes transactionally",
+    "Storage object existence is attested by a service receipt and still cannot be proven transactionally by Postgres alone; production orchestration must perform Storage HEAD and SHA-256 verification before writing that receipt",
+    "No remote migration, deployment, destination, paid API, restore drill, accessibility run, or customer-data test was performed"
+  ]
+}
