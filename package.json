@@ -1,13 +1,22 @@
 {
-  "scripts": {
-    "check": "node scripts/check-site.mjs",
-    "build": "wrangler deploy --dry-run --env staging --outdir .wrangler-dry-run",
-    "types": "wrangler types"
-  },
   "devDependencies": {
-    "wrangler": "^4.112.0"
+    "@cloudflare/vitest-pool-workers": "^0.20.1",
+    "@types/node": "^26.1.2",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.118.0"
   },
   "overrides": {
     "sharp": "0.35.0"
+  },
+  "dependencies": {
+    "@simplewebauthn/server": "^13.3.2",
+    "pdf-lib": "^1.17.1"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "check:site": "node scripts/check-site.mjs",
+    "check": "npm run check:site && node --check worker.js && node --check assets/js/cypher-admin.js && node --check assets/js/cypher-app.js && node --check assets/js/cypher-auth.js && node --check assets/js/cypher-passkey.js && wrangler types --check",
+    "build": "wrangler deploy --dry-run --env= --outdir .wrangler-dry-run",
+    "types": "wrangler types"
   }
 }
