@@ -1,7 +1,17 @@
 \set ON_ERROR_STOP on
 create extension if not exists pgtap;
 begin;
-select plan(24);
+select plan(26);
+
+select ok(not exists(
+  select 1 from pg_proc p join pg_namespace n on n.oid=p.pronamespace
+  where n.nspname='public' and p.proname like 'cypher_%' and p.prosecdef
+),'public Cypher RPC surface contains no SECURITY DEFINER implementation');
+select ok(not exists(
+  select 1 from pg_proc p join pg_namespace n on n.oid=p.pronamespace
+  where n.nspname='public' and p.proname in ('cypher_run_extraction','cypher_register_generated_evidence','cypher_execute_local_delivery')
+    and has_function_privilege('authenticated',p.oid,'execute')
+),'worker-only Cypher RPCs are not executable by authenticated clients');
 
 delete from public.cypher_tenants where id in ('cccccccc-cccc-4ccc-8ccc-cccccccccccc','dddddddd-dddd-4ddd-8ddd-dddddddddddd');
 delete from auth.users where id in ('33333333-3333-4333-8333-333333333333','44444444-4444-4444-8444-444444444444');

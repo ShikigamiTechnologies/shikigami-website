@@ -22,8 +22,9 @@
     "CYPHER_OPENAI_ENABLED": "false",
     "CYPHER_OPENAI_MODEL": "disabled-in-staging",
     "CYPHER_OPENAI_FALLBACK_MODEL": "disabled-in-staging",
-    "CYPHER_SUPABASE_ENABLED": "false",
-    "SUPABASE_URL": "",
+    "CYPHER_SUPABASE_ENABLED": "true",
+    "SUPABASE_URL": "https://svfdvbtqbaiyefcojroe.supabase.co",
+    "SUPABASE_PROJECT_ORIGIN": "https://svfdvbtqbaiyefcojroe.supabase.co",
     "CYPHER_STAGING_MODE": "synthetic_only",
     "CYPHER_LIVE_CONNECTORS_ENABLED": "false"
   },

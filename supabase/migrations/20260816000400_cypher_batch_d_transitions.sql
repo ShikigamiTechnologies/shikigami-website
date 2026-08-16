@@ -50,7 +50,29 @@ create policy cypher_storage_artifact_insert on storage.objects for insert to au
 create table if not exists public.cypher_storage_verification_failures(
  id uuid primary key default gen_random_uuid(),tenant_id uuid not null references public.cypher_tenants(id),upload_intent_id uuid not null references public.cypher_upload_intents(id),object_path text not null,reason text not null,cleanup_delete_status integer,cleanup_head_status integer,details jsonb not null default '{}'::jsonb,created_at timestamptz not null default now()
 );
+
+-- Fail closed at the RPC boundary. PostgreSQL grants function execution to
+-- PUBLIC by default, which would otherwise expose SECURITY DEFINER entry
+-- points through PostgREST even when their internal authorization rejects the
+-- request.
+revoke all on function public.cypher_validate_document(uuid,text,text,jsonb) from public, anon, authenticated;
+revoke all on function public.cypher_transition_relationship(uuid,text,text) from public, anon, authenticated;
+revoke all on function public.cypher_transition_exception(uuid,text,text,uuid) from public, anon, authenticated;
+revoke all on function public.cypher_transition_obligation(uuid,text,text) from public, anon, authenticated;
+revoke all on function public.cypher_request_delivery(uuid,uuid,text) from public, anon, authenticated;
+revoke all on function public.cypher_run_extraction(uuid,jsonb) from public, anon, authenticated;
+revoke all on function public.cypher_register_generated_evidence(uuid,jsonb) from public, anon, authenticated;
+revoke all on function public.cypher_execute_local_delivery(uuid,uuid,text) from public, anon, authenticated;
+
+grant execute on function public.cypher_validate_document(uuid,text,text,jsonb) to authenticated;
+grant execute on function public.cypher_transition_relationship(uuid,text,text) to authenticated;
+grant execute on function public.cypher_transition_exception(uuid,text,text,uuid) to authenticated;
+grant execute on function public.cypher_transition_obligation(uuid,text,text) to authenticated;
+grant execute on function public.cypher_request_delivery(uuid,uuid,text) to authenticated;
+grant execute on function public.cypher_run_extraction(uuid,jsonb) to service_role;
+grant execute on function public.cypher_register_generated_evidence(uuid,jsonb) to service_role;
+grant execute on function public.cypher_execute_local_delivery(uuid,uuid,text) to service_role;
 alter table public.cypher_storage_verification_failures enable row level security;
 revoke all on public.cypher_storage_verification_failures from public,anon,authenticated;
 grant insert,select on public.cypher_storage_verification_failures to service_role;
-grant execute on function public.cypher_run_extraction(uuid,jsonb),public.cypher_register_generated_evidence(uuid,jsonb),public.cypher_execute_local_delivery(uuid,uuid,text) to authenticated;
+grant execute on function public.cypher_run_extraction(uuid,jsonb),public.cypher_register_generated_evidence(uuid,jsonb),public.cypher_execute_local_delivery(uuid,uuid,text) to service_role;
