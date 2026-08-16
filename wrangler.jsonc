@@ -37,10 +37,13 @@
         "CYPHER_MAX_UPLOAD_BYTES": "15728640",
         "CYPHER_AZURE_ENABLED": "false",
         "CYPHER_OPENAI_ENABLED": "false",
-        "CYPHER_SUPABASE_ENABLED": "false",
+        "CYPHER_SUPABASE_ENABLED": "true",
+        "SUPABASE_URL": "https://svfdvbtqbaiyefcojroe.supabase.co",
+        "SUPABASE_PROJECT_ORIGIN": "https://svfdvbtqbaiyefcojroe.supabase.co",
         "CYPHER_STAGING_MODE": "synthetic_only",
         "CYPHER_LIVE_CONNECTORS_ENABLED": "false"
-      }
+      },
+      "triggers": { "crons": ["*/2 * * * *"] }
     }
   }
 }

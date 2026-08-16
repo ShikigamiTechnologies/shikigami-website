@@ -3,6 +3,7 @@
 node_modules/
 .wrangler/
 .wrangler-dry-run/
+.wrangler-staging-dry-run/
 .staging-assets/
 test-results/
 .cypher-migration-test*/
@@ -16,6 +17,7 @@ package-lock.json
 worker-configuration.d.ts
 worker.js
 wrangler.jsonc
+wrangler.staging.jsonc
 migrations/
 supabase/
 scripts/
