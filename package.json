@@ -1,7 +1,11 @@
 {
+  "type": "module",
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@cloudflare/vitest-pool-workers": "^0.20.1",
+    "@playwright/test": "^1.62.1",
     "@types/node": "^26.1.2",
+    "axe-core": "^4.13.0",
     "supabase": "2.114.0",
     "vitest": "^4.1.10",
     "wrangler": "^4.118.0"
@@ -9,11 +13,16 @@
   "overrides": {
     "sharp": "0.35.0"
   },
-  "dependencies": {
-    "@simplewebauthn/server": "^13.3.2",
-    "pdf-lib": "^1.17.1"
-  },
   "scripts": {
+    "batch-b:generate": "node scripts/generate-cypher-batch-b-corpus.mjs",
+    "batch-b:run": "node scripts/run-cypher-batch-b.mjs",
+    "batch-b:baseline": "node scripts/generate-cypher-batch-b-corpus.mjs --establish-baseline",
+    "batch-b:freeze": "node scripts/freeze-cypher-batch-b-commitment.mjs",
+    "batch-b:verify": "npm run batch-b:generate && node scripts/run-cypher-batch-b.mjs --establish-baseline && npm run batch-b:generate && npm run batch-b:run",
+    "batch-b:serve": "node scripts/cypher-batch-b-local-service.mjs",
+    "batch-d:run": "node scripts/run-cypher-batch-d.mjs",
+    "batch-d:a11y": "playwright test tests/browser/cypher-a11y.spec.mjs",
+    "batch-d:pilot": "playwright test tests/browser/cypher-batch-d-pilot.spec.mjs",
     "test": "vitest run",
     "check:site": "node scripts/check-site.mjs",
     "check": "npm run check:site && node --check worker.js && node --check assets/js/cypher-admin.js && node --check assets/js/cypher-app.js && node --check assets/js/cypher-auth.js && node --check assets/js/cypher-passkey.js && wrangler types --check",
@@ -22,7 +31,16 @@
     "supabase:start": "supabase start",
     "supabase:reset": "supabase db reset --local",
     "supabase:test": "supabase test db",
+    "supabase:test-storage": "node scripts/test-cypher-storage-api.mjs",
     "supabase:lint": "supabase db lint --local --level warning --fail-on error",
     "supabase:advisors": "supabase db advisors --local --type all --level warn --fail-on error"
+  },
+  "dependencies": {
+    "@tesseract.js-data/eng": "1.0.0",
+    "@tesseract.js-data/spa": "1.0.0",
+    "jszip": "3.10.1",
+    "pdf-lib": "1.17.1",
+    "sharp": "0.35.0",
+    "tesseract.js": "7.0.0"
   }
 }

@@ -1,0 +1,57 @@
+{
+  "schema": "cypher-batch-a-evidence/v2",
+  "generated_at": "2026-08-16T00:35:10Z",
+  "verdict": "GO_LOCAL_BATCH_A_WITH_BATCH_C_BLOCKED",
+  "authority": {
+    "public_intake_result": "awaiting_upload intent only",
+    "public_intake_queued": false,
+    "caller_hash_path_size_trusted": false,
+    "trusted_finalizer": "service-role-only immutable receipt bound to tenant, intent, document, path, hash, and size",
+    "legacy_queue_consumer_present": false,
+    "cloudflare_cypher_bindings_present": []
+  },
+  "commands": [
+    { "command": "npm run supabase:reset", "exit_code": 0 },
+    { "command": "npm run supabase:test", "run": 1, "exit_code": 0, "assertions": 35, "prior_assertions_preserved": 23, "batch_a_assertions": 12 },
+    { "command": "npm run supabase:test", "run": 2, "exit_code": 0, "assertions": 35, "prior_assertions_preserved": 23, "batch_a_assertions": 12 },
+    { "command": "npm test", "run": 1, "exit_code": 0, "tests_passed": 24, "tests_skipped": 0 },
+    { "command": "npm test", "run": 2, "exit_code": 0, "tests_passed": 24, "tests_skipped": 0 },
+    { "command": "npm run check", "exit_code": 0, "site_assertions": 17 },
+    { "command": "npm run supabase:lint", "exit_code": 0, "results": [] },
+    { "command": "npm run supabase:advisors", "exit_code": 0, "results": [] },
+    { "command": "npm audit --audit-level=high", "exit_code": 0, "vulnerabilities": 0 },
+    { "command": "git diff --check", "exit_code": 0, "note": "PowerShell emitted line-ending conversion warnings; no whitespace errors" }
+  ],
+  "lint_exit_1_investigation": {
+    "reproduced_on_repaired_tree": false,
+    "exact_current_command": "npm run supabase:lint",
+    "exact_current_exit_code": 0,
+    "statement": "The reported historical exit-1 was not independently reproduced in this repair run; no claim is made about its prior cause. The repaired schema returned an empty lint result with exit 0 after clean reset."
+  },
+  "adversarial_proofs": [
+    "caller-provided hash and object-path headers are not sent to the upload-intent RPC",
+    "public intake creates no document, intake audit, or outbox row",
+    "authenticated direct trusted-receipt insert and finalization are denied",
+    "missing and size-mismatched trusted receipts cannot finalize",
+    "failed finalization leaves no document and trusted receipts reject mutation",
+    "multi-membership without explicit tenant is ambiguous and denied",
+    "cross-tenant and inactive memberships are denied",
+    "Supabase redirects and malformed or non-allowlisted origins are denied",
+    "legacy queue consumer, mutation helpers, unreachable branches, and skipped executable suite are physically absent",
+    "all active runtime JavaScript passes a static scan for legacy Cypher bindings, batch, R2 mutation, and Queue send APIs",
+    "malformed suffixes, extra segments, unsupported methods, encoded slash or traversal forms, and invalid UUIDs fail before authentication or RPC dispatch"
+  ],
+  "file_sha256": {
+    "lib/cypher-supabase-adapter.js": "972faef926bfcc256d6c2ab26cd2cd738c7a99a1c77622e509a5fb6d28df62b1",
+    "supabase/migrations/20260816000200_cypher_batch_a_authority_route_spine.sql": "fc86b364696a105fd873eb1146735a6ec6b4dffb84db61f29ac6ecf952ecdb25",
+    "supabase/tests/cypher_batch_a_authority.sql": "5e2ee348b642a09857fd1c51e22ce54f38a3b760445bc5f5a84e7576d34a2366",
+    "tests/cypher-batch-a-authority.test.js": "7ef890e6315506bc49aa12fc6cfc285fdcdd31d07d574de82443d73687d35465",
+    "worker.js": "4daf9f5d25e912420245eaa0fac8f2ee2cf0f31ee2ac7974b9b5313d65ea031c",
+    "wrangler.jsonc": "1679a99623c466aec61d7af7325f7c827ce726af8a82bf6d9c1e442b5ba85269",
+    "assets/js/cypher-app.js": "9d279ff4c7c93c87ac7b4134e184b64f466c8ebe727d96ebb3ff5c08a296a0cc",
+    "package.json": "e21c4bfdd22d79bcceb356d07b6a8f13e041acda3b4ab436b377f380e40cf72b",
+    "package-lock.json": "b40a6f14ba7b070cc58b214d24d26aa1e284f7d55207677528c40e8e8d44a0c0"
+  },
+  "residual_gate": "Batch C must implement trusted Storage HEAD plus streamed SHA-256 verification and write the service receipt before finalization.",
+  "external_actions": []
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "cypher-batch-b-thresholds/v2",
+  "declared_before_execution": true,
+  "corpus_documents": 300,
+  "minimum_field_accuracy_by_language": { "en": 0.55, "es": 0.50, "mixed": 0.45 },
+  "minimum_field_accuracy_by_type": { "invoice": 0.45, "purchase_order": 0.45, "receipt": 0.45, "credit_memo": 0.45, "statement": 0.45, "delivery_document": 0.45 },
+  "minimum_field_accuracy_by_difficulty": { "clean": 0.50, "rotated": 0.45, "blurred": 0.45, "low_resolution": 0.40, "adversarial": 0.40 },
+  "minimum_malformed_detection_rate": 1.0,
+  "maximum_false_reject_rate": 0.02,
+  "maximum_p95_latency_ms": 15000,
+  "required": ["prompt_injection_inert","formula_injection_safe","deterministic_replay","xlsx_reopen_semantics","malformed_detection"]
+}

@@ -10,3 +10,7 @@ Thumbs.db
 .cypher-migration-test*/
 .cypher-migration-guard-test/
 node_modules/
+test-artifacts/cypher-batch-b/
+test-results/
+reports/batch-d-physical/
+.staging-assets/
