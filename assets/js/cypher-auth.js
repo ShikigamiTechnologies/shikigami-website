@@ -3,6 +3,7 @@
   const loginForm = document.getElementById('login-form');
   const companySelect = document.getElementById('company');
   const companyButton = companyForm.querySelector('button[type="submit"]');
+  const signupForm = document.getElementById('signup-form');
   const progress = document.querySelectorAll('.auth-progress i');
   let companies = [];
 
@@ -26,6 +27,8 @@
       companySelect.disabled = companies.length === 0;
       companyButton.disabled = companies.length === 0;
       if (!companies.length) message('company-error', 'No company workspaces are currently available. Contact Shikigami support.');
+      const selected = new URLSearchParams(location.search).get('company');
+      if (selected && companies.some(function (item) { return item.slug === selected; })) companySelect.value = selected;
     } catch (error) {
       companySelect.innerHTML = '<option value="">Companies unavailable</option>';
       message('company-error', error.message);
@@ -40,6 +43,22 @@
   });
   document.getElementById('company-back').addEventListener('click', function () {
     loginForm.hidden = true; companyForm.hidden = false; progress[1].classList.remove('active'); message('login-error', '');
+  });
+  document.getElementById('show-signup').addEventListener('click', function () {
+    loginForm.hidden = true; signupForm.hidden = false;
+    document.getElementById('signup-company').textContent = document.getElementById('selected-company').textContent;
+    document.getElementById('signup-email').focus();
+  });
+  document.getElementById('signup-back').addEventListener('click', function () {
+    signupForm.hidden = true; loginForm.hidden = false; message('signup-message', '');
+  });
+  signupForm.addEventListener('submit', async function (event) {
+    event.preventDefault(); const button = signupForm.querySelector('button[type="submit"]'); button.disabled = true; message('signup-message', '');
+    try {
+      const response = await fetch('/api/cypher/v1/signup', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json', accept: 'application/json' }, body: JSON.stringify({ company: companySelect.value, email: document.getElementById('signup-email').value, password: document.getElementById('signup-password').value }) });
+      const data = await responseJson(response); if (!response.ok) throw Error(data.message || 'Enrollment could not be started.');
+      message('signup-message', data.message); document.getElementById('signup-password').value = '';
+    } catch (error) { message('signup-message', error.message); } finally { button.disabled = false; }
   });
   loginForm.addEventListener('submit', async function (event) {
     event.preventDefault(); message('login-error', '');
