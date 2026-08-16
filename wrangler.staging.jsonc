@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "shikigami-tech-staging",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "route": {
+    "pattern": "cypher-staging.shikigamitechnologies.com",
+    "custom_domain": true
+  },
+  "assets": {
+    "directory": "./.staging-assets",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "404-page"
+  },
+  "vars": {
+    "DEPLOYMENT_ENV": "staging",
+    "CYPHER_MAX_UPLOAD_BYTES": "15728640",
+    "CYPHER_AZURE_ENABLED": "false",
+    "CYPHER_OPENAI_ENABLED": "false",
+    "CYPHER_OPENAI_MODEL": "disabled-in-staging",
+    "CYPHER_OPENAI_FALLBACK_MODEL": "disabled-in-staging",
+    "CYPHER_SUPABASE_ENABLED": "true",
+    "SUPABASE_URL": "https://svfdvbtqbaiyefcojroe.supabase.co",
+    "SUPABASE_PROJECT_ORIGIN": "https://svfdvbtqbaiyefcojroe.supabase.co",
+    "CYPHER_STAGING_MODE": "synthetic_only",
+    "CYPHER_LIVE_CONNECTORS_ENABLED": "false"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

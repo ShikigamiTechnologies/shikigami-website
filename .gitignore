@@ -2,6 +2,15 @@
 Thumbs.db
 *.tmp
 .env
+.env.*
+.dev.vars
+.dev.vars.*
 .wrangler/
 .wrangler-dry-run/
+.cypher-migration-test*/
+.cypher-migration-guard-test/
 node_modules/
+test-artifacts/cypher-batch-b/
+test-results/
+reports/batch-d-physical/
+.staging-assets/

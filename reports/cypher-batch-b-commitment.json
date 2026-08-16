@@ -1,0 +1,122 @@
+{
+  "schema": "cypher-batch-b-pre-run-commitment/v1",
+  "frozen_at": "2026-08-16T01:55:32.786Z",
+  "dataset": {
+    "schema": "cypher-batch-b-manifest/v3",
+    "generator_version": "3",
+    "seed": "CYPHER-BATCH-B-2026-08-15-v3",
+    "count": 300
+  },
+  "expected_malformed": {
+    "source": "scorer-only deterministic corpus predicate",
+    "criterion": "zero-based index has difficulty adversarial and index modulo 25 equals 4; never read from manifest"
+  },
+  "threshold_matrix": {
+    "schema": "cypher-batch-b-thresholds/v2",
+    "declared_before_execution": true,
+    "corpus_documents": 300,
+    "minimum_field_accuracy_by_language": {
+      "en": 0.55,
+      "es": 0.5,
+      "mixed": 0.45
+    },
+    "minimum_field_accuracy_by_type": {
+      "invoice": 0.45,
+      "purchase_order": 0.45,
+      "receipt": 0.45,
+      "credit_memo": 0.45,
+      "statement": 0.45,
+      "delivery_document": 0.45
+    },
+    "minimum_field_accuracy_by_difficulty": {
+      "clean": 0.5,
+      "rotated": 0.45,
+      "blurred": 0.45,
+      "low_resolution": 0.4,
+      "adversarial": 0.4
+    },
+    "minimum_malformed_detection_rate": 1,
+    "maximum_false_reject_rate": 0.02,
+    "maximum_p95_latency_ms": 15000,
+    "required": [
+      "prompt_injection_inert",
+      "formula_injection_safe",
+      "deterministic_replay",
+      "xlsx_reopen_semantics",
+      "malformed_detection"
+    ]
+  },
+  "allowed_failure_taxonomy": [
+    "pdf_signature",
+    "pdf_render_failure",
+    "image_decode_failure",
+    "artifact_hash_mismatch",
+    "size_limit",
+    "dimension_limit",
+    "unsupported_media"
+  ],
+  "hashes": {
+    "generator": "f09b306cb68848fd0fb9da88b2ecd62a1dc81e4b0a6875b4df871b9b93a3eb08",
+    "extraction": "6ee4b59f6a35439202e87a196cc54c79e394e42413f058b71cc5c583b58c0233",
+    "scoring": "24135e1ab5eb41eb58f42dddf0760d654fcfff2eabd393bcc65ae4625954f842",
+    "renderer_module": "1faf0952a94b3a43bc68eba19e491628bb01046df97edefd61ece576c4cc6fbc",
+    "renderer_launcher": "742cbbd9a00931ad16c6618410bc40471375d639a45c61c1d86f3dcfc54b6388",
+    "eng_traineddata": "45b4cb346724ac1774f1c36f42f182b887bcdb28ebe63e6fff90ac41f3fcff91",
+    "spa_traineddata": "40be52f97b5d4eb7460073dc1f94cd546b27150333c0bf854ed7e7132db6bceb",
+    "tesseract_core_js": "eef5f8b2f8e20e150680b20adaec4a60babafee3adbe8a94583c81fee46e8680",
+    "tesseract_worker_js": "a5759d6d3d8beda31134dd041e2d3482b3adf26b6da4a3e7da9b1c5379114268",
+    "dependency_lock": "2dab354385842dfc4ccb0949ca84da764a6314ec41d22c3e6665caabf517bc26"
+  },
+  "renderer": {
+    "path": "C:\\Users\\ranto\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin\\pdftoppm.exe",
+    "version": "pdftoppm version 26.05.0\r\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\r\nCopyright 1996-2011, 2022 Glyph & Cog, LLC"
+  },
+  "dependencies": [
+    {
+      "name": "tesseract.js",
+      "version": "7.0.0",
+      "license": "Apache-2.0",
+      "package_json_sha256": "fa342f37afd665595eca66ee867197c47c9ac35a7967123d1132c39a40b3dfbd"
+    },
+    {
+      "name": "tesseract.js-core",
+      "version": "7.0.0",
+      "license": "Apache-2.0",
+      "package_json_sha256": "554b867684677c81aa3ffab61f31e83618445fa09adee99e8fff3515cee6ca54"
+    },
+    {
+      "name": "@tesseract.js-data/eng",
+      "version": "1.0.0",
+      "license": "MIT",
+      "package_json_sha256": "b603509212196b5d09e10519bf252c1e344b79704d065e0d62886846f8554c80"
+    },
+    {
+      "name": "@tesseract.js-data/spa",
+      "version": "1.0.0",
+      "license": "MIT",
+      "package_json_sha256": "a9ccbacb85fb63951e1746f32318ee01114acf9f4c26f222082b1de942501171"
+    },
+    {
+      "name": "pdf-lib",
+      "version": "1.17.1",
+      "license": "MIT",
+      "package_json_sha256": "951726fe11b7376919050c18d2cd9237d6e211d7ee0b01104990cb95105fe182"
+    },
+    {
+      "name": "sharp",
+      "version": "0.35.0",
+      "license": "Apache-2.0",
+      "package_json_sha256": "67c2bff4efe83533244796941561aa0e20185e4f2210d7993a271cd7c215e7a9"
+    },
+    {
+      "name": "jszip",
+      "version": "3.10.1",
+      "license": "(MIT OR GPL-3.0-or-later)",
+      "package_json_sha256": "83569b5b130b5ec27ae281ed80420ad364baf1bf64cb82e6ac8fb891e1b4ec4c"
+    }
+  ],
+  "production_gate": {
+    "ooxml_reopen": "REQUIRED",
+    "human_correction_time": "DEFERRED"
+  }
+}

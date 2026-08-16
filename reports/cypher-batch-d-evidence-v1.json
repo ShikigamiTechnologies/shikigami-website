@@ -1,0 +1,198 @@
+{
+  "schema": "cypher-batch-d/1.0.0",
+  "generated_at": "2026-08-16T04:52:48.140Z",
+  "synthetic_only": true,
+  "external_calls": 0,
+  "migration": {
+    "first": {
+      "source_digest_before": "aa8ae07bc0e624758076840910c5d2f3de2d05fbf6f3e347aec2c948eb5ed565",
+      "source_digest_after": "aa8ae07bc0e624758076840910c5d2f3de2d05fbf6f3e347aec2c948eb5ed565",
+      "source_unchanged": true,
+      "source_counts": {
+        "records": 15,
+        "objects": 14
+      },
+      "target_counts": {
+        "records": 14,
+        "objects": 14,
+        "receipts": 28,
+        "quarantine": 1
+      },
+      "inserted": {
+        "records": 14,
+        "objects": 14
+      },
+      "replayed": {
+        "records": 0,
+        "objects": 0
+      },
+      "tenant_isolation": true,
+      "object_byte_hash_equality": true
+    },
+    "replay": {
+      "source_digest_before": "aa8ae07bc0e624758076840910c5d2f3de2d05fbf6f3e347aec2c948eb5ed565",
+      "source_digest_after": "aa8ae07bc0e624758076840910c5d2f3de2d05fbf6f3e347aec2c948eb5ed565",
+      "source_unchanged": true,
+      "source_counts": {
+        "records": 15,
+        "objects": 14
+      },
+      "target_counts": {
+        "records": 14,
+        "objects": 14,
+        "receipts": 28,
+        "quarantine": 1
+      },
+      "inserted": {
+        "records": 0,
+        "objects": 0
+      },
+      "replayed": {
+        "records": 14,
+        "objects": 14
+      },
+      "tenant_isolation": true,
+      "object_byte_hash_equality": true
+    }
+  },
+  "backup_restore": {
+    "backup_hash": "a9890324b1e6472857adeec690f55b965438ff8ef694876baf0392379aca1d98",
+    "restore_hash": "a9890324b1e6472857adeec690f55b965438ff8ef694876baf0392379aca1d98",
+    "counts_equal": true,
+    "hashes_equal": true,
+    "rls_authz": {
+      "anonymous_denied": true,
+      "cross_tenant_denied": true,
+      "member_read": true,
+      "operator_write": true,
+      "viewer_write_denied": true
+    },
+    "outbox_equal": true,
+    "checkpoints_equal": true,
+    "rpo_ms": 0,
+    "rto_ms": 0.288,
+    "backup_ms": 0.174
+  },
+  "recovery": {
+    "pending_before": 1,
+    "deliveries": 1,
+    "delivered_after": 1,
+    "idempotent_resume": true
+  },
+  "workflows": [
+    {
+      "name": "controlled_intake",
+      "authenticated": true,
+      "tenant": "tenant-alpha",
+      "browser_route": "/api/cypher/v1/documents",
+      "sandbox_api": true,
+      "pass": true
+    },
+    {
+      "name": "bilingual_extraction_validation",
+      "authenticated": true,
+      "tenant": "tenant-alpha",
+      "browser_route": "/api/cypher/v1/documents/11111111-1111-4111-8111-111111111111/validate",
+      "sandbox_api": true,
+      "pass": true
+    },
+    {
+      "name": "cross_location_relationships",
+      "authenticated": true,
+      "tenant": "tenant-alpha",
+      "browser_route": "/api/cypher/v1/relationships",
+      "sandbox_api": true,
+      "pass": true
+    },
+    {
+      "name": "exceptions_duplicates",
+      "authenticated": true,
+      "tenant": "tenant-alpha",
+      "browser_route": "/api/cypher/v1/exceptions",
+      "sandbox_api": true,
+      "pass": true
+    },
+    {
+      "name": "obligations_aging",
+      "authenticated": true,
+      "tenant": "tenant-alpha",
+      "browser_route": "/api/cypher/v1/obligations",
+      "sandbox_api": true,
+      "pass": true
+    },
+    {
+      "name": "evidence_xlsx_csv_json_exports",
+      "authenticated": true,
+      "tenant": "tenant-alpha",
+      "browser_route": "/api/cypher/v1/exports",
+      "sandbox_api": true,
+      "pass": true
+    },
+    {
+      "name": "secure_delivery",
+      "authenticated": true,
+      "tenant": "tenant-alpha",
+      "browser_route": "/api/cypher/v1/deliveries",
+      "sandbox_api": true,
+      "pass": true
+    }
+  ],
+  "performance": {
+    "requests": 1000,
+    "concurrency": 25,
+    "p50_ms": 11.77,
+    "p95_ms": 13.606,
+    "p99_ms": 15.072,
+    "error_rate": 0,
+    "thresholds": {
+      "p95_ms_max": 50,
+      "p99_ms_max": 100,
+      "error_rate_max": 0.001
+    },
+    "pass": true,
+    "resource": {
+      "rss_bytes": 73814016,
+      "heap_used_bytes": 6201744
+    }
+  },
+  "static_authority": {
+    "files": [
+      "worker.js",
+      "lib/cypher-supabase-adapter.js",
+      "assets/js/cypher-app.js",
+      "wrangler.jsonc"
+    ],
+    "forbidden_hits": [],
+    "pass": true
+  },
+  "pilot": {
+    "authenticated": true,
+    "synthetic": true,
+    "workflows_completed": 7,
+    "operator_correction_time_ms": 0,
+    "operator_time_label": "synthetic automation time; not human UX time",
+    "human_ux_time_ms": null
+  },
+  "gates": {
+    "executed": [
+      "migration",
+      "backup_restore_model",
+      "outbox_recovery",
+      "static_authority",
+      "performance",
+      "seven_workflow_route_contract",
+      "pgTAP_42",
+      "private_storage_api",
+      "playwright_axe_desktop_tablet_mobile"
+    ],
+    "remaining_live_prod": [
+      "real production backup restore",
+      "human operator UX timing",
+      "live connector credentials and writes",
+      "production load and disaster recovery",
+      "deployment approval"
+    ],
+    "blocked_local": []
+  },
+  "pass": true
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sign in to Cypher | Shikigami Technologies</title>
+  <meta name="description" content="Secure company and personal account sign-in for the Cypher document intelligence platform.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/cypher-portal.css">
+</head>
+<body class="cypher-portal">
+  <a class="portal-brand" href="cypher.html"><span>◆</span> SHIKIGAMI / CYPHER</a>
+  <main class="sign-in-shell">
+    <section class="sign-in-copy">
+      <p class="portal-eyebrow">Secure document operations</p>
+      <h1>Welcome back to <em>Cypher.</em></h1>
+      <p>Select your organization, then sign in with your personal Cypher account. Your company determines the workspace; your membership determines what you can access.</p>
+      <div class="portal-assurance"><span>Tenant separated</span><span>Human validated</span><span>Audit recorded</span></div>
+    </section>
+    <section class="auth-card" aria-labelledby="sign-in-heading">
+      <div class="auth-progress" aria-hidden="true"><i class="active"></i><i></i></div>
+      <form id="company-form">
+        <p class="step-label">Step 1 of 2</p>
+        <h2 id="sign-in-heading">Choose your company</h2>
+        <p class="form-help">Only organizations provisioned by Shikigami Technologies appear here.</p>
+        <label for="company">Company</label>
+        <select id="company" name="company" required disabled><option value="">Loading companies…</option></select>
+        <p id="company-error" class="form-message error" role="alert" hidden></p>
+        <button class="portal-button" type="submit" disabled>Continue</button>
+      </form>
+      <form id="login-form" hidden>
+        <p class="step-label">Step 2 of 2</p>
+        <button class="company-back" type="button" id="company-back">← Change company</button>
+        <h2>Sign in to <span id="selected-company"></span></h2>
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="username" maxlength="254" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" maxlength="128" required>
+        <p id="login-error" class="form-message error" role="alert" hidden></p>
+        <button class="portal-button" type="submit">Sign in securely</button>
+        <p class="support-note">Account access is issued by your organization’s Cypher administrator.</p>
+      </form>
+    </section>
+  </main>
+  <footer class="portal-footer"><span>© Shikigami Technologies LLC</span><a href="privacy.html">Privacy</a><a href="security.html">Security</a></footer>
+  <script src="assets/js/cypher-auth.js" defer></script>
+</body>
+</html>

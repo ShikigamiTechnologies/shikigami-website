@@ -1,0 +1,35 @@
+{
+  "schema": "cypher/security-upload-verification-v2",
+  "generated_at": "2026-08-16T04:22:27.425Z",
+  "synthetic_only": true,
+  "attack": {
+    "authenticated_writer": true,
+    "http_status": 403,
+    "denied": true,
+    "error_sha256": "cf8fc256c16d5a9b713a75d99f069e8159bf5a95526cdcbe79a4d492d83e558a"
+  },
+  "post_attack_counts": {
+    "storage_objects": 0,
+    "documents": 0,
+    "receipts": 0,
+    "outbox": 0
+  },
+  "function_execute": {
+    "public": false,
+    "anon": false,
+    "authenticated": false,
+    "service_role": true
+  },
+  "verifier_contract": {
+    "incremental_sha256": true,
+    "readable_stream_chunks": true,
+    "no_array_buffer": true,
+    "bounded_bytes": true,
+    "timeout_abort": true,
+    "re_head_version_binding": true,
+    "preflight_before_body": true,
+    "verified_cleanup": true,
+    "quarantine_record": true
+  },
+  "pass": true
+}
