@@ -1,6 +1,6 @@
 {
   "schema": "cypher-batch-d/1.0.0",
-  "generated_at": "2026-08-16T04:52:48.140Z",
+  "generated_at": "2026-08-18T12:22:07.273Z",
   "synthetic_only": true,
   "external_calls": 0,
   "migration": {
@@ -70,8 +70,8 @@
     "outbox_equal": true,
     "checkpoints_equal": true,
     "rpo_ms": 0,
-    "rto_ms": 0.288,
-    "backup_ms": 0.174
+    "rto_ms": 0.287,
+    "backup_ms": 0.144
   },
   "recovery": {
     "pending_before": 1,
@@ -140,9 +140,9 @@
   "performance": {
     "requests": 1000,
     "concurrency": 25,
-    "p50_ms": 11.77,
-    "p95_ms": 13.606,
-    "p99_ms": 15.072,
+    "p50_ms": 5.347,
+    "p95_ms": 6.545,
+    "p99_ms": 7.049,
     "error_rate": 0,
     "thresholds": {
       "p95_ms_max": 50,
@@ -151,8 +151,8 @@
     },
     "pass": true,
     "resource": {
-      "rss_bytes": 73814016,
-      "heap_used_bytes": 6201744
+      "rss_bytes": 77135872,
+      "heap_used_bytes": 5839008
     }
   },
   "static_authority": {

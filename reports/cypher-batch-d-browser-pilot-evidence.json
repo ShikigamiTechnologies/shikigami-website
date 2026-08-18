@@ -1,6 +1,6 @@
 {
-  "schema": "cypher-batch-d/browser-worker-owned-v4",
-  "generated_at": "2026-08-16T04:22:50.387Z",
+  "schema": "cypher-batch-d/browser-worker-owned-v5",
+  "generated_at": "2026-08-18T12:35:17.125Z",
   "before": {
     "documents": 2,
     "extractions": 0,
@@ -10,7 +10,7 @@
   },
   "after": {
     "documents": 3,
-    "extractions": 1,
+    "extractions": 2,
     "corrections": 1,
     "artifacts": 5,
     "deliveries": 1
@@ -23,7 +23,7 @@
       "service_key_present": false
     },
     {
-      "url": "http://127.0.0.1:8787/api/cypher/v1/documents/a19560cb-f391-4508-81e7-c96c160ba0ae/validate",
+      "url": "http://127.0.0.1:8787/api/cypher/v1/documents/63973efb-ac63-451c-99bb-4bdc294f0b0a/validate",
       "status": 200,
       "method": "POST",
       "service_key_present": false
@@ -48,13 +48,13 @@
     },
     {
       "url": "http://127.0.0.1:8787/api/cypher/v1/exports",
-      "status": 201,
+      "status": 202,
       "method": "POST",
       "service_key_present": false
     },
     {
       "url": "http://127.0.0.1:8787/api/cypher/v1/deliveries",
-      "status": 201,
+      "status": 202,
       "method": "POST",
       "service_key_present": false
     },
@@ -72,11 +72,11 @@
     }
   ],
   "download_hashes": {
-    "evidence_manifest": "9e41327ffb81c9970068cdbe0b5d3becf1ca41c73fbf619bf8b181d036cc4b37",
-    "validation_pdf": "894c4889e9704108f3b4ad5708c4afc8599d6fcb98aca3e90a4f2386fd2f9e50",
-    "export_csv": "5d768ea1469303a39ef4a4d579af8fded0aab5d359f43d22dc8ace8a2396e2f2",
-    "export_json": "8030ca3aab29395c23e9a921c2e35d640f919ea4ead92ec5dc1319b923614962",
-    "export_xlsx": "9206afffbdb9ed43f17d9bc3c9e379c52ac77f4a30b0ca051a67fe0ca0cf86ca"
+    "evidence_manifest": "0b4985c7826321ece4167e010873da5c59cf7dfc8c57ab4faf62d1b66c8f3a0a",
+    "export_csv": "edc64ac5ff9dcc80a469bf0055da71e9618b7daa8f1a35a508edc4b642be3a96",
+    "export_json": "8075798fabf301a400ce52c5c918a98f9ca9c261efc0e0f09c79e7f94b80a18b",
+    "export_xlsx": "20f1d02487e032bfe8b825c8312f4ed733a7e73cf6b27a876765280280d3d473",
+    "validation_pdf": "19b93baa09561c3c83464ac4be400eb3e2121f1f8102506836aaedbb527f99d0"
   },
   "other_tenant_denied": true,
   "anon_denied": true,

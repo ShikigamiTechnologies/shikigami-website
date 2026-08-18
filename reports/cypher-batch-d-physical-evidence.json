@@ -1,19 +1,19 @@
 {
   "schema": "cypher-batch-d/physical-real-v2",
-  "generated_at": "2026-08-16T04:22:55.346Z",
+  "generated_at": "2026-08-18T12:36:43.687Z",
   "synthetic_only": true,
   "pass": true,
   "cleanup": {
     "performed_in_finally": true,
     "target_removed": true,
     "volume_removed": true,
-    "verified_at": "2026-08-16T04:23:09.122Z"
+    "verified_at": "2026-08-18T12:36:58.210Z"
   },
   "source": {
-    "owner_user": "f6c9b8b9-ec86-4f4a-a4ef-be774a844310",
-    "other_user": "06c61c52-cfbf-46e8-90ae-d2335b156667",
-    "tenant": "57bd70d8-d661-4502-b6d0-62ff28f8b86c",
-    "document": "35f34427-54ec-4768-84e1-30c66e63f9be",
+    "owner_user": "a913a26d-d3d8-4538-8931-c995ca374e7b",
+    "other_user": "f899baca-d1cf-4589-b680-7a26ee91c7dc",
+    "tenant": "472cc195-6f6d-4647-b333-bb70c13f4ef5",
+    "document": "eb8c84e6-1b12-4b3f-93a5-1f32523f0623",
     "counts": {
       "cypher_tenants": 1,
       "cypher_memberships": 1,
@@ -27,28 +27,28 @@
       "cypher_migration_receipts": 1
     },
     "row_hashes": {
-      "cypher_tenants": "fa40d6c673ffcdf840431455408e7020ad8b50641eb1075a8fd1a8fa530d7c78",
-      "cypher_memberships": "e42861f4c8fb81d103e1e7ff21aced43d1935de9048cec6dfc7904049300b20c",
-      "cypher_documents": "bf87f32a19a563d5cf8343574e73cd2a045aa656de79b438dcd32baa807eb53f",
-      "cypher_upload_intents": "7fb0c71c9e7511f1c98dd3c35b9be64aef93ca246ae95fa7934dc292d74799ef",
-      "cypher_trusted_upload_receipts": "122ce652ce06482917e89f0c16f0aae2c0a6a282707f3a11ee962ab10cf2c1e8",
-      "cypher_intake_events": "2136f5d13d12d6116902b26825d186116d7964be08eba703d93cd0a93bbcfa88",
-      "cypher_artifacts": "c8cbb7f97d53da28e7f77dc70754ed016d818a3785b5a8f3cf9c134b5168776e",
-      "cypher_storage_receipts": "9a5c8fb53d8bae145b4076e539a3557d562bec782041e4f2bda0e42cc257e8c5",
-      "cypher_outbox": "cb70d1525f2f6a72079c2dac3d48e862dfe1d33ce78327e63f23331d6dbb58f9",
-      "cypher_migration_receipts": "de089913d195495021b8d45bb3c75999685c0e33cdb1d3540037da167da2133d"
+      "cypher_tenants": "3c386f918415af98ab473d2694a705f944667dbc6f4c0c6466195218b0bc6f78",
+      "cypher_memberships": "4a574df32c65134f05eb04d01d809312316c9414df26c94bf177251a77e4ab79",
+      "cypher_documents": "35efe0635b713feb243b749e274a0ec17a739240c1fd85e7fc2e42804561f711",
+      "cypher_upload_intents": "0ed8dc04267f1ca095c92974efc97199feb84075952d22ed2e0ef23000df9edc",
+      "cypher_trusted_upload_receipts": "2254e5e74425674665d46b60f448c85143ffc5412a989a17ffeca3519d49251a",
+      "cypher_intake_events": "acad7d8dbb934f22d39bb8487a04cfff09534565875765d6466dba221e627881",
+      "cypher_artifacts": "d56023e82ef4d137fbea2ae6d1892c0791e0a4f31241b5ec6a7f08056e82219f",
+      "cypher_storage_receipts": "7e9c6fa0eafdc487509ea7ef1de91716b9eee4f114d08aeea6dd9fe4b46557b7",
+      "cypher_outbox": "5328490c776ad436c15ecaf9149e406a5859b3b0e2c345d861807c639c40f793",
+      "cypher_migration_receipts": "69580471aedbe8c1cf615daafb159ab2b7251ef2972535949ce30f97f000c1eb"
     },
     "object": {
-      "path": "57bd70d8-d661-4502-b6d0-62ff28f8b86c/5d14f50e-2f07-439b-85aa-94ed2288bf0c/original/4f9e9f745b89587d7d244524dfecc9d84eb0bf8912fcc60fee9dca5855853eab.pdf",
+      "path": "472cc195-6f6d-4647-b333-bb70c13f4ef5/2077b687-c7a8-4719-9557-2f0c7cbf045c/original/6bf5dd145d35549f133091fd9fbec46e414cb71601e8717effb08a11509d3df6.pdf",
       "size": 51,
-      "sha256": "4f9e9f745b89587d7d244524dfecc9d84eb0bf8912fcc60fee9dca5855853eab"
+      "sha256": "6bf5dd145d35549f133091fd9fbec46e414cb71601e8717effb08a11509d3df6"
     }
   },
   "target": {
-    "container": "cypher-batch-d-real-1786854173465",
+    "container": "cypher-batch-d-real-1787056601697",
     "database": "restoredb",
     "no_shared_volume": true,
-    "object_volume": "cypher-batch-d-objects-1786854173465",
+    "object_volume": "cypher-batch-d-objects-1787056601697",
     "counts": {
       "cypher_tenants": 1,
       "cypher_memberships": 1,
@@ -62,26 +62,26 @@
       "cypher_migration_receipts": 1
     },
     "row_hashes": {
-      "cypher_tenants": "fa40d6c673ffcdf840431455408e7020ad8b50641eb1075a8fd1a8fa530d7c78",
-      "cypher_memberships": "e42861f4c8fb81d103e1e7ff21aced43d1935de9048cec6dfc7904049300b20c",
-      "cypher_documents": "bf87f32a19a563d5cf8343574e73cd2a045aa656de79b438dcd32baa807eb53f",
-      "cypher_upload_intents": "7fb0c71c9e7511f1c98dd3c35b9be64aef93ca246ae95fa7934dc292d74799ef",
-      "cypher_trusted_upload_receipts": "122ce652ce06482917e89f0c16f0aae2c0a6a282707f3a11ee962ab10cf2c1e8",
-      "cypher_intake_events": "2136f5d13d12d6116902b26825d186116d7964be08eba703d93cd0a93bbcfa88",
-      "cypher_artifacts": "c8cbb7f97d53da28e7f77dc70754ed016d818a3785b5a8f3cf9c134b5168776e",
-      "cypher_storage_receipts": "9a5c8fb53d8bae145b4076e539a3557d562bec782041e4f2bda0e42cc257e8c5",
-      "cypher_outbox": "cb70d1525f2f6a72079c2dac3d48e862dfe1d33ce78327e63f23331d6dbb58f9",
-      "cypher_migration_receipts": "de089913d195495021b8d45bb3c75999685c0e33cdb1d3540037da167da2133d"
+      "cypher_tenants": "3c386f918415af98ab473d2694a705f944667dbc6f4c0c6466195218b0bc6f78",
+      "cypher_memberships": "4a574df32c65134f05eb04d01d809312316c9414df26c94bf177251a77e4ab79",
+      "cypher_documents": "35efe0635b713feb243b749e274a0ec17a739240c1fd85e7fc2e42804561f711",
+      "cypher_upload_intents": "0ed8dc04267f1ca095c92974efc97199feb84075952d22ed2e0ef23000df9edc",
+      "cypher_trusted_upload_receipts": "2254e5e74425674665d46b60f448c85143ffc5412a989a17ffeca3519d49251a",
+      "cypher_intake_events": "acad7d8dbb934f22d39bb8487a04cfff09534565875765d6466dba221e627881",
+      "cypher_artifacts": "d56023e82ef4d137fbea2ae6d1892c0791e0a4f31241b5ec6a7f08056e82219f",
+      "cypher_storage_receipts": "7e9c6fa0eafdc487509ea7ef1de91716b9eee4f114d08aeea6dd9fe4b46557b7",
+      "cypher_outbox": "5328490c776ad436c15ecaf9149e406a5859b3b0e2c345d861807c639c40f793",
+      "cypher_migration_receipts": "69580471aedbe8c1cf615daafb159ab2b7251ef2972535949ce30f97f000c1eb"
     },
     "object": {
-      "path": "57bd70d8-d661-4502-b6d0-62ff28f8b86c/5d14f50e-2f07-439b-85aa-94ed2288bf0c/original/4f9e9f745b89587d7d244524dfecc9d84eb0bf8912fcc60fee9dca5855853eab.pdf",
+      "path": "472cc195-6f6d-4647-b333-bb70c13f4ef5/2077b687-c7a8-4719-9557-2f0c7cbf045c/original/6bf5dd145d35549f133091fd9fbec46e414cb71601e8717effb08a11509d3df6.pdf",
       "size": 51,
-      "sha256": "4f9e9f745b89587d7d244524dfecc9d84eb0bf8912fcc60fee9dca5855853eab"
+      "sha256": "6bf5dd145d35549f133091fd9fbec46e414cb71601e8717effb08a11509d3df6"
     }
   },
   "backup": {
     "path": "reports/batch-d-physical/source-real.dump",
-    "size": 380648,
+    "size": 410982,
     "schemas": [
       "auth",
       "private",
@@ -92,18 +92,18 @@
     "restore_list": "reports/batch-d-physical/restore.list",
     "toc_exclusions": [
       "17; 2615 2200 SCHEMA - public pg_database_owner",
-      "2577; 826 16553 DEFAULT ACL auth DEFAULT PRIVILEGES FOR SEQUENCES supabase_auth_admin",
-      "2578; 826 16554 DEFAULT ACL auth DEFAULT PRIVILEGES FOR FUNCTIONS supabase_auth_admin",
-      "2576; 826 16552 DEFAULT ACL auth DEFAULT PRIVILEGES FOR TABLES supabase_auth_admin",
-      "2595; 826 16453 DEFAULT ACL public DEFAULT PRIVILEGES FOR SEQUENCES postgres",
-      "2570; 826 16454 DEFAULT ACL public DEFAULT PRIVILEGES FOR SEQUENCES supabase_admin",
-      "2596; 826 16452 DEFAULT ACL public DEFAULT PRIVILEGES FOR FUNCTIONS postgres",
-      "2572; 826 16456 DEFAULT ACL public DEFAULT PRIVILEGES FOR FUNCTIONS supabase_admin",
-      "2594; 826 16451 DEFAULT ACL public DEFAULT PRIVILEGES FOR TABLES postgres",
-      "2571; 826 16455 DEFAULT ACL public DEFAULT PRIVILEGES FOR TABLES supabase_admin",
-      "2575; 826 16509 DEFAULT ACL storage DEFAULT PRIVILEGES FOR SEQUENCES postgres",
-      "2574; 826 16508 DEFAULT ACL storage DEFAULT PRIVILEGES FOR FUNCTIONS postgres",
-      "2573; 826 16507 DEFAULT ACL storage DEFAULT PRIVILEGES FOR TABLES postgres"
+      "2600; 826 16553 DEFAULT ACL auth DEFAULT PRIVILEGES FOR SEQUENCES supabase_auth_admin",
+      "2601; 826 16554 DEFAULT ACL auth DEFAULT PRIVILEGES FOR FUNCTIONS supabase_auth_admin",
+      "2599; 826 16552 DEFAULT ACL auth DEFAULT PRIVILEGES FOR TABLES supabase_auth_admin",
+      "2618; 826 16453 DEFAULT ACL public DEFAULT PRIVILEGES FOR SEQUENCES postgres",
+      "2593; 826 16454 DEFAULT ACL public DEFAULT PRIVILEGES FOR SEQUENCES supabase_admin",
+      "2619; 826 16452 DEFAULT ACL public DEFAULT PRIVILEGES FOR FUNCTIONS postgres",
+      "2595; 826 16456 DEFAULT ACL public DEFAULT PRIVILEGES FOR FUNCTIONS supabase_admin",
+      "2617; 826 16451 DEFAULT ACL public DEFAULT PRIVILEGES FOR TABLES postgres",
+      "2594; 826 16455 DEFAULT ACL public DEFAULT PRIVILEGES FOR TABLES supabase_admin",
+      "2598; 826 16509 DEFAULT ACL storage DEFAULT PRIVILEGES FOR SEQUENCES postgres",
+      "2597; 826 16508 DEFAULT ACL storage DEFAULT PRIVILEGES FOR FUNCTIONS postgres",
+      "2596; 826 16507 DEFAULT ACL storage DEFAULT PRIVILEGES FOR TABLES postgres"
     ]
   },
   "rls": {
@@ -126,8 +126,8 @@
     "after": 1,
     "idempotent": true
   },
-  "rpo_ms": 15010,
-  "rto_ms": 11931,
+  "rpo_ms": 15813,
+  "rto_ms": 12452,
   "privileges": {
     "service_role_before": [
       {
