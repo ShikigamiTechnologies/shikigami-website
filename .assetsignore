@@ -1,7 +1,11 @@
 .git/
+.git
 node_modules/
 .wrangler/
 .wrangler-dry-run/
+.wrangler-staging-dry-run/
+.staging-assets/
+test-results/
 .cypher-migration-test*/
 .cypher-migration-guard-test/
 .gitignore
@@ -13,6 +17,7 @@ package-lock.json
 worker-configuration.d.ts
 worker.js
 wrangler.jsonc
+wrangler.staging.jsonc
 migrations/
 supabase/
 scripts/
@@ -27,5 +32,6 @@ CYPHER_ONLINE_GO_LIVE_RUNBOOK.md
 CYPHER_ONLINE_MIGRATION_PLAN.md
 CYPHER_PRODUCT_CONSTITUTION.md
 CYPHER_MARKET_READINESS_REVIEW_2026-08-15.md
+CYPHER_*.md
 .dev.vars
 .dev.vars.*

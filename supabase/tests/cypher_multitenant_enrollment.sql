@@ -1,0 +1,21 @@
+\set ON_ERROR_STOP on
+create extension if not exists pgtap;
+begin;
+select plan(7);
+select is((select public_label from public.cypher_tenants where slug='advance-auto-parts-synthetic-pilot'),'Advance Auto Parts — Synthetic Pilot','synthetic pilot tenant is explicit');
+select is((select enrollment_mode from public.cypher_tenants where slug='advance-auto-parts-synthetic-pilot'),'open_synthetic','synthetic enrollment is bounded');
+insert into auth.users(id,email,email_confirmed_at) values('55555555-5555-4555-8555-555555555555','pilot@example.test',now()),('66666666-6666-4666-8666-666666666666','pending@example.test',null);
+insert into auth.sessions(id,user_id) values('55555555-0000-4000-8000-000000000005','55555555-5555-4555-8555-555555555555'),('66666666-0000-4000-8000-000000000006','66666666-6666-4666-8666-666666666666');
+set role authenticated;
+select set_config('request.jwt.claims','{"sub":"55555555-5555-4555-8555-555555555555","session_id":"55555555-0000-4000-8000-000000000005"}',false);
+select lives_ok($$select public.cypher_claim_pilot_membership('advance-auto-parts-synthetic-pilot')$$,'confirmed identity can claim synthetic pilot');
+reset role;
+select is((select count(*) from public.cypher_memberships where user_id='55555555-5555-4555-8555-555555555555' and status='active'),1::bigint,'one active membership is created');
+set role authenticated;
+select set_config('request.jwt.claims','{"sub":"55555555-5555-4555-8555-555555555555","session_id":"55555555-0000-4000-8000-000000000005"}',false);
+select is((select count(*) from public.cypher_claim_pilot_membership('advance-auto-parts-synthetic-pilot')),1::bigint,'claim is idempotent');
+select throws_ok($$select public.cypher_claim_pilot_membership('missing-company')$$,'pilot enrollment unavailable','unknown tenant cannot be claimed');
+select set_config('request.jwt.claims','{"sub":"66666666-6666-4666-8666-666666666666","session_id":"66666666-0000-4000-8000-000000000006"}',false);
+select throws_ok($$select public.cypher_claim_pilot_membership('advance-auto-parts-synthetic-pilot')$$,'confirmed email required','unconfirmed email cannot claim membership');
+select * from finish();
+rollback;

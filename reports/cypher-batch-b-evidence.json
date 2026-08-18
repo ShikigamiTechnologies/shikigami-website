@@ -1,6 +1,6 @@
 {
   "schema": "cypher-batch-b-evidence/v3",
-  "generated_at": "2026-08-16T04:52:47.035Z",
+  "generated_at": "2026-08-18T12:36:41.627Z",
   "verdict": "PASS",
   "checks": {
     "commitment_pre_run_verified": true,
@@ -69,7 +69,7 @@
   "metamorphic": {
     "source": "B-001",
     "original_pdf_sha256": "8665aaf8b433c8a8d60b891c77ed07da8d9923ccda8de20d32f26640d77cdf2e",
-    "altered_pdf_sha256": "61ed79a4b0f32e8a65e2307b28e04c1cff28b90e3d56fd3484805bd4d5af5a75",
+    "altered_pdf_sha256": "6f9b6ca20f7ab0f8f7dadeae0063992e9e33dbadc90eb220e4a1df1be3b154c1",
     "original_pixels_sha256": "2634c394b16dcb1be0ad10f92912dca5d9d2b27520bdb562b047612fd5fa4c64",
     "altered_pixels_sha256": "cfa593817737b69ea971546f874a60bf3c0f90142c78755d5a9711dcccdb81cd",
     "pixels_changed": true,
@@ -97,7 +97,7 @@
       "line_item_f1": 0.8940516273849608,
       "amount_exactness": 0.9764309764309764,
       "brier": 0.006676127530448502,
-      "p95_end_to_end_ms": 740.9
+      "p95_end_to_end_ms": 425.16
     },
     "confidence_calibration": {
       "ece": 0.03631874298540816,
@@ -167,7 +167,7 @@
         "line_item_f1": 0.8966666666666667,
         "amount_exactness": 0.96,
         "brier": 0.005434925925925929,
-        "p95_end_to_end_ms": 817.94
+        "p95_end_to_end_ms": 482.35
       },
       "es": {
         "documents": 99,
@@ -180,7 +180,7 @@
         "line_item_f1": 0.9259259259259258,
         "amount_exactness": 1,
         "brier": 0.0059999376480858015,
-        "p95_end_to_end_ms": 494.87
+        "p95_end_to_end_ms": 292.88
       },
       "mixed": {
         "documents": 98,
@@ -193,7 +193,7 @@
         "line_item_f1": 0.8591836734693877,
         "amount_exactness": 0.9693877551020408,
         "brier": 0.00862574955908289,
-        "p95_end_to_end_ms": 612.07
+        "p95_end_to_end_ms": 348.9
       }
     },
     "by_type": {
@@ -208,7 +208,7 @@
         "line_item_f1": 0.8933333333333333,
         "amount_exactness": 0.96,
         "brier": 0.004795827160493824,
-        "p95_end_to_end_ms": 749.43
+        "p95_end_to_end_ms": 434.35
       },
       "purchase_order": {
         "documents": 51,
@@ -221,7 +221,7 @@
         "line_item_f1": 0.8627450980392157,
         "amount_exactness": 1,
         "brier": 0.005714330670539819,
-        "p95_end_to_end_ms": 558.9
+        "p95_end_to_end_ms": 330.41
       },
       "receipt": {
         "documents": 50,
@@ -234,7 +234,7 @@
         "line_item_f1": 0.9333333333333335,
         "amount_exactness": 0.96,
         "brier": 0.005454765432098765,
-        "p95_end_to_end_ms": 767.07
+        "p95_end_to_end_ms": 479.22
       },
       "credit_memo": {
         "documents": 51,
@@ -247,7 +247,7 @@
         "line_item_f1": 0.8954248366013071,
         "amount_exactness": 1,
         "brier": 0.006795497458242556,
-        "p95_end_to_end_ms": 584.93
+        "p95_end_to_end_ms": 326.22
       },
       "statement": {
         "documents": 48,
@@ -260,7 +260,7 @@
         "line_item_f1": 0.9097222222222223,
         "amount_exactness": 1,
         "brier": 0.009114043209876549,
-        "p95_end_to_end_ms": 775.17
+        "p95_end_to_end_ms": 459.8
       },
       "delivery_document": {
         "documents": 47,
@@ -273,7 +273,7 @@
         "line_item_f1": 0.8695035460992908,
         "amount_exactness": 0.9361702127659575,
         "brier": 0.008400105069608617,
-        "p95_end_to_end_ms": 573.09
+        "p95_end_to_end_ms": 334.27
       }
     },
     "by_difficulty": {
@@ -288,7 +288,7 @@
         "line_item_f1": 0.8990740740740739,
         "amount_exactness": 0.9861111111111112,
         "brier": 0.00713453360768176,
-        "p95_end_to_end_ms": 741.57
+        "p95_end_to_end_ms": 374.42
       },
       "rotated": {
         "documents": 66,
@@ -301,7 +301,7 @@
         "line_item_f1": 0.909090909090909,
         "amount_exactness": 0.9848484848484849,
         "brier": 0.005717302656191547,
-        "p95_end_to_end_ms": 694.42
+        "p95_end_to_end_ms": 458.06
       },
       "blurred": {
         "documents": 54,
@@ -314,7 +314,7 @@
         "line_item_f1": 0.8962962962962964,
         "amount_exactness": 0.9629629629629629,
         "brier": 0.007806012802926386,
-        "p95_end_to_end_ms": 699.21
+        "p95_end_to_end_ms": 422.58
       },
       "low_resolution": {
         "documents": 54,
@@ -327,7 +327,7 @@
         "line_item_f1": 0.9259259259259259,
         "amount_exactness": 1,
         "brier": 0.006204298125285778,
-        "p95_end_to_end_ms": 721.55
+        "p95_end_to_end_ms": 395.57
       },
       "adversarial": {
         "documents": 51,
@@ -340,17 +340,17 @@
         "line_item_f1": 0.831372549019608,
         "amount_exactness": 0.9411764705882353,
         "brier": 0.006573033163882839,
-        "p95_end_to_end_ms": 817.94
+        "p95_end_to_end_ms": 482.62
       }
     },
     "stage_latency_ms": {
-      "render_p95": 293.97,
-      "ocr_p95": 579.34,
-      "extract_p95": 0.16,
-      "end_to_end_p95": 740.9
+      "render_p95": 166.96,
+      "ocr_p95": 327.91,
+      "extract_p95": 0.07,
+      "end_to_end_p95": 425.16
     },
     "correction": {
-      "automated_replay_execution_ms": 234.1489999999999,
+      "automated_replay_execution_ms": 142.3100000000001,
       "human_time": "deferred to Batch D pilot; not measured or claimed"
     }
   },
@@ -1041,6 +1041,6 @@
       "documents/B-299.png": "fcb1792d9df37c8f68e12042574b65bbac5f2aaf6cb4343e8a79331f96ec99ab",
       "documents/B-300.png": "eacb61015ea03d4044a7782f788203cb265b6c69c64d86bb73dd0b08e6dfe386"
     },
-    "xlsx_sha256": "c33b0b324b3f0b0f6135f3039edc7464516103359c89eebb3991083f40ee43f1"
+    "xlsx_sha256": "6ab209e3bd5a1543f5d2849381a2fd791129f440b87af0ec9766f574b50347da"
   }
 }

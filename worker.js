@@ -1,4 +1,5 @@
 import { handleCypherSupabaseRoute } from "./lib/cypher-supabase-adapter.js";
+import { drainCypherOutbox } from "./lib/cypher-outbox-worker.js";
 // Batch C's sandbox runner imports this named export. It deliberately is not a
 // public HTTP or queue handler, so no connector credentials can cross the edge.
 export { dispatchDelivery as dispatchCypherDelivery } from "./lib/cypher-batch-c.js";
@@ -101,7 +102,11 @@ export default {
   async fetch(request, env) {
     const path = new URL(request.url).pathname;
     try {
-      if (env.DEPLOYMENT_ENV === "staging" && path.startsWith("/api/")) return json({ message: "Provider APIs are disabled in public staging." }, 503);
+      // Staging must exercise the real Cypher Auth/Data/Storage boundary. Only
+      // unrelated provider-backed or administrative APIs remain disabled.
+      if (env.DEPLOYMENT_ENV === "staging" && ["/api/anor-beta", "/api/cypher/v1/activate", "/api/cypher/admin/v1/product-keys/batch"].includes(path)) {
+        return json({ message: "This provider-backed API is disabled in public staging." }, 503);
+      }
       if (path === "/robots.txt") return new Response("User-agent: *\nAllow: /\nSitemap: https://shikigamitechnologies.com/sitemap.xml\n", { headers: { "content-type": "text/plain;charset=utf-8", ...securityHeaders } });
       if (path === "/sitemap.xml") { const entries = publicPaths.map((value) => `<url><loc>https://shikigamitechnologies.com${value}</loc></url>`).join(""); return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries}</urlset>`, { headers: { "content-type": "application/xml;charset=utf-8", "cache-control": "public,max-age=3600", ...securityHeaders } }); }
       if (path === "/api/anor-beta") return request.method === "POST" ? submitAnor(request, env) : methodNotAllowed("POST");
@@ -115,5 +120,8 @@ export default {
       console.error(JSON.stringify({ event: "worker_request_failed", path, message: error?.message }));
       return json({ message: "The service is temporarily unavailable." }, 503);
     }
+  },
+  async scheduled(_controller, env, ctx) {
+    ctx.waitUntil(drainCypherOutbox(env, 5));
   },
 };
