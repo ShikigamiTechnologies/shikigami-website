@@ -4,500 +4,583 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shikigami Technologies</title>
-<meta name="description" content="Shikigami Technologies designs, builds, and commercializes artificial intelligence — from financial algorithm research to business automation and data analytics.">
+<meta name="description" content="Shikigami Technologies builds evidence-grounded, human-governed software for organizations that must understand documents, evaluate commitments, control obligations, coordinate operations, and prove how decisions were made.">
+<link rel="canonical" href="https://shikigamitechnologies.com/">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/platform.css">
+<link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
-<div style="font-family:'Space Grotesk',sans-serif; background:#06090F; color:#F4F7FB; overflow-x:hidden; width:100%;">
+<a class="home-skip-link" href="#main">Skip to content</a>
+<div style="font-family:'Space Grotesk',sans-serif;background:#06090F;color:#F4F7FB;overflow-x:hidden;width:100%;">
 
-  <!-- ================= NAV ================= -->
-  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:18px 48px; background:rgba(6,9,15,0.72); backdrop-filter:blur(14px); border-bottom:1px solid #121826;">
-    <a href="#top" style="display:flex; align-items:center; gap:14px; text-decoration:none;">
-      <svg width="34" height="34" viewBox="0 0 120 120" style="display:block; overflow:visible;">
-        <polygon points="60,14 60,60 18,60" fill="#2E9BFF"></polygon>
-        <polygon points="60,14 102,60 60,60" fill="#1C6FCC"></polygon>
-        <polygon points="60,60 18,60 60,118" fill="#124E96"></polygon>
-        <polygon points="60,60 102,60 60,118" fill="#6FC0FF"></polygon>
-        <g fill="#F4F7FB"><circle cx="60" cy="60" r="4"></circle><circle cx="60" cy="14" r="3"></circle><circle cx="102" cy="60" r="3"></circle><circle cx="60" cy="118" r="3"></circle><circle cx="18" cy="60" r="3"></circle></g>
-      </svg>
-      <span style="font-size:19px; font-weight:600; letter-spacing:0.14em; color:#F4F7FB;">SHIKIGAMI</span>
-    </a>
-    <div style="display:flex; align-items:center; gap:38px;">
-      <a href="#research" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Research</a>
-      <a href="#platform" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Platform</a>
-      <a href="#products" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Products</a>
-      <a href="#federal" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Federal</a>
-      <a href="#contact" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Get in touch</a>
-      <a href="https://app.shikigamitechnologies.com/login" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#8FA3BD; text-decoration:none;" class="hov-nav">Sign in</a>
-      <a href="https://app.shikigamitechnologies.com/register" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; color:#06090F; text-decoration:none; background:#2E9BFF; padding:10px 20px; border-radius:8px; font-weight:500;" class="hov-primary">Request beta access</a>
-    </div>
-  </nav>
+<nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:16px clamp(20px,4vw,48px);background:rgba(6,9,15,0.72);backdrop-filter:blur(14px);border-bottom:1px solid #121826;">
+  <a href="#top" style="display:flex;align-items:center;gap:14px;text-decoration:none;">
+    <svg width="32" height="32" viewBox="0 0 120 120" style="display:block;overflow:visible;">
+      <polygon points="60,14 60,60 18,60" fill="#2E9BFF"></polygon>
+      <polygon points="60,14 102,60 60,60" fill="#1C6FCC"></polygon>
+      <polygon points="60,60 18,60 60,118" fill="#124E96"></polygon>
+      <polygon points="60,60 102,60 60,118" fill="#6FC0FF"></polygon>
+      <g fill="#F4F7FB"><circle cx="60" cy="60" r="4"></circle><circle cx="60" cy="14" r="3"></circle><circle cx="102" cy="60" r="3"></circle><circle cx="60" cy="118" r="3"></circle><circle cx="18" cy="60" r="3"></circle></g>
+    </svg>
+    <span style="font-size:18px;font-weight:600;letter-spacing:0.14em;color:#F4F7FB;">SHIKIGAMI</span>
+  </a>
+  <button class="home-nav-toggle" type="button" aria-expanded="false" aria-controls="home-nav-links">Menu</button>
+  <div id="home-nav-links" class="home-nav-links" style="display:flex;align-items:center;gap:clamp(14px,2.2vw,34px);flex-wrap:wrap;">
+    <a href="#journey" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.08em;color:#8FA3BD;text-decoration:none;transition:color .2s ease;" class="hov-nav">Journey</a>
+    <a href="#products" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.08em;color:#8FA3BD;text-decoration:none;transition:color .2s ease;" class="hov-nav">Products</a>
+    <a href="#core" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.08em;color:#8FA3BD;text-decoration:none;transition:color .2s ease;" class="hov-nav">Foundry &amp; M.A.G.I.</a>
+    <a href="#qualifications" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.08em;color:#8FA3BD;text-decoration:none;transition:color .2s ease;" class="hov-nav">Qualifications</a>
+    <a href="https://app.shikigamitechnologies.com/login" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.08em;color:#8FA3BD;text-decoration:none;transition:color .2s ease;" class="hov-nav">Sign in</a>
+    <a href="#pilot" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.08em;color:#06090F;text-decoration:none;background:#2E9BFF;padding:10px 18px;border-radius:8px;font-weight:500;transition:background .2s ease;" class="hov-primary">Discuss a controlled pilot</a>
+  </div>
+</nav>
 
-  <!-- ================= HERO ================= -->
-  <header id="top" style="position:relative; min-height:88vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:80px 24px 60px; overflow:hidden;">
-    <div class="glow-pulse" style="position:absolute; left:50%; top:38%; transform:translate(-50%,-50%); width:760px; height:760px; border-radius:50%; background:radial-gradient(circle, rgba(46,155,255,0.14), transparent 62%); pointer-events:none;"></div>
-    <!-- grid backdrop -->
-    <div style="position:absolute; inset:0; background-image:linear-gradient(#0d1522 1px, transparent 1px), linear-gradient(90deg, #0d1522 1px, transparent 1px); background-size:64px 64px; mask-image:radial-gradient(circle at 50% 40%, black, transparent 72%); -webkit-mask-image:radial-gradient(circle at 50% 40%, black, transparent 72%); opacity:0.5; pointer-events:none;"></div>
+<main id="main">
+<header id="top" style="position:relative;min-height:86vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px clamp(20px,4vw,24px) 60px;overflow:hidden;">
+  <div style="position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(46,155,255,0.14),transparent 62%);pointer-events:none;animation:gp 6s ease-in-out infinite;"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(#0d1522 1px,transparent 1px),linear-gradient(90deg,#0d1522 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(circle at 50% 40%,black,transparent 72%);-webkit-mask-image:radial-gradient(circle at 50% 40%,black,transparent 72%);opacity:0.5;pointer-events:none;"></div>
 
-    <div class="h-tilt" style="position:relative; margin-bottom:40px;">
-      <svg width="150" height="150" viewBox="0 0 120 120" style="display:block; overflow:visible;">
-        <g class="h-trace" stroke="#2E9BFF" stroke-width="1.4" stroke-linecap="round" fill="none"><path d="M60 60 L60 -2 M60 60 L60 132 M60 60 L-4 60 M60 60 L124 60"></path></g>
-        <polygon class="facet f1" points="60,14 60,60 18,60" fill="#2E9BFF"></polygon>
-        <polygon class="facet f2" points="60,14 102,60 60,60" fill="#1C6FCC"></polygon>
-        <polygon class="facet f4" points="60,60 18,60 60,118" fill="#124E96"></polygon>
-        <polygon class="facet f3" points="60,60 102,60 60,118" fill="#6FC0FF"></polygon>
-        <polygon class="h-outline" points="60,14 102,60 60,118 18,60" fill="none" stroke="#F4F7FB" stroke-width="1" opacity="0.28"></polygon>
-        <g fill="#F4F7FB"><circle class="h-node hn1" cx="60" cy="60" r="4"></circle><circle class="h-node hn2" cx="60" cy="14" r="3"></circle><circle class="h-node hn3" cx="102" cy="60" r="3"></circle><circle class="h-node hn4" cx="60" cy="118" r="3"></circle><circle class="h-node hn5" cx="18" cy="60" r="3"></circle></g>
-      </svg>
-    </div>
-
-    <div style="position:relative; display:inline-flex; align-items:center; gap:10px; padding:7px 16px; border:1px solid #1E2A3C; border-radius:30px; margin-bottom:28px; background:rgba(12,18,28,0.6);">
-      <span style="width:6px; height:6px; border-radius:50%; background:#4CAF6E; box-shadow:0 0 8px #4CAF6E;"></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.22em; color:#8FA3BD; text-transform:uppercase;">Applied AI &amp; Algorithmic Research</span>
-    </div>
-
-    <h1 style="position:relative; margin:0; font-size:74px; font-weight:600; line-height:1.02; letter-spacing:-0.02em; max-width:960px; text-wrap:balance;">
-      Intelligent systems for<br><span style="color:#2E9BFF;">an algorithmic world</span>
-    </h1>
-    <p style="position:relative; margin:28px auto 0; max-width:660px; font-size:19px; line-height:1.6; color:#9BADC5; text-wrap:pretty;">
-      Shikigami Technologies builds AI systems that give individuals and small organizations the operational capability of entities ten times their size. Founded in Puerto Rico. SDVOSB certified. Built for government and commercial clients who need intelligence that works — architected for each deployment, from air-gapped local installs to secure cloud platforms.
-    </p>
-
-    <div style="position:relative; display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; justify-content:center;">
-      <a href="#products" style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.06em; color:#06090F; background:#2E9BFF; padding:15px 30px; border-radius:9px; text-decoration:none; font-weight:500;" class="hov-primary">Explore the platform</a>
-      <a href="#research" style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.06em; color:#F4F7FB; background:transparent; border:1px solid #26303F; padding:15px 30px; border-radius:9px; text-decoration:none;" class="hov-outline">Read our research</a>
-      <a href="https://app.shikigamitechnologies.com/register" style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.06em; color:#F4F7FB; background:transparent; border:1px solid #26303F; padding:15px 30px; border-radius:9px; text-decoration:none;" class="hov-outline">Request beta access to Themis</a>
-    </div>
-  </header>
-
-  <!-- ================= TICKER ================= -->
-  <div style="border-top:1px solid #121826; border-bottom:1px solid #121826; padding:20px 0; overflow:hidden; background:#080B12;">
-    <div class="ticker-track" style="display:flex; gap:56px; width:max-content; white-space:nowrap;">
-      <div style="display:flex; gap:56px; width:max-content; flex-shrink:0;">
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Document Intelligence<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Contract Analysis<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Vendor Risk Assessment<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Algorithmic Systems<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Federal Contracting<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Local Deployment<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">SDVOSB Certified<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Puerto Rico<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">AI Automation<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Azure OCR<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Predictive Analytics<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-    </div>
-      <div style="display:flex; gap:56px; width:max-content; flex-shrink:0;">
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Document Intelligence<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Contract Analysis<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Vendor Risk Assessment<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Algorithmic Systems<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Federal Contracting<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Local Deployment<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">SDVOSB Certified<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Puerto Rico<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">AI Automation<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Azure OCR<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-      <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.14em; color:#5B6B82; text-transform:uppercase; display:inline-flex; align-items:center; gap:56px;">Predictive Analytics<span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span></span>
-    </div>
-    </div>
+  <div style="position:relative;margin-bottom:36px;animation:tilt 2s cubic-bezier(.16,.84,.34,1) forwards;">
+    <svg width="140" height="140" viewBox="0 0 120 120" style="display:block;overflow:visible;">
+      <g stroke="#2E9BFF" stroke-width="1.4" stroke-linecap="round" fill="none" style="stroke-dasharray:70;stroke-dashoffset:70;opacity:0;animation:drawT 1.4s ease 1.1s forwards;"><path d="M60 60 L60 -2 M60 60 L60 132 M60 60 L-4 60 M60 60 L124 60"></path></g>
+      <polygon points="60,14 60,60 18,60" fill="#2E9BFF" style="transform-box:fill-box;transform-origin:60px 60px;opacity:0;animation:foldIn 1.4s cubic-bezier(.16,.84,.34,1) .15s forwards;"></polygon>
+      <polygon points="60,14 102,60 60,60" fill="#1C6FCC" style="transform-box:fill-box;transform-origin:60px 60px;opacity:0;animation:foldIn 1.4s cubic-bezier(.16,.84,.34,1) .4s forwards;"></polygon>
+      <polygon points="60,60 18,60 60,118" fill="#124E96" style="transform-box:fill-box;transform-origin:60px 60px;opacity:0;animation:foldIn 1.4s cubic-bezier(.16,.84,.34,1) .9s forwards;"></polygon>
+      <polygon points="60,60 102,60 60,118" fill="#6FC0FF" style="transform-box:fill-box;transform-origin:60px 60px;opacity:0;animation:foldIn 1.4s cubic-bezier(.16,.84,.34,1) .65s forwards;"></polygon>
+      <polygon points="60,14 102,60 60,118 18,60" fill="none" stroke="#F4F7FB" stroke-width="1" opacity="0.28" style="stroke-dasharray:300;stroke-dashoffset:300;animation:drawO 1.6s ease 1s forwards;"></polygon>
+      <g fill="#F4F7FB">
+        <circle cx="60" cy="60" r="4" style="opacity:0;transform-box:fill-box;transform-origin:center;animation:popN .6s ease 1.3s forwards;"></circle>
+        <circle cx="60" cy="14" r="3" style="opacity:0;transform-box:fill-box;transform-origin:center;animation:popN .6s ease 1.4s forwards;"></circle>
+        <circle cx="102" cy="60" r="3" style="opacity:0;transform-box:fill-box;transform-origin:center;animation:popN .6s ease 1.5s forwards;"></circle>
+        <circle cx="60" cy="118" r="3" style="opacity:0;transform-box:fill-box;transform-origin:center;animation:popN .6s ease 1.6s forwards;"></circle>
+        <circle cx="18" cy="60" r="3" style="opacity:0;transform-box:fill-box;transform-origin:center;animation:popN .6s ease 1.7s forwards;"></circle>
+      </g>
+    </svg>
   </div>
 
-  <!-- ================= CAPABILITIES ================= -->
-  <section style="max-width:1200px; margin:0 auto; padding:120px 48px 80px;">
-    <div class="reveal" style="max-width:720px; margin-bottom:64px;">
-      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.3em; color:#2E9BFF; text-transform:uppercase; margin-bottom:20px;">01 — What we do</div>
-      <h2 style="margin:0; font-size:44px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">One firm, the full stack of applied intelligence</h2>
-    </div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px;">
-        <div style="font-size:26px; color:#2E9BFF; margin-bottom:22px;">◈</div>
-        <div style="font-size:20px; font-weight:600; margin-bottom:12px;">AI Systems</div>
-        <p style="margin:0; font-size:14.5px; line-height:1.6; color:#8398B2;">Design and deployment of production machine-learning systems — from model research to inference infrastructure that scales.</p>
-      </div>
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px;">
-        <div style="font-size:26px; color:#2E9BFF; margin-bottom:22px;">◇</div>
-        <div style="font-size:20px; font-weight:600; margin-bottom:12px;">Financial Algorithms</div>
-        <p style="margin:0; font-size:14.5px; line-height:1.6; color:#8398B2;">Research, backtesting, and live deployment of trading and risk algorithms across asset classes.</p>
-      </div>
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px;">
-        <div style="font-size:26px; color:#2E9BFF; margin-bottom:22px;">⬡</div>
-        <div style="font-size:20px; font-weight:600; margin-bottom:12px;">Business Automation</div>
-        <p style="margin:0; font-size:14.5px; line-height:1.6; color:#8398B2;">Intelligent workflows that remove manual work — document processing, decisioning, and operations at scale.</p>
-      </div>
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px;">
-        <div style="font-size:26px; color:#2E9BFF; margin-bottom:22px;">⬢</div>
-        <div style="font-size:20px; font-weight:600; margin-bottom:12px;">Data Analytics</div>
-        <p style="margin:0; font-size:14.5px; line-height:1.6; color:#8398B2;">Pipelines and dashboards that turn raw, high-frequency data into decisions you can act on.</p>
-      </div>
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px;">
-        <div style="font-size:26px; color:#2E9BFF; margin-bottom:22px;">◆</div>
-        <div style="font-size:20px; font-weight:600; margin-bottom:12px;">Technology Consulting</div>
-        <p style="margin:0; font-size:14.5px; line-height:1.6; color:#8398B2;">Embedded expertise to architect, ship, and de-risk complex technology and AI initiatives.</p>
-      </div>
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px;">
-        <div style="font-size:26px; color:#2E9BFF; margin-bottom:22px;">▣</div>
-        <div style="font-size:20px; font-weight:600; margin-bottom:12px;">Digital Products</div>
-        <p style="margin:0; font-size:14.5px; line-height:1.6; color:#8398B2;">Full-lifecycle software and digital export services — designed, built, and commercialized in-house.</p>
-      </div>
-    </div>
-  </section>
+  <div style="position:relative;display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border:1px solid #1E2A3C;border-radius:30px;margin-bottom:28px;background:rgba(12,18,28,0.6);">
+    <span style="width:6px;height:6px;border-radius:50%;background:#4CAF6E;box-shadow:0 0 8px #4CAF6E;"></span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#8FA3BD;text-transform:uppercase;">Evidence-grounded, human-governed systems</span>
+  </div>
 
-  <!-- ================= RESEARCH ================= -->
-  <section id="research" style="border-top:1px solid #121826; background:linear-gradient(180deg,#080B12,#06090F);">
-    <div style="max-width:1200px; margin:0 auto; padding:110px 48px; text-align:center;">
-      <div class="reveal" style="max-width:640px; margin:0 auto;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.3em; color:#2E9BFF; text-transform:uppercase; margin-bottom:20px;">02 — Research</div>
-        <h2 style="margin:0; font-size:44px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Research</h2>
-        <p style="margin:16px 0 0; font-size:19px; line-height:1.5; color:#2E9BFF;">We publish when it is production-tested.</p>
-        <p style="margin:20px 0 0; font-size:17px; line-height:1.6; color:#9BADC5;">Shikigami research emerges from systems we operate, not papers we write for publication. Findings from Sentient, Cypher, Themis, Anor, and IronCrew will be documented here as they mature.</p>
-      </div>
-    </div>
-  </section>
+  <h1 style="position:relative;margin:0;font-size:clamp(38px,6vw,74px);font-weight:600;line-height:1.03;letter-spacing:-0.02em;max-width:1000px;text-wrap:balance;">
+    Better decisions, with<br><span style="color:#2E9BFF;">the evidence still attached</span>
+  </h1>
+  <p style="position:relative;margin:28px auto 0;max-width:680px;font-size:clamp(16px,2vw,19px);line-height:1.65;color:#9BADC5;text-wrap:pretty;">
+    Shikigami Technologies builds applied software for organizations that must understand documents, evaluate commitments, control obligations, coordinate operations, and prove how a decision was made. Our systems organize information, expose uncertainty, and prepare recommendations — an authorized person still decides.
+  </p>
 
-  <!-- ================= INTELLIGENCE CORE ================= -->
-  <section id="platform" class="platform-core">
-    <div class="platform-shell">
-      <div class="platform-copy reveal">
-        <div class="platform-kicker">03 — Intelligence Core</div>
-        <h2>One intelligence core.<br><span>Multiple operating systems.</span></h2>
-        <p>Shikigami products share a governed foundation for evidence, reasoning, automation, and measurable outcomes. Each product applies that foundation to a specific operational problem while preserving human authority over consequential decisions.</p>
-        <div class="core-principles" aria-label="Platform principles">
-          <span>Evidence linked</span><span>Human governed</span><span>Local + cloud</span>
+  <div style="position:relative;display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;justify-content:center;">
+    <a href="#pilot" style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.06em;color:#06090F;background:#2E9BFF;padding:15px 28px;border-radius:9px;text-decoration:none;font-weight:500;transition:background .2s ease;" class="hov-primary">Discuss a controlled pilot</a>
+    <a href="#journey" style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.06em;color:#F4F7FB;background:transparent;border:1px solid #26303F;padding:15px 28px;border-radius:9px;text-decoration:none;transition:border-color .2s ease,color .2s ease;" class="hov-outline">See the operational journey</a>
+    <a href="#qualifications" style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.06em;color:#F4F7FB;background:transparent;border:1px solid #26303F;padding:15px 28px;border-radius:9px;text-decoration:none;transition:border-color .2s ease,color .2s ease;" class="hov-outline">Qualification dossier</a>
+  </div>
+</header>
+
+<div style="border-top:1px solid #121826;border-bottom:1px solid #121826;padding:20px 0;overflow:hidden;background:#080B12;">
+  <div style="display:flex;gap:56px;width:max-content;white-space:nowrap;animation:scrollX 34s linear infinite;">
+    <div style="display:flex;gap:56px;width:max-content;flex-shrink:0;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Document Intelligence<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Pre-Award Analysis<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Obligation Assurance<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Approval-First Operations<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Multi-Tenant Isolation<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Bilingual EN / ES<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Auditable Records<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Human Approval Gates<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+    </div>
+    <div style="display:flex;gap:56px;width:max-content;flex-shrink:0;" aria-hidden="true">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Document Intelligence<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Pre-Award Analysis<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Obligation Assurance<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Approval-First Operations<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Multi-Tenant Isolation<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Bilingual EN / ES<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Auditable Records<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:0.14em;color:#5B6B82;text-transform:uppercase;display:inline-flex;align-items:center;gap:56px;">Human Approval Gates<span style="width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);display:inline-block;"></span></span>
+    </div>
+  </div>
+</div>
+
+<section style="max-width:1200px;margin:0 auto;padding:clamp(72px,10vw,120px) clamp(20px,4vw,48px) 60px;">
+  <div class="reveal" style="max-width:760px;margin-bottom:56px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.3em;color:#2E9BFF;text-transform:uppercase;margin-bottom:20px;">01 — Who we are</div>
+    <h2 style="margin:0;font-size:clamp(30px,4.4vw,44px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;">Human authority is a product requirement, not a disclaimer</h2>
+    <p style="margin:22px 0 0;font-size:17px;line-height:1.7;color:#9BADC5;text-wrap:pretty;">Shikigami Technologies is an applied-software company founded and solely owned by Ricardo Parra Pastor. We build for organizations expected to manage the document, contract, compliance, and operational complexity of much larger institutions — without equivalent staff or systems.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
+    <div class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:30px 28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#2E9BFF;margin-bottom:14px;">Source evidence</div>
+      <p style="margin:0;font-size:14.5px;line-height:1.65;color:#9BADC5;">Every output points back to the document, clause, or record it came from. No unexplained answers.</p>
+    </div>
+    <div class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:30px 28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#2E9BFF;margin-bottom:14px;">Relationships</div>
+      <p style="margin:0;font-size:14.5px;line-height:1.65;color:#9BADC5;">Records are connected — a promise to its source, its owner, its deadline, and its proof.</p>
+    </div>
+    <div class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:30px 28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#F2B84B;margin-bottom:14px;">Visible uncertainty</div>
+      <p style="margin:0;font-size:14.5px;line-height:1.65;color:#9BADC5;">Missing facts, assumptions, and exceptions are shown as such — never smoothed into false confidence.</p>
+    </div>
+    <div class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:30px 28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#4CAF6E;margin-bottom:14px;">Bounded assistance</div>
+      <p style="margin:0;font-size:14.5px;line-height:1.65;color:#9BADC5;">Assistance is scoped and permissioned. Consequential action waits for an authorized person and leaves an auditable outcome.</p>
+    </div>
+  </div>
+</section>
+
+<section id="journey" style="border-top:1px solid #121826;background:radial-gradient(circle at 78% 24%,rgba(46,155,255,.08),transparent 34%),#06090F;position:relative;overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(72px,9vw,110px) clamp(20px,4vw,48px);">
+    <div class="reveal" style="max-width:820px;margin-bottom:48px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.3em;color:#2E9BFF;text-transform:uppercase;margin-bottom:20px;">02 — The operational journey</div>
+      <h2 style="margin:0;font-size:clamp(30px,4.4vw,44px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;">A sequence, not a collection of<br><span style="color:#2E9BFF;">unrelated AI cards</span></h2>
+      <p style="margin:22px 0 0;font-size:17px;line-height:1.7;color:#9BADC5;max-width:720px;">Each product hands off to the next: understand what arrived, decide before committing, govern execution after commitment, coordinate daily operations, then extend the pattern to new service organizations.</p>
+    </div>
+
+    <div class="reveal" style="border:1px solid #17253A;border-radius:22px;padding:clamp(22px,3vw,34px);background:#080D15;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(46,155,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(46,155,255,.05) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(circle,black,transparent 78%);-webkit-mask-image:radial-gradient(circle,black,transparent 78%);pointer-events:none;"></div>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;">
+        <div style="background:#0A0F17;border:1px solid #161C27;border-radius:14px;padding:22px 20px;animation:pipeGlow 9s linear 0s infinite;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2E9BFF;">01 / Understand</div>
+          <div style="font-size:22px;font-weight:600;margin:10px 0 8px;">Cypher</div>
+          <div style="font-size:13px;line-height:1.55;color:#8398B2;">Difficult documents become structured, reviewable evidence.</div>
+        </div>
+        <div style="background:#0A0F17;border:1px solid #161C27;border-radius:14px;padding:22px 20px;animation:pipeGlow 9s linear 1.6s infinite;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2E9BFF;">02 / Decide</div>
+          <div style="font-size:22px;font-weight:600;margin:10px 0 8px;">Themis</div>
+          <div style="font-size:13px;line-height:1.55;color:#8398B2;">Requirements, risk, cost, and capability before accepting an obligation.</div>
+        </div>
+        <div style="background:#0A0F17;border:1px solid #161C27;border-radius:14px;padding:22px 20px;animation:pipeGlow 9s linear 3.2s infinite;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2E9BFF;">03 / Execute</div>
+          <div style="font-size:22px;font-weight:600;margin:10px 0 8px;">ANOR</div>
+          <div style="font-size:13px;line-height:1.55;color:#8398B2;">A promise stays tied to its source, owner, deadline, and proof.</div>
+        </div>
+        <div style="background:#0A0F17;border:1px solid #161C27;border-radius:14px;padding:22px 20px;animation:pipeGlow 9s linear 4.8s infinite;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#FF7A2B;">04 / Coordinate</div>
+          <div style="font-size:22px;font-weight:600;margin:10px 0 8px;">IronCrew</div>
+          <div style="font-size:13px;line-height:1.55;color:#8398B2;">Incoming information becomes assigned work — with approval intact.</div>
+        </div>
+        <div style="background:#0A0F17;border:1px solid #161C27;border-radius:14px;padding:22px 20px;animation:pipeGlow 9s linear 6.4s infinite;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2E9BFF;">05 / Extend</div>
+          <div style="font-size:22px;font-weight:600;margin:10px 0 8px;">Kizuna</div>
+          <div style="font-size:13px;line-height:1.55;color:#8398B2;">Reusable branded digital operations, tenant by tenant.</div>
         </div>
       </div>
-
-      <div class="core-animation reveal" aria-label="Foundry and MAGI operating loop">
-        <div class="core-grid"></div>
-        <div class="core-orbit core-orbit-one"></div>
-        <div class="core-orbit core-orbit-two"></div>
-        <div class="core-diamond" aria-hidden="true"><i></i><b></b></div>
-        <div class="core-stage stage-foundry"><strong>FOUNDRY</strong><small>Connect the business</small></div>
-        <div class="core-stage stage-magi"><strong>M.A.G.I.</strong><small>Reason across it</small></div>
-        <div class="core-stage stage-approval"><strong>APPROVAL</strong><small>Human authority</small></div>
-        <div class="core-stage stage-outcome"><strong>OUTCOME</strong><small>Measure and learn</small></div>
-        <div class="core-caption"><span></span>Foundry → M.A.G.I. → Approval → Outcome</div>
+      <div style="position:relative;margin-top:20px;height:1px;background:linear-gradient(90deg,rgba(46,155,255,.05),rgba(46,155,255,.5),rgba(46,155,255,.05));">
+        <span style="position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:#6FC0FF;box-shadow:0 0 12px #2E9BFF;animation:traceDot 9s linear infinite;"></span>
       </div>
-
-      <div class="core-cards">
-        <article class="core-card reveal">
-          <div class="core-card-label">Business intelligence &amp; operations core</div>
-          <h3>Shikigami Foundry</h3>
-          <p>Foundry connects organizational knowledge, operational signals, opportunities, decisions, delivery, and outcomes into one governed operating environment.</p>
-          <ul><li>Evidence-backed organizational knowledge</li><li>Digital twins and opportunity intelligence</li><li>Delivery and outcome continuity</li></ul>
-          <div class="core-status"><span></span>Internal alpha — expanding across Shikigami</div>
-        </article>
-        <article class="core-card reveal">
-          <div class="core-card-label">Multi-model intelligence council</div>
-          <h3>M.A.G.I.</h3>
-          <p>M.A.G.I. coordinates independent AI systems and controlled local agents to challenge assumptions, verify evidence, and prepare recommendations for human approval.</p>
-          <ul><li>Independent review and dissent</li><li>Bounded missions and permissions</li><li>Exact, auditable approval controls</li></ul>
-          <div class="core-status"><span></span>Internal alpha — human governed</div>
-        </article>
-      </div>
+      <div style="position:relative;margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6F839C;">Understand → Decide → Execute → Coordinate → Extend</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= PRODUCT SYSTEMS ================= -->
-  <section id="products" class="product-systems">
-    <div class="platform-shell">
-      <div class="product-heading reveal">
-        <div class="platform-kicker">04 — Product Systems</div>
-        <h2>Focused systems for real operational problems</h2>
-        <p>Each product serves a distinct workflow while sharing Shikigami's security, evidence, governance, and intelligence foundation.</p>
-      </div>
-
-      <div class="availability-group">
-        <div class="availability-title"><span class="status-dot available"></span>Available now</div>
-        <article class="product-card product-featured reveal">
-          <div><div class="product-name"><a href="cypher.html">Cypher →</a></div><div class="product-type">Document Intelligence and Control</div></div>
-          <p>Local-first invoice and document control that converts operational documents into verified records, recoverable evidence, and actionable financial visibility.</p>
-          <ul><li>Azure OCR with local Ollama fallback</li><li>Cross-store PO and duplicate context</li><li>Audit-ready PDF and Excel reporting</li></ul>
-          <div class="product-actions"><a href="cypher.html">Explore Cypher →</a><a href="cypher.html#pricing">View plans →</a></div>
-        </article>
-      </div>
-
-      <div class="availability-group">
-        <div class="availability-title"><span class="status-dot beta"></span>Private beta</div>
-        <div class="product-grid">
-          <article class="product-card reveal">
-            <div class="product-name">Themis</div><div class="product-type">Pre-Award Contract Intelligence</div>
-            <p>Determine whether your company can finance, execute, and survive a contract before committing to the bid.</p>
-            <ul><li>FAR/DFARS-aware requirement analysis</li><li>Cash-survival and financeability modeling</li><li>Evidence-backed bid recommendations</li></ul>
-            <div class="product-actions"><a href="https://app.shikigamitechnologies.com/register">Request beta →</a><a href="whitepaper-themis.html">White paper →</a></div>
-            <small>Themis supports capture decisions and does not replace professional legal, accounting, financial, or contracting advice.</small>
-          </article>
-          <article class="product-card reveal">
-            <div class="product-name"><a href="anor.html">ANOR →</a></div><div class="product-type">DoD Contract Execution Assurance</div>
-            <p>Connect every post-award obligation to its exact source, accountable owner, due event, required proof, and modification history.</p>
-            <ul><li>Source-linked obligation register</li><li>Contract-specific flowdown decisions</li><li>Modification impact and reapproval history</li></ul>
-            <div class="product-actions"><a href="anor.html">Explore ANOR →</a></div>
-          </article>
-        </div>
-      </div>
-
-      <div class="availability-group">
-        <div class="availability-title"><span class="status-dot pilot"></span>Controlled pilots</div>
-        <article class="product-card product-featured ironcrew-product reveal">
-          <div><div class="product-name"><a href="ironcrew.html">IronCrew →</a></div><div class="product-type">AI Operations Command Center</div></div>
-          <p>A governed operating system for owner-led construction and field-service companies that unifies communication, work, documents, follow-up, approvals, and operational intelligence.</p>
-          <ul><li>Unified operational and decision inboxes</li><li>AI briefings, routing, and follow-up</li><li>Tenant-isolated, tablet-first operations</li></ul>
-          <div class="product-actions"><a href="ironcrew.html">Explore controlled pilots →</a></div>
-        </article>
-      </div>
+<section id="products" style="border-top:1px solid #121826;background:linear-gradient(180deg,#080B12,#06090F);">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(72px,9vw,110px) clamp(20px,4vw,48px);">
+    <div class="reveal" style="max-width:760px;margin-bottom:52px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.3em;color:#2E9BFF;text-transform:uppercase;margin-bottom:20px;">03 — Commercial products</div>
+      <h2 style="margin:0;font-size:clamp(30px,4.4vw,44px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;">Focused systems, stated maturity</h2>
+      <p style="margin:22px 0 0;font-size:17px;line-height:1.7;color:#9BADC5;">Each card states what the system may do, what a person must decide, and exactly how mature it is today.</p>
     </div>
-  </section>
 
-  <!-- ================= INTERNAL RESEARCH ================= -->
-  <section id="internal-research" class="internal-research">
-    <div class="platform-shell research-row reveal">
-      <div><div class="platform-kicker">05 — Internal Research</div><h2>Systems we operate to advance our own capabilities</h2></div>
-      <div class="research-system"><div class="research-badge">Internal proprietary research</div><h3>Sentient</h3><div class="product-type">Algorithmic Market Intelligence</div><p>Shikigami's supervised market-research environment for studying changing regimes, cross-market signals, execution conditions, and governed decision systems. Not commercially available.</p></div>
-    </div>
-  </section>
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <article class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:clamp(26px,3vw,38px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px;">
+        <div>
+          <div style="font-size:28px;font-weight:600;">Cypher</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#2E9BFF;margin-top:8px;">Document intelligence &amp; operational evidence</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#F2B84B;margin-top:20px;display:flex;align-items:center;gap:9px;"><span style="width:7px;height:7px;border-radius:50%;background:#F2B84B;box-shadow:0 0 8px #F2B84B;"></span>Controlled staging / pilot preparation</div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;"><a href="cypher.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;text-decoration:none;">Explore Cypher →</a><a href="#pilot" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;text-decoration:none;">Discuss a pilot →</a></div>
+        </div>
+        <div>
+          <p style="margin:0;font-size:14.5px;line-height:1.7;color:#9BADC5;">Invoices, purchase orders, receipts, and correspondence arrive through email, scanners, and shared drives, then fragment. Cypher preserves the original, extracts in English and Spanish, connects related records, surfaces duplicates and exceptions, and supports human correction.</p>
+          <ul style="list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px;">
+            <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>What arrived, and what does it say?</li>
+            <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Which records does it belong with?</li>
+            <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>What is missing, duplicated, or unresolved?</li>
+            <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Who reviewed or corrected the result?</li>
+          </ul>
+        </div>
+        <div style="border-left:1px solid #1B2533;padding-left:26px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#6B7C93;margin-bottom:10px;">Intended operator</div>
+          <p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:#B7C4D6;">Multi-location businesses and document-heavy teams responsible for intake, reconciliation, exceptions, and follow-up.</p>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#4CAF6E;margin-bottom:10px;">Human authority boundary</div>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#B7C4D6;">Cypher may extract, compare, connect, and flag. People approve corrections, determine business meaning, resolve exceptions, and authorize delivery to external destinations.</p>
+        </div>
+      </article>
 
-  <!-- Legacy platform markup retained temporarily for source comparison; never rendered. -->
-  <section id="products-legacy" hidden aria-hidden="true" style="display:none;">
-    <div style="max-width:1200px; margin:0 auto; padding:110px 48px;">
-      <div class="reveal" style="max-width:720px; margin-bottom:64px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.3em; color:#2E9BFF; text-transform:uppercase; margin-bottom:20px;">03 — Platform</div>
-        <h2 style="margin:0; font-size:44px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Products built on one intelligence core</h2>
-        <p style="margin:20px 0 0; font-size:17px; line-height:1.6; color:#9BADC5;">A shared foundation of models, data pipelines, and execution infrastructure — surfaced as focused products for research, trading, and automation teams.</p>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:20px;">
-        <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
-        <div style="min-width:220px;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#4CAF6E; border:1px solid #4CAF6E44; border-radius:20px; padding:4px 12px; display:inline-block; margin-bottom:14px;">ACTIVE — Available now</div>
-          <a href="cypher.html" style="display:inline-block; font-size:30px; font-weight:600; margin-bottom:6px; color:#F4F7FB; text-decoration:none;">Cypher &rarr;</a>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#2E9BFF; text-transform:uppercase;">Document Intelligence Platform</div>
+      <article class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:clamp(26px,3vw,38px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px;">
+        <div>
+          <div style="font-size:28px;font-weight:600;">Themis</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#2E9BFF;margin-top:8px;">Pre-award contract intelligence</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#2E9BFF;margin-top:20px;display:flex;align-items:center;gap:9px;"><span style="width:7px;height:7px;border-radius:50%;background:#2E9BFF;box-shadow:0 0 8px #2E9BFF;"></span>Private beta / active construction</div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;"><a href="#pilot" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;text-decoration:none;">Discuss a pilot →</a><a href="whitepaper-themis.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;text-decoration:none;">White paper →</a><a href="https://app.shikigamitechnologies.com/register" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6B7C93;text-decoration:none;">Request beta →</a></div>
         </div>
-        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#9BADC5;">Local-first invoice and document control for regional operations. Cypher combines Azure Document Intelligence with a local OCR fallback, lets operators validate or custom-name extracted fields, explains repeated purchase orders across stores and invoices, tracks unmatched obligations and vendor debt, and produces canonical PDF evidence plus Excel reporting. Every scan and decision remains recoverable on authorized client infrastructure.</p>
-        <div style="display:flex; flex-direction:column; gap:10px; min-width:220px;">
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Azure primary OCR with local Ollama fallback</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Cross-store PO relationship and duplicate context</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Store and vendor debt visibility with aging</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Audit-ready PDF evidence and Excel reporting</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Designed for 30+ location regional operations</div>
-          <a href="cypher.html" style="display:inline-block; margin-top:8px; color:#2E9BFF; font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none;">Explore Cypher &rarr;</a>
-          <a href="cypher.html#pricing" style="display:inline-block; color:#2E9BFF; font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none;">View Cypher plans &rarr;</a>
+        <div>
+          <p style="margin:0;font-size:14.5px;line-height:1.7;color:#9BADC5;">An opportunity can look attractive while hiding requirements, cash exposure, compliance duties, and delivery risk. Themis maps requirements and clauses to their sources, organizes missing facts and assumptions, and prepares a company-specific recommendation for qualified review.</p>
+          <div style="margin:22px 0 0;padding:18px 20px;border-left:2px solid #2E9BFF;background:rgba(46,155,255,.05);font-size:15px;line-height:1.6;color:#F4F7FB;">Can this company finance, execute, comply with, and survive this specific commitment?</div>
         </div>
-      </div>
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
-        <div style="min-width:220px;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#2E9BFF; border:1px solid #2E9BFF44; border-radius:20px; padding:4px 12px; display:inline-block; margin-bottom:14px;">COMING SOON</div>
-          <div style="font-size:30px; font-weight:600; margin-bottom:6px;">Themis</div>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#2E9BFF; text-transform:uppercase;">Contract Intelligence Platform</div>
+        <div style="border-left:1px solid #1B2533;padding-left:26px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#6B7C93;margin-bottom:10px;">Intended operator</div>
+          <p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:#B7C4D6;">Owners, capture teams, contracting personnel, financial reviewers, and subject-matter experts.</p>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#4CAF6E;margin-bottom:10px;">Human authority boundary</div>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#B7C4D6;">Themis does not provide legal advice, guarantee outcomes, submit bids, or commit the company. Qualified people decide applicability, risk acceptance, pricing, and pursuit.</p>
         </div>
-        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#9BADC5;">Themis answers one question before you bid: can your company afford to win, finance, and execute this contract without losing money, missing deadlines, or risking the business? It combines contract analysis, capability evaluation, financial modeling, and risk detection into a single pre-bid decision — then converts that analysis into a post-award execution plan.</p>
-        <div style="display:flex; flex-direction:column; gap:10px; min-width:220px;">
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Hidden requirement &amp; clause detection (FAR/DFARS-aware)</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Cash-survival and financeability analysis</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Personalized bid recommendation, five outcomes</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Post-award milestone &amp; execution tracking</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Company capability profile matched to every opportunity</div>
+      </article>
+
+      <article class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:clamp(26px,3vw,38px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px;">
+        <div>
+          <div style="font-size:28px;font-weight:600;">ANOR</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#2E9BFF;margin-top:8px;">Post-award assurance &amp; execution control</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6B7C93;margin-top:20px;display:flex;align-items:center;gap:9px;"><span style="width:7px;height:7px;border-radius:50%;background:#6B7C93;"></span>Early / private development</div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;"><a href="anor.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;text-decoration:none;">Explore ANOR →</a><a href="#pilot" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;text-decoration:none;">Discuss a pilot →</a></div>
         </div>
-        <div style="width:100%; border-top:1px solid #161C27; margin-top:8px; padding-top:24px;">
-          <p style="margin:0 0 4px; font-size:15px; line-height:1.6; color:#B7C4D6;">Determine whether your company can afford to win, finance, and execute a contract before committing resources.</p>
-          <p style="margin:0 0 20px; font-size:13px; color:#5B6B82;">Create an isolated company workspace. Email verification required.</p>
-          <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
-            <a href="https://app.shikigamitechnologies.com/register" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.06em; color:#06090F; background:#2E9BFF; padding:12px 24px; border-radius:8px; text-decoration:none; font-weight:500;" class="hov-primary">Request beta access</a>
-            <a href="https://app.shikigamitechnologies.com/login" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.06em; color:#F4F7FB; background:transparent; border:1px solid #26303F; padding:12px 24px; border-radius:8px; text-decoration:none;" class="hov-outline">Sign in</a>
-            <a href="/whitepaper-themis.html" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.06em; color:#2E9BFF; text-decoration:none; border-bottom:1px solid #2E9BFF44;">Read the white paper &rarr;</a>
-            <a href="/pricing-themis.html" style="font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.06em; color:#2E9BFF; text-decoration:none; border-bottom:1px solid #2E9BFF44;">View pricing &rarr;</a>
+        <div>
+          <p style="margin:0;font-size:14.5px;line-height:1.7;color:#9BADC5;">After an award, contract meaning spreads across project tools, email, drives, modifications, and a few experienced people. ANOR carries that meaning into controlled execution — connecting an obligation to its exact source, approved interpretation, owner, due event, required evidence, and later modifications.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#91A4BD;">
+            <span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;">Themis decides before commitment</span>
+            <span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;">ANOR governs after award</span>
           </div>
-          <p style="margin:16px 0 0; font-size:12px; line-height:1.6; color:#5B6B82;">Themis supports bid/no-bid and capture decisions. It does not provide legal, accounting, or contracting advice, and results do not replace professional judgment.</p>
+          <p style="margin:18px 0 0;font-size:12px;line-height:1.6;color:#5B6B82;">An assurance layer — not a replacement for accounting, payroll, procurement, ERP, legal review, or project management.</p>
         </div>
-      </div>
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
-        <div style="min-width:220px;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#F2B84B; border:1px solid #F2B84B55; border-radius:20px; padding:4px 12px; display:inline-block; margin-bottom:14px;">PHASE 0 — PRIVATE BETA</div>
-          <a href="anor.html" style="display:inline-block; font-size:30px; font-weight:600; margin-bottom:6px; color:#F4F7FB; text-decoration:none;">Anor →</a>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#2E9BFF; text-transform:uppercase;">DoD Contract Execution Assurance</div>
+        <div style="border-left:1px solid #1B2533;padding-left:26px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#6B7C93;margin-bottom:10px;">Intended operator</div>
+          <p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:#B7C4D6;">Contract managers, program personnel, compliance and security teams, finance reviewers, and subcontract administrators.</p>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#4CAF6E;margin-bottom:10px;">Human authority boundary</div>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#B7C4D6;">The system may identify candidates, propose ownership, compare modifications, and request evidence. Humans approve the baseline, assign authority, accept proof, and authorize changes.</p>
         </div>
-        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#9BADC5;">Post-award assurance for defense contractors. Anor connects every material obligation to its exact source, approved owner, due event, required proof, and change history—without replacing the contractor's ERP, document repository, or project tools.</p>
-        <div style="display:flex; flex-direction:column; gap:10px; min-width:220px;">
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Source-linked obligation register</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Contract-specific flowdown decisions</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Owner, due-event, and evidence assurance</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Modification impact and reapproval history</div>
-          <a href="anor.html" style="display:inline-block; margin-top:8px; color:#2E9BFF; font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none;">Explore Anor and request private beta →</a>
-        </div>
-      </div>
-      <div class="reveal" style="background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:34px 30px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
-        <div style="min-width:220px;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#B48CFF; border:1px solid #B48CFF44; border-radius:20px; padding:4px 12px; display:inline-block; margin-bottom:14px;">INTERNAL — Proprietary system</div>
-          <div style="font-size:30px; font-weight:600; margin-bottom:6px;">Sentient</div>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#2E9BFF; text-transform:uppercase;">Algorithmic Market Intelligence</div>
-        </div>
-        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#9BADC5;">Shikigami's proprietary algorithmic trading and signal generation system. Operates across prediction markets with real-time regime detection using Markov state analysis, oracle lag scanning, order book imbalance detection, and funding rate contrarian signals. Six supervised engines running continuously with automated restart, watchdog monitoring, and Telegram-based human approval for all live executions.</p>
-        <div style="display:flex; flex-direction:column; gap:10px; min-width:220px;">
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Markov regime detection (5-state FNG routing)</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Multi-signal confluence: oracle lag, CVD, CLOB imbalance</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Six supervised engines with auto-restart</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Quarter Kelly position sizing with regime-adjusted floors</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#B7C4D6;"><span style="width:5px; height:5px; background:#2E9BFF; transform:rotate(45deg); display:inline-block;"></span>Shadow mode gate: 50 clean trades before live capital</div>
-        </div>
-      </div>
-      <div class="reveal" style="background:#171717; border:1px solid #4B4038; border-radius:16px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
-        <div style="min-width:220px;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#62C98A; border:1px solid #62C98A55; border-radius:20px; padding:4px 12px; display:inline-block; margin-bottom:14px;">STAGING VALIDATION — CONTROLLED PILOTS</div>
-          <a href="ironcrew.html" style="display:inline-block; font-size:30px; font-weight:600; margin-bottom:6px; color:#F3F0E8; text-decoration:none;">IronCrew →</a>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#FF6B1A; text-transform:uppercase;">AI Operations Command Center</div>
-        </div>
-        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#AAA69B;">A governed operating system for owner-led construction and field service companies. IronCrew unifies communication, work, documents, follow-up, approvals, and operational intelligence so owners manage decisions and exceptions instead of carrying the administrative load.</p>
-        <div style="display:flex; flex-direction:column; gap:10px; min-width:220px;">
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#C8C1B5;"><span style="width:5px; height:5px; background:#1FA89A; transform:rotate(45deg); display:inline-block;"></span>Unified operations and decision inboxes</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#C8C1B5;"><span style="width:5px; height:5px; background:#1FA89A; transform:rotate(45deg); display:inline-block;"></span>AI briefings, drafting, routing, and follow-up</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#C8C1B5;"><span style="width:5px; height:5px; background:#1FA89A; transform:rotate(45deg); display:inline-block;"></span>Human authority for consequential actions</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#C8C1B5;"><span style="width:5px; height:5px; background:#1FA89A; transform:rotate(45deg); display:inline-block;"></span>Tenant-isolated, configurable, tablet-first</div>
-          <a href="ironcrew.html" style="display:inline-block; margin-top:8px; color:#FF6B1A; font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none;">Explore IronCrew and controlled pilots →</a>
-        </div>
-      </div>
-      <div class="reveal" style="background:#0B1512; border:1px solid #31483D; border-radius:16px; padding:40px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap;">
-        <div style="min-width:220px;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#A8DFC0; border:1px solid #A8DFC055; border-radius:20px; padding:4px 12px; display:inline-block; margin-bottom:14px;">CONFIGURABLE &mdash; MANAGED SERVICE</div>
-          <a href="kizuna.html" style="display:inline-block; font-size:30px; font-weight:600; margin-bottom:6px; color:#F3F0E8; text-decoration:none;">Kizuna &rarr;</a>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#D5AE69; text-transform:uppercase;">Managed Digital Operations</div>
-        </div>
-        <p style="flex:1; min-width:260px; margin:0; font-size:16px; line-height:1.6; color:#AABBB3;">A managed digital operating system for professional firms and service businesses. Kizuna connects the website, customer intake, scheduling, documents, follow-up, reporting, and approved AI assistance in one continuously operated platform.</p>
-        <div style="display:flex; flex-direction:column; gap:10px; min-width:220px;">
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#C2D0C9;"><span style="width:5px; height:5px; background:#A8DFC0; transform:rotate(45deg); display:inline-block;"></span>Managed website and digital front door</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#C2D0C9;"><span style="width:5px; height:5px; background:#A8DFC0; transform:rotate(45deg); display:inline-block;"></span>Structured intake, scheduling, and follow-up</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#C2D0C9;"><span style="width:5px; height:5px; background:#A8DFC0; transform:rotate(45deg); display:inline-block;"></span>Human approval for consequential actions</div>
-          <div style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#C2D0C9;"><span style="width:5px; height:5px; background:#A8DFC0; transform:rotate(45deg); display:inline-block;"></span>Versioned, reusable vertical configurations</div>
-          <a href="kizuna.html" style="display:inline-block; margin-top:8px; color:#A8DFC0; font-family:'IBM Plex Mono',monospace; font-size:12px; text-decoration:none;">Configure a preliminary Kizuna solution &rarr;</a>
-        </div>
-      </div>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <!-- ================= ACADEMY / LEARNING ================= -->
-  <section id="academy" style="border-top:1px solid #121826;">
-    <div style="max-width:1200px; margin:0 auto; padding:110px 48px; text-align:center;">
-      <div class="reveal" style="max-width:640px; margin:0 auto;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.3em; color:#2E9BFF; text-transform:uppercase; margin-bottom:20px;">04 — Academy</div>
-        <h2 style="margin:0; font-size:44px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Knowledge Base</h2>
-        <p style="margin:20px 0 0; font-size:17px; line-height:1.6; color:#9BADC5;">Technical documentation and deployment guides for Shikigami systems are in development. Check back as products mature toward general availability.</p>
-      </div>
-    </div>
-  </section>
+      <article class="reveal" style="background:linear-gradient(135deg,#121313,#0A0F17);border:1px solid #3B342D;border-radius:16px;padding:clamp(26px,3vw,38px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px;">
+        <div>
+          <div style="font-size:28px;font-weight:600;">IronCrew</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#FF7A2B;margin-top:8px;">Approval-first operations</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#F2B84B;margin-top:20px;display:flex;align-items:center;gap:9px;"><span style="width:7px;height:7px;border-radius:50%;background:#F2B84B;box-shadow:0 0 8px #F2B84B;"></span>Controlled launch / owner acceptance</div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;"><a href="ironcrew.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#FF7A2B;text-decoration:none;">Explore IronCrew →</a><a href="#pilot" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#FF7A2B;text-decoration:none;">Discuss a pilot →</a></div>
+        </div>
+        <div>
+          <p style="margin:0;font-size:14.5px;line-height:1.7;color:#9BADC5;">In owner-led construction and field-service companies, the owner becomes the human integration layer — deciding what matters, assigning work, following up, remembering what is unresolved. IronCrew turns incoming signals into connected, assigned, trackable work without silently taking over that authority.</p>
+          <ul style="list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px;">
+            <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#1FA89A;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Classify the signal, connect it to the right project</li>
+            <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#1FA89A;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Prepare a recommendation, request approval</li>
+            <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#1FA89A;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Track acknowledgment, escalate exceptions</li>
+          </ul>
+        </div>
+        <div style="border-left:1px solid #3B342D;padding-left:26px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#6B7C93;margin-bottom:10px;">Intended operator</div>
+          <p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:#B7C4D6;">Owners, project leads, office coordinators, supervisors, and field teams.</p>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#4CAF6E;margin-bottom:10px;">Human authority boundary</div>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#B7C4D6;">Pricing, bids, contracts, schedules, safety decisions, personnel actions, payroll, purchases, and payments stay behind explicit authority.</p>
+        </div>
+      </article>
 
-  <!-- ================= FEDERAL PROCUREMENT ================= -->
-  <section id="federal" style="border-top:1px solid #121826; background:linear-gradient(180deg,#080B12,#06090F);">
-    <div style="max-width:1200px; margin:0 auto; padding:110px 48px;">
-      <div class="reveal" style="max-width:720px; margin-bottom:56px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.3em; color:#2E9BFF; text-transform:uppercase; margin-bottom:20px;">05 — Federal Procurement</div>
-        <h2 style="margin:0; font-size:44px; font-weight:600; line-height:1.08; letter-spacing:-0.02em;">Federal Procurement</h2>
-      </div>
-      <div style="display:flex; gap:56px; flex-wrap:wrap;">
-        <div class="reveal" style="flex:1 1 380px; min-width:280px;">
-          <p style="margin:0; font-size:17px; line-height:1.7; color:#9BADC5;">Shikigami Technologies holds SDVOSB certification — Service-Disabled Veteran-Owned Small Business — enabling sole-source federal contract awards and set-aside procurement. We are registered with the System for Award Management and actively pursue federal contracting opportunities across our core AI and document intelligence capabilities.</p>
+      <article class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:clamp(26px,3vw,38px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px;">
+        <div>
+          <div style="font-size:28px;font-weight:600;">Kizuna</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#2E9BFF;margin-top:8px;">Reusable managed digital operations</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6B7C93;margin-top:20px;display:flex;align-items:center;gap:9px;"><span style="width:7px;height:7px;border-radius:50%;background:#6B7C93;"></span>Foundation development / selected pilot design</div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;"><a href="kizuna.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;text-decoration:none;">Explore Kizuna →</a><a href="#pilot" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;text-decoration:none;">Discuss a pilot →</a></div>
         </div>
-        <div class="reveal" style="flex:1 1 380px; min-width:280px; background:#0A0F17; border:1px solid #161C27; border-radius:16px; padding:36px 40px;">
-          <div style="display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid #161C27; font-size:13.5px;">
-          <span style="color:#6B7C93;">Entity</span>
-          <span style="color:#F4F7FB; text-align:right;">Shikigami Technologies LLC</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid #161C27; font-size:13.5px;">
-          <span style="color:#6B7C93;">Location</span>
-          <span style="color:#F4F7FB; text-align:right;">Carolina, Puerto Rico</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid #161C27; font-size:13.5px;">
-          <span style="color:#6B7C93;">Set-Aside</span>
-          <span style="color:#F4F7FB; text-align:right;">SDVOSB</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid #161C27; font-size:13.5px;">
-          <span style="color:#6B7C93;">SAM.gov</span>
-          <span style="color:#F4F7FB; text-align:right;">Registration Pending Activation</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid #161C27; font-size:13.5px;">
-          <span style="color:#6B7C93;">UEI</span>
-          <span style="color:#F4F7FB; text-align:right;">PENDING — update on SAM.gov activation</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid #161C27; font-size:13.5px;">
-          <span style="color:#6B7C93;">CAGE Code</span>
-          <span style="color:#F4F7FB; text-align:right;">PENDING — update on SAM.gov activation</span>
-        </div>
-          <div style="margin-top:22px; padding-top:20px; border-top:1px solid #161C27;">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#4A5768; text-transform:uppercase; margin-bottom:8px;">NAICS Codes</div>
-            <div style="display:flex; gap:14px; padding:6px 0; font-size:13px;"><span style="font-family:'IBM Plex Mono',monospace; color:#2E9BFF; min-width:64px;">541512</span><span style="color:#B7C4D6;">Computer Systems Design Services (primary)</span></div>
-          <div style="display:flex; gap:14px; padding:6px 0; font-size:13px;"><span style="font-family:'IBM Plex Mono',monospace; color:#2E9BFF; min-width:64px;">541511</span><span style="color:#B7C4D6;">Custom Computer Programming Services</span></div>
-          <div style="display:flex; gap:14px; padding:6px 0; font-size:13px;"><span style="font-family:'IBM Plex Mono',monospace; color:#2E9BFF; min-width:64px;">541519</span><span style="color:#B7C4D6;">Other Computer Related Services</span></div>
-          <div style="display:flex; gap:14px; padding:6px 0; font-size:13px;"><span style="font-family:'IBM Plex Mono',monospace; color:#2E9BFF; min-width:64px;">541715</span><span style="color:#B7C4D6;">R&amp;D in Physical Sciences</span></div>
-          <div style="display:flex; gap:14px; padding:6px 0; font-size:13px;"><span style="font-family:'IBM Plex Mono',monospace; color:#2E9BFF; min-width:64px;">518210</span><span style="color:#B7C4D6;">Data Processing and Hosting Services</span></div>
-          <div style="display:flex; gap:14px; padding:6px 0; font-size:13px;"><span style="font-family:'IBM Plex Mono',monospace; color:#2E9BFF; min-width:64px;">611420</span><span style="color:#B7C4D6;">Computer Training</span></div>
-          </div>
-          <div style="margin-top:20px; padding-top:20px; border-top:1px solid #161C27; display:flex; justify-content:space-between; font-size:13.5px;">
-            <span style="color:#6B7C93;">Contact</span>
-            <span style="color:#F4F7FB;">hello@shikigamitechnologies.com</span>
+        <div>
+          <p style="margin:0;font-size:14.5px;line-height:1.7;color:#9BADC5;">Service organizations assemble websites, forms, scheduling, documents, follow-up, reporting, and billing as disconnected services. Kizuna is a governed multi-tenant foundation for secure, branded digital operations — with versioned workflows, human approvals, monitoring, usage accounting, and independent billing.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#91A4BD;">
+            <span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;">Visit</span><span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;">Intake</span><span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;">Validation</span><span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;">Human decision</span><span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;">Follow-through</span><span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;">Outcome</span>
           </div>
         </div>
-      </div>
-      <p class="reveal" style="text-align:center; margin:48px auto 0; font-size:14px; color:#6B7C93;">Capability statement available — <a href="assets/docs/shikigami-capability-statement.pdf" download="Shikigami-Technologies-Capability-Statement.pdf" style="color:#2E9BFF; text-decoration:none;" class="hov-link">download PDF</a> · hello@shikigamitechnologies.com</p>
-    </div>
-  </section>
-
-  <!-- ================= CONTACT / CTA ================= -->
-  <section id="contact" style="border-top:1px solid #121826; position:relative; overflow:hidden;">
-    <div class="glow-pulse" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:820px; height:520px; border-radius:50%; background:radial-gradient(ellipse, rgba(46,155,255,0.12), transparent 66%); pointer-events:none;"></div>
-    <div style="position:relative; max-width:1000px; margin:0 auto; padding:130px 48px; text-align:center;">
-      <svg width="60" height="60" viewBox="0 0 120 120" style="display:block; margin:0 auto 32px; overflow:visible;">
-        <polygon points="60,14 60,60 18,60" fill="#2E9BFF"></polygon><polygon points="60,14 102,60 60,60" fill="#1C6FCC"></polygon>
-        <polygon points="60,60 18,60 60,118" fill="#124E96"></polygon><polygon points="60,60 102,60 60,118" fill="#6FC0FF"></polygon>
-        <g fill="#F4F7FB"><circle cx="60" cy="60" r="4"></circle><circle cx="60" cy="14" r="3"></circle><circle cx="102" cy="60" r="3"></circle><circle cx="60" cy="118" r="3"></circle><circle cx="18" cy="60" r="3"></circle></g>
-      </svg>
-      <h2 class="reveal" style="margin:0 auto; font-size:52px; font-weight:600; line-height:1.06; letter-spacing:-0.02em; max-width:720px; text-wrap:balance;">Let's build what's next in intelligence</h2>
-      <p class="reveal" style="margin:24px auto 0; max-width:620px; font-size:18px; line-height:1.6; color:#9BADC5;">Plan a Cypher or IronCrew pilot, ask about Themis or Anor, or tell us what you're working on.</p>
-      <div style="display:flex; gap:16px; justify-content:center; margin-top:40px; flex-wrap:wrap;">
-        <a href="mailto:hello@shikigamitechnologies.com" style="font-family:'IBM Plex Mono',monospace; font-size:14px; letter-spacing:0.06em; color:#06090F; background:#2E9BFF; padding:16px 32px; border-radius:9px; text-decoration:none; font-weight:500;" class="hov-primary">hello@shikigamitechnologies.com</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer style="border-top:1px solid #121826; background:#080B12;">
-    <div style="max-width:1200px; margin:0 auto; padding:64px 48px 40px; display:flex; justify-content:space-between; gap:48px; flex-wrap:wrap;">
-      <div style="max-width:320px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
-          <svg width="28" height="28" viewBox="0 0 120 120" style="display:block;"><polygon points="60,14 60,60 18,60" fill="#2E9BFF"></polygon><polygon points="60,14 102,60 60,60" fill="#1C6FCC"></polygon><polygon points="60,60 18,60 60,118" fill="#124E96"></polygon><polygon points="60,60 102,60 60,118" fill="#6FC0FF"></polygon></svg>
-          <span style="font-size:16px; font-weight:600; letter-spacing:0.14em;">SHIKIGAMI</span>
+        <div style="border-left:1px solid #1B2533;padding-left:26px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#6B7C93;margin-bottom:10px;">Intended operator</div>
+          <p style="margin:0 0 22px;font-size:13px;line-height:1.6;color:#B7C4D6;">Service-business owners, intake teams, coordinators, administrators, and their customers.</p>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#4CAF6E;margin-bottom:10px;">Human authority boundary</div>
+          <p style="margin:0;font-size:13px;line-height:1.6;color:#B7C4D6;">Kizuna may collect, organize, route, remind, and prepare. It does not provide professional advice or make legal, employment, payroll, financial, eligibility, or incident decisions.</p>
         </div>
-        <p style="margin:0; font-size:13.5px; line-height:1.6; color:#6B7C93;">Shikigami Technologies LLC — AI systems, federal contracting intelligence, and algorithmic research. Carolina, Puerto Rico.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="core" style="border-top:1px solid #121826;background:#080B12;position:relative;overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(72px,9vw,110px) clamp(20px,4vw,48px);">
+    <div class="reveal" style="max-width:820px;margin-bottom:44px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.3em;color:#B48CFF;text-transform:uppercase;margin-bottom:20px;">04 — Internal infrastructure (not for sale)</div>
+      <h2 style="margin:0;font-size:clamp(30px,4.4vw,44px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;">Foundry &amp; M.A.G.I.</h2>
+      <p style="margin:22px 0 0;font-size:17px;line-height:1.7;color:#9BADC5;">Shikigami Foundry is our internal AI operations environment. M.A.G.I. — Multi-Agent Governance &amp; Intelligence — is the governed intelligence layer operating within it. Together they function like a compact, company-specific AI control plane: part strategy office, part engineering organization, part reviewer of its own work.</p>
+    </div>
+
+    <div class="reveal" style="position:relative;border:1px solid #17253A;border-radius:22px;background:radial-gradient(circle at center,rgba(46,155,255,.10),transparent 40%),#080D15;overflow:hidden;padding:clamp(24px,3vw,36px);">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(46,155,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(46,155,255,.06) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(circle,black,transparent 76%);-webkit-mask-image:radial-gradient(circle,black,transparent 76%);pointer-events:none;"></div>
+      <div style="position:relative;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6F839C;">Shikigami Foundry — internal operating environment</div>
+
+      <div style="position:relative;margin-top:26px;display:flex;align-items:stretch;gap:0;flex-wrap:wrap;">
+
+        <div style="flex:1 1 210px;min-width:200px;display:flex;flex-direction:column;gap:9px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2E9BFF;margin-bottom:3px;">01 — Evidence</div>
+          <div style="border:1px solid #20334D;border-radius:10px;padding:12px 14px;background:rgba(7,12,20,.9);animation:mgEv1 18s linear infinite;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#6F839C;">DOC-0142</div>
+            <div style="font-size:13px;color:#E4EBF5;margin-top:4px;">Solicitation, 214 pages</div>
+          </div>
+          <div style="border:1px solid #20334D;border-radius:10px;padding:12px 14px;background:rgba(7,12,20,.9);animation:mgEv2 18s linear infinite;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#6F839C;">REC-0087</div>
+            <div style="font-size:13px;color:#E4EBF5;margin-top:4px;">Company capability record</div>
+          </div>
+          <div style="border:1px solid #20334D;border-radius:10px;padding:12px 14px;background:rgba(7,12,20,.9);animation:mgEv3 18s linear infinite;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#6F839C;">FIN-0031</div>
+            <div style="font-size:13px;color:#E4EBF5;margin-top:4px;">Cash position, 6 quarters</div>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;color:#4A5768;margin-top:2px;">Sources retained, never rewritten</div>
+        </div>
+
+        <div class="mg-flow" style="flex:0 0 54px;display:flex;align-items:center;justify-content:center;padding:0 4px;">
+          <div style="position:relative;width:100%;height:1px;background:linear-gradient(90deg,rgba(46,155,255,.08),rgba(46,155,255,.45));">
+            <span style="position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:#6FC0FF;box-shadow:0 0 12px #2E9BFF;animation:mgFlow1 18s linear infinite;"></span>
+          </div>
+        </div>
+
+        <div style="flex:1 1 250px;min-width:230px;display:flex;flex-direction:column;gap:9px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:3px;">
+            <span style="width:13px;height:13px;border:1px solid #B48CFF;background:linear-gradient(135deg,rgba(180,140,255,.6),transparent);animation:mgSpin 9s linear infinite;display:block;"></span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#B48CFF;">02 — M.A.G.I. independent analysis</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #20334D;border-radius:10px;padding:12px 14px;background:rgba(7,12,20,.9);animation:mgAg1 18s linear infinite;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#E4EBF5;">ANALYSIS A</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#4CAF6E;">CONCURS</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #20334D;border-radius:10px;padding:12px 14px;background:rgba(7,12,20,.9);animation:mgAg2 18s linear infinite;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#E4EBF5;">ANALYSIS B</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#F2B84B;">DISSENTS</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #20334D;border-radius:10px;padding:12px 14px;background:rgba(7,12,20,.9);animation:mgAg3 18s linear infinite;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#E4EBF5;">VERIFICATION C</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#4CAF6E;">CHECKED</span>
+          </div>
+          <div style="border-left:2px solid #F2B84B;padding:8px 0 8px 12px;animation:mgChallenge 18s linear infinite;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:#C6A468;">Challenge recorded</div>
+            <div style="font-size:12.5px;line-height:1.5;color:#B7C4D6;margin-top:4px;">1 dissent kept in the record · 2 open questions unresolved</div>
+          </div>
+        </div>
+
+        <div class="mg-flow" style="flex:0 0 54px;display:flex;align-items:center;justify-content:center;padding:0 4px;">
+          <div style="position:relative;width:100%;height:1px;background:linear-gradient(90deg,rgba(180,140,255,.35),rgba(242,184,75,.45));">
+            <span style="position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:#D9BFFF;box-shadow:0 0 12px #B48CFF;animation:mgFlow2 18s linear infinite;"></span>
+          </div>
+        </div>
+
+        <div style="flex:1 1 230px;min-width:220px;display:flex;flex-direction:column;gap:9px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#F2B84B;margin-bottom:3px;">03 — Recommendation &amp; gate</div>
+          <div style="border:1px solid #20334D;border-radius:10px;padding:12px 14px;background:rgba(7,12,20,.9);animation:mgRec 18s linear infinite;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#6F839C;">RECOMMENDATION</div>
+            <div style="font-size:13px;line-height:1.5;color:#E4EBF5;margin-top:4px;">Pursue with two conditions — uncertainty listed, sources attached</div>
+          </div>
+          <div style="position:relative;border:1px solid #2A2419;border-radius:10px;padding:16px 14px;min-height:88px;display:flex;align-items:center;justify-content:center;animation:mgGateHold 18s linear infinite;">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;animation:mgHeld 18s linear infinite;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#F2B84B;">HELD FOR APPROVAL</span>
+              <span style="font-size:11.5px;color:#9C8355;">Nothing proceeds on model agreement</span>
+            </div>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;animation:mgApproved 18s linear infinite;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#4CAF6E;">APPROVED BY PERSON</span>
+              <span style="font-size:11.5px;color:#7FA98C;">Authority, timestamp, and scope recorded</span>
+            </div>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;color:#4A5768;">A real gate, not a footnote</div>
+        </div>
+
+        <div class="mg-flow" style="flex:0 0 54px;display:flex;align-items:center;justify-content:center;padding:0 4px;">
+          <div style="position:relative;width:100%;height:1px;background:linear-gradient(90deg,rgba(242,184,75,.4),rgba(76,175,110,.5));">
+            <span style="position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:#8FE0AC;box-shadow:0 0 12px #4CAF6E;animation:mgFlow3 18s linear infinite;"></span>
+          </div>
+        </div>
+
+        <div style="flex:1 1 200px;min-width:190px;display:flex;flex-direction:column;gap:9px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#4CAF6E;margin-bottom:3px;">04 — Measured outcome</div>
+          <div style="border:1px solid #24361F;border-radius:10px;padding:12px 14px;background:rgba(9,16,11,.9);animation:mgOut 18s linear infinite;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#7FA98C;">OUTCOME-0009</div>
+            <div style="font-size:13px;line-height:1.5;color:#E4EBF5;margin-top:4px;">Result compared against the acceptance criteria</div>
+            <div style="height:4px;border-radius:3px;background:#132018;margin-top:12px;overflow:hidden;">
+              <span style="display:block;height:100%;background:linear-gradient(90deg,#2E9BFF,#4CAF6E);animation:mgMeter 18s linear infinite;"></span>
+            </div>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;color:#4A5768;">Recorded, then returned to evidence</div>
+        </div>
       </div>
-      <div style="display:flex; gap:64px; flex-wrap:wrap;">
-        <div style="display:flex; flex-direction:column; gap:12px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#4A5768; text-transform:uppercase; margin-bottom:4px;">Company</div>
-        <a href="#top" style="font-size:14px; color:#8FA3BD; text-decoration:none;">About</a>
-          <a href="#research" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Research</a>
-          <a href="#academy" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Academy</a>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#4A5768; text-transform:uppercase; margin-bottom:4px;">Platform</div>
-        <a href="cypher.html" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Cypher</a>
-          <a href="cypher.html#pricing" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Cypher pricing</a>
-          <a href="#products" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Themis</a>
-          <a href="/pricing-themis.html" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Themis pricing</a>
-          <a href="anor.html" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Anor</a>
-          <a href="ironcrew.html" style="font-size:14px; color:#8FA3BD; text-decoration:none;">IronCrew</a>
-          <a href="kizuna.html" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Kizuna</a>
-          <a href="#products" style="font-size:14px; color:#8FA3BD; text-decoration:none;">Sentient</a>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#4A5768; text-transform:uppercase; margin-bottom:4px;">Contact</div>
-        <a href="mailto:hello@shikigamitechnologies.com" style="font-size:14px; color:#8FA3BD; text-decoration:none;">hello@shikigamitechnologies.com</a>
-      </div>
+
+      <div style="position:relative;margin-top:22px;padding-top:16px;border-top:1px dashed #1C2B40;display:flex;align-items:center;gap:10px;animation:mgLoop 18s linear infinite;">
+        <span style="width:6px;height:6px;border-radius:50%;background:#4CAF6E;box-shadow:0 0 9px #4CAF6E;flex-shrink:0;"></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6F839C;">Outcome returns to evidence — the loop closes, and the next decision starts better informed</span>
       </div>
     </div>
-    <div style="border-top:1px solid #121826;">
-      <div style="max-width:1200px; margin:0 auto; padding:22px 48px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#4A5768;">© 2026 Shikigami Technologies LLC. All rights reserved.</span>
-        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#4A5768; display:flex; gap:14px;"><a href="/privacy.html" style="color:#4A5768; text-decoration:none;">Privacy</a><a href="/terms.html" style="color:#4A5768; text-decoration:none;">Terms</a><a href="/security.html" style="color:#4A5768; text-decoration:none;">Security</a><a href="/acceptable-use.html" style="color:#4A5768; text-decoration:none;">Acceptable Use</a></span>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px;">
+      <article class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:32px 30px;position:relative;">
+        <span style="position:absolute;left:0;top:26px;bottom:26px;width:2px;background:linear-gradient(#2E9BFF,transparent);display:block;"></span>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#2E9BFF;">How Foundry works</div>
+        <h3 style="font-size:26px;margin:12px 0 14px;font-weight:600;">The environment</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.65;color:#9BADC5;">Foundry connects portfolio evidence, repositories, opportunities, workflows, tools, approvals, delivery records, and outcomes in one place, so a decision can be traced to its sources and carried into governed execution. It provides continuity across the company — the memory and wiring, not the judgment.</p>
+        <ul style="list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px;">
+          <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Evidence and repositories in one connected index</li>
+          <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Workflows, approvals, and delivery records linked</li>
+          <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#2E9BFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Outcomes returned to the decision that caused them</li>
+        </ul>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#70829B;margin-top:26px;padding-top:20px;border-top:1px solid #161C27;">Not a customer-facing product. Not permission for tools to act unattended.</div>
+      </article>
+      <article class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:32px 30px;position:relative;">
+        <span style="position:absolute;left:0;top:26px;bottom:26px;width:2px;background:linear-gradient(#B48CFF,transparent);display:block;"></span>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#B48CFF;">How M.A.G.I. works</div>
+        <h3 style="font-size:26px;margin:12px 0 14px;font-weight:600;">The governed second brain</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.65;color:#9BADC5;">M.A.G.I. plans, delegates bounded work, compares independent analyses, challenges assumptions, synthesizes evidence, verifies results, and prepares decisions for approval. Agreement between models is not authority — it is input to a person who decides.</p>
+        <ul style="list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px;">
+          <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#B48CFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Bounded missions with explicit permissions</li>
+          <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#B48CFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Independent review, recorded dissent</li>
+          <li style="font-size:13px;color:#B7C4D6;"><span style="display:inline-block;width:5px;height:5px;background:#B48CFF;transform:rotate(45deg);margin:0 11px 2px 1px;"></span>Verification before a recommendation is presented</li>
+        </ul>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#70829B;margin-top:26px;padding-top:20px;border-top:1px solid #161C27;">Not an autonomous executive. It cannot convert a recommendation into company action.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="qualifications" style="border-top:1px solid #121826;background:linear-gradient(180deg,#080B12,#06090F);">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(72px,9vw,110px) clamp(20px,4vw,48px);">
+    <div class="reveal" style="max-width:760px;margin-bottom:44px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.3em;color:#2E9BFF;text-transform:uppercase;margin-bottom:20px;">05 — Government &amp; enterprise</div>
+      <h2 style="margin:0;font-size:clamp(30px,4.4vw,44px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;">Traceability, controlled deployment, defensible records</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:34px;align-items:start;">
+      <div class="reveal" style="">
+        <p style="margin:0;font-size:17px;line-height:1.7;color:#9BADC5;">Shikigami serves government and commercial organizations that need to show how a decision was made. We publish registration facts, describe deployment discipline, and state what has not yet been verified — rather than implying awards, endorsements, certifications, or security authorizations we do not hold.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#91A4BD;">
+          <span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;background:rgba(10,15,23,.7);">Evidence linked</span>
+          <span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;background:rgba(10,15,23,.7);">Human governed</span>
+          <span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;background:rgba(10,15,23,.7);">Local + cloud</span>
+          <span style="border:1px solid #1C2B40;border-radius:999px;padding:7px 12px;background:rgba(10,15,23,.7);">Bilingual EN / ES</span>
+        </div>
+        <p style="margin:26px 0 0;font-size:12.5px;line-height:1.65;color:#5B6B82;">Veteran-owned qualification status, SAM.gov representations, NAICS applicability, and any capability-statement claim remain subject to verification. Owner-confirmed records are inputs to verification, not substitutes for it.</p>
+      </div>
+      <div class="reveal" style="background:#0A0F17;border:1px solid #161C27;border-radius:16px;padding:clamp(26px,3vw,36px);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#4A5768;text-transform:uppercase;margin-bottom:18px;">Qualification dossier · publication gate</div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #161C27;font-size:13.5px;"><span style="color:#6B7C93;">Legal entity</span><span style="color:#F4F7FB;text-align:right;">Shikigami Technologies LLC</span></div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #161C27;font-size:13.5px;"><span style="color:#6B7C93;">Location</span><span style="color:#F2B84B;text-align:right;">Verification required before publication</span></div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #161C27;font-size:13.5px;"><span style="color:#6B7C93;">UEI</span><span style="color:#F2B84B;text-align:right;">Owner-confirmed · publication held</span></div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #161C27;font-size:13.5px;"><span style="color:#6B7C93;">CAGE code</span><span style="color:#F2B84B;text-align:right;">Owner-confirmed · publication held</span></div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #161C27;font-size:13.5px;"><span style="color:#6B7C93;">SAM.gov</span><span style="color:#F2B84B;text-align:right;">Authoritative verification required</span></div>
+        <div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #161C27;font-size:13.5px;"><span style="color:#6B7C93;">Ownership</span><span style="color:#F4F7FB;text-align:right;">Solely owned — Ricardo Parra Pastor</span></div>
+        <div style="margin-top:22px;padding-top:20px;border-top:1px solid #161C27;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#4A5768;text-transform:uppercase;margin-bottom:10px;">NAICS codes</div>
+          <div style="display:flex;gap:14px;padding:6px 0;font-size:13px;"><span style="color:#F2B84B;">Exact codes held until reconciled with the current authoritative entity record.</span></div>
+        </div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid #161C27;display:flex;justify-content:space-between;gap:16px;font-size:13.5px;"><span style="color:#6B7C93;">Contact</span><span style="color:#F4F7FB;text-align:right;">Tengen@shikigamitechnologies.com</span></div>
+        <p style="margin:18px 0 0;font-size:11.5px;line-height:1.6;color:#6B7C93;">Registration details will be published only after a current authoritative verification. Registration never implies an award, agency endorsement, responsibility determination, or guaranteed eligibility.</p>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
+
+<section id="pilot" style="border-top:1px solid #121826;position:relative;overflow:hidden;">
+  <div style="position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:820px;height:520px;border-radius:50%;background:radial-gradient(ellipse,rgba(46,155,255,0.10),transparent 65%);pointer-events:none;animation:gp 6s ease-in-out infinite;"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(72px,9vw,110px) clamp(20px,4vw,48px);">
+    <div class="reveal" style="max-width:760px;margin-bottom:44px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.3em;color:#2E9BFF;text-transform:uppercase;margin-bottom:20px;">06 — The controlled pilot</div>
+      <h2 style="margin:0;font-size:clamp(30px,4.4vw,44px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;">One organization. One defined workflow.</h2>
+      <p style="margin:22px 0 0;font-size:17px;line-height:1.7;color:#9BADC5;">We are not selling instant access to an autonomous platform. We are inviting a qualified organization to discuss one bounded operational problem.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start;">
+      <div class="reveal" style="">
+        <div style="display:grid;gap:2px;">
+          <div style="display:flex;gap:18px;padding:16px 0;border-bottom:1px solid #161C27;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;min-width:26px;">01</span><span style="font-size:14.5px;line-height:1.6;color:#B7C4D6;">One organization and one defined workflow</span></div>
+          <div style="display:flex;gap:18px;padding:16px 0;border-bottom:1px solid #161C27;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;min-width:26px;">02</span><span style="font-size:14.5px;line-height:1.6;color:#B7C4D6;">Agreed source material and data-sensitivity boundaries</span></div>
+          <div style="display:flex;gap:18px;padding:16px 0;border-bottom:1px solid #161C27;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;min-width:26px;">03</span><span style="font-size:14.5px;line-height:1.6;color:#B7C4D6;">Named human owners and approval points</span></div>
+          <div style="display:flex;gap:18px;padding:16px 0;border-bottom:1px solid #161C27;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;min-width:26px;">04</span><span style="font-size:14.5px;line-height:1.6;color:#B7C4D6;">Measurable acceptance criteria</span></div>
+          <div style="display:flex;gap:18px;padding:16px 0;border-bottom:1px solid #161C27;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;min-width:26px;">05</span><span style="font-size:14.5px;line-height:1.6;color:#B7C4D6;">A limited implementation and review period</span></div>
+          <div style="display:flex;gap:18px;padding:16px 0;border-bottom:1px solid #161C27;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2E9BFF;min-width:26px;">06</span><span style="font-size:14.5px;line-height:1.6;color:#B7C4D6;">Expansion only after evidence and explicit approval</span></div>
+        </div>
+      </div>
+      <div class="reveal" style="background:#0A0F17;border:1px solid #1B2533;border-radius:16px;padding:clamp(26px,3vw,34px);">
+        <div id="pilot-success" role="status" aria-live="polite" tabindex="-1" style="display:none;">
+          <div style="display:flex;flex-direction:column;gap:14px;padding:8px 0;">
+            <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2E9BFF;"><span style="width:7px;height:7px;border-radius:50%;background:#2E9BFF;box-shadow:0 0 8px #2E9BFF;"></span>Email draft prepared</div>
+            <p style="margin:0;font-size:14.5px;line-height:1.7;color:#B7C4D6;">Your email application should open with a draft addressed to Tengen@shikigamitechnologies.com. Your request is not recorded until you review and send that email.</p>
+            <button type="button" id="pilot-reset" style="align-self:flex-start;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#8FA3BD;background:transparent;border:1px solid #26303F;border-radius:8px;padding:11px 18px;cursor:pointer;">Return to form</button>
+          </div>
+        </div>
+        <div id="pilot-form-wrap">
+          <form id="pilot-form" style="display:grid;gap:16px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#4A5768;text-transform:uppercase;">Pilot interest</div>
+            <label style="display:grid;gap:7px;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7C93;">Organization</span>
+              <input name="org" required="required" style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:#F4F7FB;background:#06090F;border:1px solid #1B2533;border-radius:8px;padding:13px 14px;outline:none;" />
+            </label>
+            <label style="display:grid;gap:7px;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7C93;">Your role</span>
+              <input name="role" required="required" style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:#F4F7FB;background:#06090F;border:1px solid #1B2533;border-radius:8px;padding:13px 14px;outline:none;" />
+            </label>
+            <label style="display:grid;gap:7px;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7C93;">The one workflow</span>
+              <textarea name="workflow" rows="3" required="required" placeholder="e.g. Vendor invoices arriving by email across 12 locations" style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:#F4F7FB;background:#06090F;border:1px solid #1B2533;border-radius:8px;padding:13px 14px;outline:none;resize:vertical;"></textarea>
+            </label>
+            <label style="display:grid;gap:7px;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7C93;">Work email</span>
+              <input name="email" type="email" required="required" style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:#F4F7FB;background:#06090F;border:1px solid #1B2533;border-radius:8px;padding:13px 14px;outline:none;" />
+            </label>
+            <div style="display:flex;gap:12px;padding:14px 16px;border:1px solid #4A3D22;border-radius:10px;background:rgba(24,18,8,.5);">
+              <span style="width:6px;height:6px;border-radius:50%;background:#F2B84B;box-shadow:0 0 8px #F2B84B;margin-top:6px;flex-shrink:0;"></span>
+              <p style="margin:0;font-size:12.5px;line-height:1.6;color:#C6A468;">Do not include credentials, CUI, customer data, document uploads, or other sensitive files. This form is for scoping only.</p>
+            </div>
+            <button type="submit" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.06em;color:#06090F;background:#2E9BFF;border:0;border-radius:9px;padding:15px 22px;cursor:pointer;font-weight:500;transition:background .2s ease;" class="hov-primary">Request a scoping conversation</button>
+            <p style="margin:0;font-size:11.5px;line-height:1.6;color:#4A5768;">Submitting interest does not create a contract, activate production, or authorize Shikigami to access your systems.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="border-top:1px solid #121826;background:#080B12;">
+  <div style="max-width:1200px;margin:0 auto;padding:60px clamp(20px,4vw,48px) 36px;display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;">
+    <div style="max-width:340px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <svg width="26" height="26" viewBox="0 0 120 120" style="display:block;">
+          <polygon points="60,14 60,60 18,60" fill="#2E9BFF"></polygon>
+          <polygon points="60,14 102,60 60,60" fill="#1C6FCC"></polygon>
+          <polygon points="60,60 18,60 60,118" fill="#124E96"></polygon>
+          <polygon points="60,60 102,60 60,118" fill="#6FC0FF"></polygon>
+        </svg>
+        <span style="font-size:16px;font-weight:600;letter-spacing:0.14em;">SHIKIGAMI</span>
+      </div>
+      <p style="margin:0;font-size:13.5px;line-height:1.6;color:#6B7C93;">Shikigami Technologies LLC — evidence-grounded, human-governed applied software.</p>
+      <p style="margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.7;color:#4A5768;">Federal registration details are publication-gated pending authoritative verification.</p>
+    </div>
+    <div style="display:flex;gap:clamp(28px,5vw,64px);flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#4A5768;text-transform:uppercase;margin-bottom:4px;">Products</div>
+        <a href="cypher.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Cypher</a>
+        <a href="whitepaper-themis.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Themis</a>
+        <a href="anor.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">ANOR</a>
+        <a href="ironcrew.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">IronCrew</a>
+        <a href="kizuna.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Kizuna</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#4A5768;text-transform:uppercase;margin-bottom:4px;">Company</div>
+        <a href="#core" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Foundry &amp; M.A.G.I.</a>
+        <a href="#qualifications" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Qualifications</a>
+        <a href="#pilot" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Controlled pilots</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#4A5768;text-transform:uppercase;margin-bottom:4px;">Legal</div>
+        <a href="privacy.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Privacy</a>
+        <a href="terms.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Terms</a>
+        <a href="security.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Security</a>
+        <a href="acceptable-use.html" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Acceptable use</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#4A5768;text-transform:uppercase;margin-bottom:4px;">Contact</div>
+        <a href="mailto:Tengen@shikigamitechnologies.com" style="font-size:14px;color:#8FA3BD;text-decoration:none;">Tengen@shikigamitechnologies.com</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px) 44px;">
+    <p style="margin:0;padding-top:24px;border-top:1px solid #121826;font-size:12px;line-height:1.7;color:#4A5768;">© 2026 Shikigami Technologies LLC. All rights reserved. Product maturity statements describe current development status, not verified production performance. No customer, testimonial, award, certification, or partner relationship is implied by anything on this page.</p>
+  </div>
+</footer>
 
 </div>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/pilot.js"></script>
 </body>
 </html>
