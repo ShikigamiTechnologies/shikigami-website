@@ -91,4 +91,20 @@ describe("pilot-interest intake", () => {
     expect(rows.size).toBe(0);
     expect(send).not.toHaveBeenCalled();
   });
+
+  it("accepts the public site origin when Cloudflare routes through an internal Worker host", async () => {
+    const { env, send } = createEnv();
+    const routedRequest = new Request("https://shikigami-tech.workers.dev/api/pilot-interest", {
+      method: "POST",
+      headers: { "content-type": "application/json", origin: "https://shikigamitechnologies.com" },
+      body: JSON.stringify({
+        organization: "Example Public Works", role: "Operations director",
+        workflow: "Review invoices and supporting records before controlled disposition.",
+        email: "pilot@example.gov", started_at: Date.now() - 5_000, website: "",
+      }),
+    });
+
+    expect((await worker.fetch(routedRequest, env)).status).toBe(201);
+    expect(send).toHaveBeenCalledOnce();
+  });
 });
