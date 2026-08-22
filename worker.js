@@ -17,6 +17,17 @@ const securityHeaders = {
   "referrer-policy": "strict-origin-when-cross-origin", "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
   "x-content-type-options": "nosniff", "x-frame-options": "DENY", "cross-origin-opener-policy": "same-origin",
 };
+const publicOriginHosts = new Set(["shikigamitechnologies.com", "www.shikigamitechnologies.com"]);
+
+function validRequestOrigin(origin, requestUrl) {
+  if (!origin) return true;
+  try {
+    const originUrl = new URL(origin);
+    return originUrl.protocol === "https:" && (originUrl.host === requestUrl.host || publicOriginHosts.has(originUrl.hostname));
+  } catch {
+    return false;
+  }
+}
 
 function bytesToHex(bytes) { return [...bytes].map((b) => b.toString(16).padStart(2, "0")).join(""); }
 function bytesToBase64(bytes) { let binary = ""; for (const byte of bytes) binary += String.fromCharCode(byte); return btoa(binary); }
@@ -61,7 +72,7 @@ async function submitAnor(request, env) {
 
 async function submitPilotInterest(request, env) {
   const origin = request.headers.get("origin"), url = new URL(request.url);
-  if (origin && new URL(origin).host !== url.host) return json({ message: "Invalid request origin." }, 403);
+  if (!validRequestOrigin(origin, url)) return json({ message: "Invalid request origin." }, 403);
   if (!request.headers.get("content-type")?.includes("application/json")) return json({ message: "Expected JSON." }, 415);
   let body; try { body = await request.json(); } catch { return json({ message: "Invalid request." }, 400); }
   if (clean(body.website, 100)) return json({ ok: true }, 201);
