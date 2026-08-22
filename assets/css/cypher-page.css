@@ -1,0 +1,56 @@
+/* Cypher page — evidence-chain animation, console mock, nav + form states.
+   Fonts, resets and the base .reveal transition come from style.css. */
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.16,.84,.34,1),transform .8s cubic-bezier(.16,.84,.34,1)}
+.reveal.in{opacity:1;transform:none}
+
+.cy-hov-nav{transition:color .2s ease}
+.cy-hov-nav:hover{color:#fff}
+.cy-hov-primary{transition:background .2s ease}
+.cy-hov-primary:hover{background:#6FC0FF}
+.cy-hov-outline{transition:border-color .2s ease,color .2s ease}
+.cy-hov-outline:hover{border-color:#64BAFF;color:#64BAFF}
+:where(a,button,input,textarea):focus-visible{outline:2px solid #9BD7FF;outline-offset:3px}
+
+/* hero console */
+@keyframes cyScan{0%{top:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{top:100%;opacity:0}}
+@keyframes cyBar{0%,10%{width:0}40%,100%{width:96%}}
+@keyframes cyPulse{0%,100%{opacity:.45}50%{opacity:1}}
+
+/* evidence chain — 18s build: preserve -> extract -> relate -> human decision -> proof */
+@keyframes chSrc{0%,3%{opacity:0;transform:translateY(8px)}8%{opacity:1;transform:none;border-color:#2E9BFF}16%,96%{opacity:1;transform:none;border-color:#1E2A38}100%{opacity:0}}
+@keyframes chEx1{0%,17%{opacity:0;transform:translateY(6px)}22%,96%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes chEx2{0%,21%{opacity:0;transform:translateY(6px)}26%,96%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes chEx3{0%,25%{opacity:0;transform:translateY(6px)}30%,96%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes chEx4{0%,29%{opacity:0;transform:translateY(6px)}34%,96%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes chRel{0%,40%{opacity:0;transform:translateY(8px)}46%{opacity:1;transform:none;border-color:#F2B84B}52%,96%{opacity:1;transform:none;border-color:#4A3D22}100%{opacity:0}}
+@keyframes chDup{0%,48%{opacity:0;transform:translateY(8px)}54%,96%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes chRev{0%,60%{opacity:0;transform:translateY(8px)}66%{opacity:1;transform:none;border-color:#F2B84B}72%,96%{opacity:1;transform:none;border-color:#2A3448}100%{opacity:0}}
+@keyframes chFix{0%,68%{opacity:0}74%,96%{opacity:1}100%{opacity:0}}
+@keyframes chStamp{0%,76%{opacity:0;transform:scale(.94)}82%,96%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes chProof{0%,86%{opacity:0;transform:translateY(8px)}92%,96%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes chFlag{0%,44%{opacity:.25}48%,72%{opacity:1}76%,100%{opacity:.25}}
+
+/* form */
+#pilot-form input:focus,#pilot-form textarea:focus{border-color:#2E9BFF}
+#pilot-form input::placeholder,#pilot-form textarea::placeholder{color:#3E4A5C}
+#pilot-reset:hover{border-color:#64BAFF;color:#64BAFF}
+
+/* nav: keep the header on one row down to phone widths */
+@media(min-width:701px) and (max-width:1050px){
+  nav{padding:14px 26px !important}
+  nav > div{gap:18px !important;flex-wrap:nowrap !important}
+  nav > div > a:nth-child(3),nav > div > a:nth-child(4){display:none}
+}
+@media(max-width:700px){
+  nav > div > a:not(:last-child){display:none}
+  .cy-hero{grid-template-columns:minmax(0,1fr) !important}
+  .cy-eyebrow{max-width:100%;line-height:1.45;align-items:flex-start !important}
+  .cy-eyebrow span{flex:0 0 7px;margin-top:.35em}
+  .cy-hero-actions{align-items:stretch !important}
+  .cy-hero-actions > a{flex:0 0 100%;width:100%;box-sizing:border-box;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  [style*="animation"]{animation:none !important}
+}
