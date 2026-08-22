@@ -493,14 +493,16 @@
       <div class="reveal" style="background:#0A0F17;border:1px solid #1B2533;border-radius:16px;padding:clamp(26px,3vw,34px);">
         <div id="pilot-success" role="status" aria-live="polite" tabindex="-1" style="display:none;">
           <div style="display:flex;flex-direction:column;gap:14px;padding:8px 0;">
-            <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2E9BFF;"><span style="width:7px;height:7px;border-radius:50%;background:#2E9BFF;box-shadow:0 0 8px #2E9BFF;"></span>Email draft prepared</div>
-            <p style="margin:0;font-size:14.5px;line-height:1.7;color:#B7C4D6;">Your email application should open with a draft addressed to Tengen@shikigamitechnologies.com. Your request is not recorded until you review and send that email.</p>
-            <button type="button" id="pilot-reset" style="align-self:flex-start;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#8FA3BD;background:transparent;border:1px solid #26303F;border-radius:8px;padding:11px 18px;cursor:pointer;">Return to form</button>
+            <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4CAF6E;"><span style="width:7px;height:7px;border-radius:50%;background:#4CAF6E;box-shadow:0 0 8px #4CAF6E;"></span>Request received</div>
+            <p style="margin:0;font-size:14.5px;line-height:1.7;color:#B7C4D6;">Your controlled-pilot interest was recorded and sent to Shikigami for review. We will reply from tengen@shikigamitechnologies.com.</p>
+            <p id="pilot-reference" style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6B7C93;"></p>
           </div>
         </div>
         <div id="pilot-form-wrap">
           <form id="pilot-form" style="display:grid;gap:16px;">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#4A5768;text-transform:uppercase;">Pilot interest</div>
+            <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;" />
+            <input name="started_at" type="hidden" />
             <label style="display:grid;gap:7px;">
               <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6B7C93;">Organization</span>
               <input name="org" required="required" style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:#F4F7FB;background:#06090F;border:1px solid #1B2533;border-radius:8px;padding:13px 14px;outline:none;" />
@@ -522,6 +524,7 @@
               <p style="margin:0;font-size:12.5px;line-height:1.6;color:#C6A468;">Do not include credentials, CUI, customer data, document uploads, or other sensitive files. This form is for scoping only.</p>
             </div>
             <button type="submit" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.06em;color:#06090F;background:#2E9BFF;border:0;border-radius:9px;padding:15px 22px;cursor:pointer;font-weight:500;transition:background .2s ease;" class="hov-primary">Request a scoping conversation</button>
+            <p id="pilot-status" role="status" aria-live="polite" style="margin:0;min-height:20px;font-size:12px;line-height:1.6;color:#F2B84B;"></p>
             <p style="margin:0;font-size:11.5px;line-height:1.6;color:#4A5768;">Submitting interest does not create a contract, activate production, or authorize Shikigami to access your systems.</p>
           </form>
         </div>
