@@ -1,4 +1,4 @@
-// Homepage navigation and controlled-pilot email handoff. No payload is transmitted by this page.
+// Homepage navigation and controlled-pilot intake.
 document.addEventListener('DOMContentLoaded', function () {
   var navToggle = document.querySelector('.home-nav-toggle');
   var navLinks = document.getElementById('home-nav-links');
@@ -20,26 +20,45 @@ document.addEventListener('DOMContentLoaded', function () {
   var wrap = document.getElementById('pilot-form-wrap');
   var done = document.getElementById('pilot-success');
   var reset = document.getElementById('pilot-reset');
+  var status = document.getElementById('pilot-status');
+  var reference = document.getElementById('pilot-reference');
   if (!form || !wrap || !done) return;
+  form.elements.started_at.value = Date.now();
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
+    if (!form.reportValidity()) return;
     var data = new FormData(form);
-    var subject = 'Controlled pilot scoping request — ' + String(data.get('org') || '').trim();
-    var body = [
-      'Organization: ' + String(data.get('org') || '').trim(),
-      'Role: ' + String(data.get('role') || '').trim(),
-      'Work email: ' + String(data.get('email') || '').trim(),
-      '',
-      'One workflow:',
-      String(data.get('workflow') || '').trim(),
-      '',
-      'This message requests a scoping conversation only. It does not create a contract or authorize access to systems or data.'
-    ].join('\n');
-    wrap.style.display = 'none';
-    done.style.display = 'block';
-    done.focus();
-    window.location.href = 'mailto:Tengen@shikigamitechnologies.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    var button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+    button.textContent = 'Sending securely…';
+    status.textContent = 'Recording your bounded scoping request…';
+    try {
+      var response = await fetch('/api/pilot-interest', {
+        method: 'POST', credentials: 'same-origin',
+        headers: { 'content-type': 'application/json', accept: 'application/json' },
+        body: JSON.stringify({
+          organization: String(data.get('org') || '').trim(),
+          role: String(data.get('role') || '').trim(),
+          workflow: String(data.get('workflow') || '').trim(),
+          email: String(data.get('email') || '').trim(),
+          website: String(data.get('website') || ''),
+          started_at: Number(data.get('started_at') || 0)
+        })
+      });
+      var result = await response.json().catch(function () { return {}; });
+      if (!response.ok) throw new Error(result.message || 'The request could not be submitted.');
+      form.reset();
+      form.elements.started_at.value = Date.now();
+      reference.textContent = result.reference ? 'Reference: ' + result.reference : '';
+      wrap.style.display = 'none';
+      done.style.display = 'block';
+      done.focus();
+    } catch (error) {
+      status.textContent = error.message + ' You may also email tengen@shikigamitechnologies.com.';
+      button.disabled = false;
+      button.textContent = 'Request a scoping conversation';
+    }
   });
 
   if (reset) reset.addEventListener('click', function () {

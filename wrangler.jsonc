@@ -23,6 +23,9 @@
     {"binding":"LEADS","database_name":"shikigami-website-leads","database_id":"6e8be704-03ae-4b7b-8cef-e9bca811ef7d"},
     {"binding":"LICENSING","database_name":"cypher-licensing","database_id":"849ee0cb-8167-4cbd-adc2-a0fc3a0c9619","migrations_dir":"migrations/licensing"}
   ],
+  "send_email": [
+    {"name":"PILOT_EMAIL","destination_address":"tengen@shikigamitechnologies.com"}
+  ],
   "observability": {"enabled":true,"head_sampling_rate":1},
   "env": {
     "staging": {

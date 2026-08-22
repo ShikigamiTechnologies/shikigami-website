@@ -59,6 +59,63 @@ async function submitAnor(request, env) {
   return json({ ok: true }, 201);
 }
 
+async function submitPilotInterest(request, env) {
+  const origin = request.headers.get("origin"), url = new URL(request.url);
+  if (origin && new URL(origin).host !== url.host) return json({ message: "Invalid request origin." }, 403);
+  if (!request.headers.get("content-type")?.includes("application/json")) return json({ message: "Expected JSON." }, 415);
+  let body; try { body = await request.json(); } catch { return json({ message: "Invalid request." }, 400); }
+  if (clean(body.website, 100)) return json({ ok: true }, 201);
+  const started = Number(body.started_at || 0), elapsed = Date.now() - started;
+  if (!started || elapsed < 2500 || elapsed > 86400000) return json({ message: "Please reload and try again." }, 400);
+  const entry = {
+    id: crypto.randomUUID(), at: new Date().toISOString(),
+    organization: clean(body.organization, 160), role: clean(body.role, 120),
+    workflow: clean(body.workflow, 2000), email: clean(body.email, 254).toLowerCase(),
+  };
+  if (entry.organization.length < 2 || entry.role.length < 2 || entry.workflow.length < 10 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(entry.email)) {
+    return json({ message: "Please complete every required field." }, 400);
+  }
+  const existing = await env.LEADS.prepare("SELECT id,notified_at FROM pilot_interest WHERE lower(email)=?").bind(entry.email).first();
+  if (existing?.notified_at) return json({ message: "This email already has a pilot request on file." }, 409);
+  try {
+    if (existing) {
+      entry.id = existing.id;
+      await env.LEADS.prepare("UPDATE pilot_interest SET organization=?,role=?,workflow=?,notification_error=NULL WHERE id=?")
+        .bind(entry.organization, entry.role, entry.workflow, entry.id).run();
+    } else {
+      await env.LEADS.prepare("INSERT INTO pilot_interest(id,created_at,organization,role,workflow,email) VALUES(?,?,?,?,?,?)")
+        .bind(entry.id, entry.at, entry.organization, entry.role, entry.workflow, entry.email).run();
+    }
+  } catch (error) {
+    console.error(JSON.stringify({ event: "pilot_interest_insert_failed", message: error?.message }));
+    return json({ message: "Your request could not be saved right now." }, 503);
+  }
+  try {
+    const result = await env.PILOT_EMAIL.send({
+      to: "tengen@shikigamitechnologies.com",
+      from: { email: "website@shikigamitechnologies.com", name: "Shikigami Website" },
+      replyTo: entry.email,
+      subject: `Controlled pilot interest — ${entry.organization}`,
+      text: [
+        "New controlled-pilot interest received.", "",
+        `Reference: ${entry.id}`, `Received: ${entry.at}`,
+        `Organization: ${entry.organization}`, `Role: ${entry.role}`,
+        `Work email: ${entry.email}`, "", "One workflow:", entry.workflow, "",
+        "This message originated from the bounded public scoping form. No files or credentials were accepted.",
+      ].join("\n"),
+    });
+    await env.LEADS.prepare("UPDATE pilot_interest SET notification_attempts=notification_attempts+1,notification_message_id=?,notification_error=NULL,notified_at=? WHERE id=?")
+      .bind(result.messageId, new Date().toISOString(), entry.id).run();
+    return json({ ok: true, reference: entry.id }, 201);
+  } catch (error) {
+    const code = clean(error?.code || "EMAIL_SEND_FAILED", 80), message = clean(error?.message || "Email notification failed.", 300);
+    await env.LEADS.prepare("UPDATE pilot_interest SET notification_attempts=notification_attempts+1,notification_error=? WHERE id=?")
+      .bind(`${code}: ${message}`, entry.id).run();
+    console.error(JSON.stringify({ event: "pilot_interest_email_failed", code, message, reference: entry.id }));
+    return json({ message: "Your request was saved, but the notification could not be sent. Please email tengen@shikigamitechnologies.com directly.", reference: entry.id }, 503);
+  }
+}
+
 async function activateCypher(request, env) {
   if (!request.headers.get("content-type")?.includes("application/json")) return json({ message: "Expected JSON." }, 415);
   let body; try { body = await request.json(); } catch { return json({ message: "Invalid activation request." }, 400); }
@@ -105,6 +162,7 @@ export default {
       if (path === "/robots.txt") return new Response("User-agent: *\nAllow: /\nSitemap: https://shikigamitechnologies.com/sitemap.xml\n", { headers: { "content-type": "text/plain;charset=utf-8", ...securityHeaders } });
       if (path === "/sitemap.xml") { const entries = publicPaths.map((value) => `<url><loc>https://shikigamitechnologies.com${value}</loc></url>`).join(""); return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries}</urlset>`, { headers: { "content-type": "application/xml;charset=utf-8", "cache-control": "public,max-age=3600", ...securityHeaders } }); }
       if (path === "/api/anor-beta") return request.method === "POST" ? submitAnor(request, env) : methodNotAllowed("POST");
+      if (path === "/api/pilot-interest") return request.method === "POST" ? submitPilotInterest(request, env) : methodNotAllowed("POST");
       if (path === "/api/cypher/v1/activate") return request.method === "POST" ? activateCypher(request, env) : methodNotAllowed("POST");
       if (path === "/api/cypher/admin/v1/product-keys/batch") return request.method === "POST" ? createBatch(request, env) : methodNotAllowed("POST");
       if (path === "/api/cypher/v1" || path.startsWith("/api/cypher/v1/")) return await handleCypherSupabaseRoute(request, env);
