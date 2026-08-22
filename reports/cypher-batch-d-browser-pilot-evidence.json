@@ -1,0 +1,1779 @@
+{
+  "schema": "cypher-batch-d/browser-worker-owned-v4",
+  "generated_at": "2026-08-16T04:22:50.387Z",
+  "before": {
+    "documents": 2,
+    "extractions": 0,
+    "corrections": 0,
+    "artifacts": 0,
+    "deliveries": 0
+  },
+  "after": {
+    "documents": 3,
+    "extractions": 1,
+    "corrections": 1,
+    "artifacts": 5,
+    "deliveries": 1
+  },
+  "network": [
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/documents",
+      "status": 201,
+      "method": "POST",
+      "service_key_present": false
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/documents/a19560cb-f391-4508-81e7-c96c160ba0ae/validate",
+      "status": 200,
+      "method": "POST",
+      "service_key_present": false
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/relationships/decision",
+      "status": 200,
+      "method": "POST",
+      "service_key_present": false
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/exceptions/transition",
+      "status": 200,
+      "method": "POST",
+      "service_key_present": false
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/obligations/transition",
+      "status": 200,
+      "method": "POST",
+      "service_key_present": false
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/exports",
+      "status": 201,
+      "method": "POST",
+      "service_key_present": false
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/deliveries",
+      "status": 201,
+      "method": "POST",
+      "service_key_present": false
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/documents",
+      "status": 200,
+      "method": "GET",
+      "service_key_present": false
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/cypher/v1/documents",
+      "status": 401,
+      "method": "GET",
+      "service_key_present": false
+    }
+  ],
+  "download_hashes": {
+    "evidence_manifest": "9e41327ffb81c9970068cdbe0b5d3becf1ca41c73fbf619bf8b181d036cc4b37",
+    "validation_pdf": "894c4889e9704108f3b4ad5708c4afc8599d6fcb98aca3e90a4f2386fd2f9e50",
+    "export_csv": "5d768ea1469303a39ef4a4d579af8fded0aab5d359f43d22dc8ace8a2396e2f2",
+    "export_json": "8030ca3aab29395c23e9a921c2e35d640f919ea4ead92ec5dc1319b923614962",
+    "export_xlsx": "9206afffbdb9ed43f17d9bc3c9e379c52ac77f4a30b0ca051a67fe0ca0cf86ca"
+  },
+  "other_tenant_denied": true,
+  "anon_denied": true,
+  "no_service_key": true,
+  "service_role_acl_before": [
+    {
+      "table": "cypher_artifacts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_artifacts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_artifacts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_connectors",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_connectors",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_connectors",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_corrections",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_corrections",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_corrections",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_deliveries",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_deliveries",
+      "schema": "public",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "cypher_deliveries",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_deliveries",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_delivery_attempts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_delivery_attempts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_delivery_attempts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_destination_receipts",
+      "schema": "public",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "cypher_destination_receipts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_destination_receipts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_destination_receipts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_documents",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_documents",
+      "schema": "public",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "cypher_documents",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_documents",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_evidence_packages",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_evidence_packages",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_evidence_packages",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_exception_events",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_exception_events",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_exception_events",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_exceptions",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_exceptions",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_exceptions",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_export_jobs",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_export_jobs",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_export_jobs",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_extraction_fields",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_extraction_fields",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_extraction_fields",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_extraction_runs",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_extraction_runs",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_extraction_runs",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_intake_events",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_intake_events",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_intake_events",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_locations",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_locations",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_locations",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_memberships",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_memberships",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_memberships",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_migration_receipts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_migration_receipts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_migration_receipts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_obligation_events",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_obligation_events",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_obligation_events",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_obligations",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_obligations",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_obligations",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_outbox",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_outbox",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_outbox",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_quarantine_scans",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_quarantine_scans",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_quarantine_scans",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_relationship_decisions",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_relationship_decisions",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_relationship_decisions",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_relationships",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_relationships",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_relationships",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_storage_receipts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_storage_receipts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_storage_receipts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_tenants",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_tenants",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_tenants",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_trusted_upload_receipts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_trusted_upload_receipts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_trusted_upload_receipts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_upload_intents",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_upload_intents",
+      "schema": "public",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "cypher_upload_intents",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_upload_intents",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_validations",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_validations",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_validations",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_vendors",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_vendors",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_vendors",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "messages",
+      "schema": "realtime",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "messages",
+      "schema": "realtime",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "messages",
+      "schema": "realtime",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "subscription",
+      "schema": "realtime",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "buckets_vectors",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "vector_indexes",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "decrypted_secrets",
+      "schema": "vault",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "decrypted_secrets",
+      "schema": "vault",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "secrets",
+      "schema": "vault",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "secrets",
+      "schema": "vault",
+      "privilege": "SELECT"
+    }
+  ],
+  "service_role_acl_after": [
+    {
+      "table": "cypher_artifacts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_artifacts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_artifacts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_connectors",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_connectors",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_connectors",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_corrections",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_corrections",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_corrections",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_deliveries",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_deliveries",
+      "schema": "public",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "cypher_deliveries",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_deliveries",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_delivery_attempts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_delivery_attempts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_delivery_attempts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_destination_receipts",
+      "schema": "public",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "cypher_destination_receipts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_destination_receipts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_destination_receipts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_documents",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_documents",
+      "schema": "public",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "cypher_documents",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_documents",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_evidence_packages",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_evidence_packages",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_evidence_packages",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_exception_events",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_exception_events",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_exception_events",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_exceptions",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_exceptions",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_exceptions",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_export_jobs",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_export_jobs",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_export_jobs",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_extraction_fields",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_extraction_fields",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_extraction_fields",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_extraction_runs",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_extraction_runs",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_extraction_runs",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_intake_events",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_intake_events",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_intake_events",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_locations",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_locations",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_locations",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_memberships",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_memberships",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_memberships",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_migration_receipts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_migration_receipts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_migration_receipts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_obligation_events",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_obligation_events",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_obligation_events",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_obligations",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_obligations",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_obligations",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_outbox",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_outbox",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_outbox",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_quarantine_scans",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_quarantine_scans",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_quarantine_scans",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_relationship_decisions",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_relationship_decisions",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_relationship_decisions",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_relationships",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_relationships",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_relationships",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_storage_receipts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_storage_receipts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_storage_receipts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_storage_verification_failures",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_tenants",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_tenants",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_tenants",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_trusted_upload_receipts",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_trusted_upload_receipts",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_trusted_upload_receipts",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_upload_intents",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_upload_intents",
+      "schema": "public",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "cypher_upload_intents",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_upload_intents",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_validations",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_validations",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_validations",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "cypher_vendors",
+      "schema": "public",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "cypher_vendors",
+      "schema": "public",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "cypher_vendors",
+      "schema": "public",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "messages",
+      "schema": "realtime",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "messages",
+      "schema": "realtime",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "messages",
+      "schema": "realtime",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "subscription",
+      "schema": "realtime",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "buckets",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "buckets_analytics",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "buckets_vectors",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "iceberg_namespaces",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "iceberg_tables",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "objects",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "s3_multipart_uploads",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "s3_multipart_uploads_parts",
+      "schema": "storage",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "vector_indexes",
+      "schema": "storage",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "hooks",
+      "schema": "supabase_functions",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "INSERT"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "REFERENCES"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "TRIGGER"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "table": "migrations",
+      "schema": "supabase_functions",
+      "privilege": "UPDATE"
+    },
+    {
+      "table": "decrypted_secrets",
+      "schema": "vault",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "decrypted_secrets",
+      "schema": "vault",
+      "privilege": "SELECT"
+    },
+    {
+      "table": "secrets",
+      "schema": "vault",
+      "privilege": "DELETE"
+    },
+    {
+      "table": "secrets",
+      "schema": "vault",
+      "privilege": "SELECT"
+    }
+  ],
+  "pass": true
+}

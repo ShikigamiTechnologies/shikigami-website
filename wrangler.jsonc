@@ -16,25 +16,31 @@
     "CYPHER_OPENAI_ENABLED": "true",
     "CYPHER_OPENAI_MODEL": "gpt-5.6-terra",
     "CYPHER_OPENAI_FALLBACK_MODEL": "gpt-5.6-sol",
-    "CYPHER_SUPABASE_ENABLED": "false"
+    "CYPHER_SUPABASE_ENABLED": "true",
+    "SUPABASE_URL": "http://127.0.0.1:54321"
   },
   "d1_databases": [
     {"binding":"LEADS","database_name":"shikigami-website-leads","database_id":"6e8be704-03ae-4b7b-8cef-e9bca811ef7d"},
-    {"binding":"LICENSING","database_name":"cypher-licensing","database_id":"849ee0cb-8167-4cbd-adc2-a0fc3a0c9619","migrations_dir":"migrations/licensing"},
-    {"binding":"CYPHER","database_name":"cypher-platform","database_id":"6bd0a5a1-b31e-40c8-9c12-ede884ac38cd","migrations_dir":"migrations/cypher"}
+    {"binding":"LICENSING","database_name":"cypher-licensing","database_id":"849ee0cb-8167-4cbd-adc2-a0fc3a0c9619","migrations_dir":"migrations/licensing"}
   ],
-  "r2_buckets": [
-    {"binding":"CYPHER_FILES","bucket_name":"cypher-private-files"}
-  ],
-  "queues": {
-    "producers": [{"binding":"CYPHER_JOBS","queue":"cypher-document-jobs"}],
-    "consumers": [{"queue":"cypher-document-jobs","max_batch_size":1,"max_batch_timeout":5,"max_retries":5,"dead_letter_queue":"cypher-document-jobs-dlq","max_concurrency":3}]
-  },
   "observability": {"enabled":true,"head_sampling_rate":1},
   "env": {
     "staging": {
       "name": "shikigami-tech-staging",
-      "vars": {"DEPLOYMENT_ENV":"staging"}
+      "workers_dev": false,
+      "route": {
+        "pattern": "cypher-staging.shikigamitechnologies.com",
+        "custom_domain": true
+      },
+      "vars": {
+        "DEPLOYMENT_ENV": "staging",
+        "CYPHER_MAX_UPLOAD_BYTES": "15728640",
+        "CYPHER_AZURE_ENABLED": "false",
+        "CYPHER_OPENAI_ENABLED": "false",
+        "CYPHER_SUPABASE_ENABLED": "false",
+        "CYPHER_STAGING_MODE": "synthetic_only",
+        "CYPHER_LIVE_CONNECTORS_ENABLED": "false"
+      }
     }
   }
 }

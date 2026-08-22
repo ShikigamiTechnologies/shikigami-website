@@ -26,7 +26,7 @@ const required = [
   ["Cypher customer application entry", cypherApp.includes('src="assets/js/cypher-app.js"')],
   ["site-wide Worker security headers", worker.includes("upgrade-insecure-requests") && worker.includes('"x-frame-options": "DENY"')],
   ["Worker-first static security wrapper", wrangler.includes('"run_worker_first": true')],
-  ["Cypher dead-letter queue", wrangler.includes('"dead_letter_queue":"cypher-document-jobs-dlq"')],
+  ["Cypher legacy persistence bindings removed", !wrangler.includes('"binding":"CYPHER"') && !wrangler.includes('"binding":"CYPHER_FILES"') && !wrangler.includes('"binding":"CYPHER_JOBS"')],
   ["password migration fails closed over existing users", passwordMigration.includes("cypher_password_migration_guard") && passwordMigration.includes("COUNT(*) = 0")],
 ];
 
