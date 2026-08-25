@@ -11,7 +11,7 @@ const editions = new Set(["core", "operations", "enterprise", "government", "fed
 const sizes = new Set(["1–19", "20–49", "50–199", "200–500", "501+"]);
 const contracts = new Set(["None yet", "1–3", "4–10", "11–25", "26+"]);
 const encoder = new TextEncoder();
-const publicPaths = ["/", "/cypher", "/anor", "/ironcrew", "/kizuna", "/pricing-themis", "/privacy", "/security", "/terms", "/acceptable-use"];
+const publicPaths = ["/", "/shirabe", "/cypher", "/anor", "/ironcrew", "/kizuna", "/pricing-themis", "/privacy", "/security", "/terms", "/acceptable-use"];
 const securityHeaders = {
   "content-security-policy": "default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests",
   "referrer-policy": "strict-origin-when-cross-origin", "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
@@ -127,6 +127,105 @@ async function submitPilotInterest(request, env) {
   }
 }
 
+const shirabeLanguages = new Set(["en", "es"]);
+const shirabeModes = new Set(["signal", "guided"]);
+const shirabeCategories = new Set(["documents", "delays", "systems", "approvals", "compliance", "intake", "visibility", "reporting", "mixed", "unknown"]);
+const shirabeFrequencies = new Set(["daily", "weekly", "monthly", "quarterly", "irregular", "unknown"]);
+const shirabeSensitivity = new Set(["none", "personal", "financial", "health", "government", "regulated", "unknown"]);
+
+function shirabeCompleteness(entry) {
+  const guided = [
+    [entry.problem, 2], [entry.last_example, 1], [entry.trigger, 1], [entry.participants, 1],
+    [entry.tools, 1], [entry.source_of_truth, 1], [entry.failure_point, 2], [entry.consequence, 2],
+    [entry.evidence_available, 1], [entry.desired_outcome, 2], [entry.attempts, 1], [entry.constraints, 1],
+  ];
+  const signal = [[entry.problem, 2], [entry.failure_point, 2], [entry.consequence, 2], [entry.desired_outcome, 2]];
+  const weighted = entry.mode === "signal" ? signal : guided;
+  const earned = weighted.reduce((sum, [value, weight]) => sum + (value.length >= 3 ? weight : 0), 0);
+  const total = weighted.reduce((sum, [, weight]) => sum + weight, 0);
+  return Math.round((earned / total) * 100);
+}
+
+async function submitShirabe(request, env) {
+  const origin = request.headers.get("origin"), url = new URL(request.url);
+  if (!validRequestOrigin(origin, url)) return json({ message: "Invalid request origin." }, 403);
+  if (!request.headers.get("content-type")?.includes("application/json")) return json({ message: "Expected JSON." }, 415);
+  const declaredLength = Number(request.headers.get("content-length") || 0);
+  if (declaredLength > 32768) return json({ message: "The request is too large." }, 413);
+  let body;
+  try {
+    const bytes = new Uint8Array(await request.arrayBuffer());
+    if (bytes.byteLength > 32768) return json({ message: "The request is too large." }, 413);
+    body = bytes.byteLength ? JSON.parse(new TextDecoder().decode(bytes)) : {};
+  } catch { return json({ message: "Invalid request." }, 400); }
+  if (clean(body.website, 100)) return json({ ok: true }, 201);
+  const started = Number(body.started_at || 0), elapsed = Date.now() - started;
+  if (!started || elapsed < 4000 || elapsed > 604800000) return json({ message: "Please reload and try again." }, 400);
+  const entry = {
+    id: `SHR-${randomHex(8)}`, at: new Date().toISOString(), schema: clean(body.schema, 40),
+    language: clean(body.language, 2), mode: clean(body.mode, 12),
+    name: clean(body.name, 120), company: clean(body.company, 160), email: clean(body.email, 254).toLowerCase(),
+    role: clean(body.role, 120), industry: clean(body.industry, 120), company_size: clean(body.company_size, 40),
+    category: clean(body.problem_category, 40), problem: clean(body.problem, 2000), last_example: clean(body.last_example, 1500),
+    trigger: clean(body.trigger, 1000), participants: clean(body.participants, 1000), tools: clean(body.tools, 1000),
+    source_of_truth: clean(body.source_of_truth, 1000), failure_point: clean(body.failure_point, 1500),
+    frequency: clean(body.frequency, 20), monthly_volume: Math.max(0, Math.min(10000000, Number(body.monthly_volume || 0))),
+    consequence: clean(body.consequence, 1500), evidence_available: clean(body.evidence_available, 1000),
+    desired_outcome: clean(body.desired_outcome, 1500), attempts: clean(body.attempts, 1200), constraints: clean(body.constraints, 1200),
+    sensitivity: clean(body.sensitivity, 20), consent: body.consent === true ? 1 : 0,
+  };
+  if (entry.schema !== "shirabe-intake/v1" || !shirabeLanguages.has(entry.language) || !shirabeModes.has(entry.mode)
+    || entry.name.length < 2 || entry.company.length < 2 || entry.role.length < 2 || entry.industry.length < 2
+    || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(entry.email) || !shirabeCategories.has(entry.category)
+    || entry.problem.length < 20 || entry.failure_point.length < 10 || entry.desired_outcome.length < 10
+    || !shirabeFrequencies.has(entry.frequency) || !shirabeSensitivity.has(entry.sensitivity) || !entry.consent) {
+    return json({ message: "Please complete every required field." }, 400);
+  }
+  const completeness = shirabeCompleteness(entry);
+  const evidenceQuality = completeness >= 85 ? "substantial_self_report" : completeness >= 60 ? "preliminary_self_report" : "limited_self_report";
+  const routingTier = entry.mode === "guided" && completeness >= 80 && entry.consequence.length >= 40 ? "qualified_review" : "clarification_required";
+  const { id: _reference, at: _receivedAt, ...evidence } = entry;
+  const payload = { ...evidence, completeness, evidence_quality: evidenceQuality };
+  const payloadJson = canonical(payload), payloadHash = await sha256(payloadJson);
+  const ip = request.headers.get("cf-connecting-ip") || "";
+  const ipHash = ip && env.LEAD_HASH_PEPPER ? await sha256(`${env.LEAD_HASH_PEPPER}:${ip}`) : null;
+  try {
+    await env.LEADS["batch"]([
+      env.LEADS.prepare("INSERT INTO shirabe_intakes(id,created_at,schema_version,language,mode,name,company,email,role,industry,company_size,problem_category,frequency,monthly_volume,sensitivity,completeness,evidence_quality,payload_json,payload_hash,ip_hash,consent,status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'received')")
+        .bind(entry.id, entry.at, entry.schema, entry.language, entry.mode, entry.name, entry.company, entry.email, entry.role, entry.industry, entry.company_size, entry.category, entry.frequency, entry.monthly_volume, entry.sensitivity, completeness, evidenceQuality, payloadJson, payloadHash, ipHash, entry.consent),
+      env.LEADS.prepare("INSERT INTO shirabe_routing_queue(id,intake_id,created_at,routing_tier,status,payload_hash) VALUES(?,?,?,?,?,?)")
+        .bind(crypto.randomUUID(), entry.id, entry.at, routingTier, "pending", payloadHash),
+    ]);
+  } catch (error) {
+    console.error(JSON.stringify({ event: "shirabe_intake_insert_failed", message: error?.message }));
+    return json({ message: "Your diagnostic could not be saved right now." }, 503);
+  }
+  try {
+    const result = await env.PILOT_EMAIL.send({
+      to: "tengen@shikigamitechnologies.com",
+      from: { email: "website@shikigamitechnologies.com", name: "SHIRABE by Shikigami" },
+      replyTo: entry.email,
+      subject: `SHIRABE diagnostic — ${entry.company}`,
+      text: [
+        "New SHIRABE diagnostic received.", "", `Reference: ${entry.id}`, `Payload SHA-256: ${payloadHash}`,
+        `Received: ${entry.at}`, `Company: ${entry.company}`, `Contact: ${entry.name} (${entry.role})`,
+        `Work email: ${entry.email}`, `Language: ${entry.language}`, `Mode: ${entry.mode}`,
+        `Completeness: ${completeness}%`, `Evidence quality: ${evidenceQuality}`, `Routing: ${routingTier}`, "",
+        "Reported problem:", entry.problem, "", "Reported failure point:", entry.failure_point, "",
+        "Desired outcome:", entry.desired_outcome, "",
+        "This is a prospect self-report, not an independently verified diagnosis. No files or credentials were accepted.",
+      ].join("\n"),
+    });
+    await env.LEADS.prepare("UPDATE shirabe_intakes SET notification_message_id=?,notified_at=? WHERE id=?")
+      .bind(result.messageId, new Date().toISOString(), entry.id).run();
+  } catch (error) {
+    const message = clean(error?.message || "Email notification failed.", 300);
+    await env.LEADS.prepare("UPDATE shirabe_intakes SET notification_error=? WHERE id=?").bind(message, entry.id).run();
+    console.error(JSON.stringify({ event: "shirabe_email_failed", message, reference: entry.id }));
+  }
+  return json({ ok: true, reference: entry.id, completeness, evidence_quality: evidenceQuality, next_state: routingTier }, 201);
+}
+
 async function activateCypher(request, env) {
   if (!request.headers.get("content-type")?.includes("application/json")) return json({ message: "Expected JSON." }, 415);
   let body; try { body = await request.json(); } catch { return json({ message: "Invalid activation request." }, 400); }
@@ -174,6 +273,7 @@ export default {
       if (path === "/sitemap.xml") { const entries = publicPaths.map((value) => `<url><loc>https://shikigamitechnologies.com${value}</loc></url>`).join(""); return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries}</urlset>`, { headers: { "content-type": "application/xml;charset=utf-8", "cache-control": "public,max-age=3600", ...securityHeaders } }); }
       if (path === "/api/anor-beta") return request.method === "POST" ? submitAnor(request, env) : methodNotAllowed("POST");
       if (path === "/api/pilot-interest") return request.method === "POST" ? submitPilotInterest(request, env) : methodNotAllowed("POST");
+      if (path === "/api/shirabe-intake") return request.method === "POST" ? submitShirabe(request, env) : methodNotAllowed("POST");
       if (path === "/api/cypher/v1/activate") return request.method === "POST" ? activateCypher(request, env) : methodNotAllowed("POST");
       if (path === "/api/cypher/admin/v1/product-keys/batch") return request.method === "POST" ? createBatch(request, env) : methodNotAllowed("POST");
       if (path === "/api/cypher/v1" || path.startsWith("/api/cypher/v1/")) return await handleCypherSupabaseRoute(request, env);

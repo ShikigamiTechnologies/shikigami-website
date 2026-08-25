@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="SHIRABE is Shikigami Technologies' bilingual evidence-to-opportunity diagnostic for operational problems.">
+  <title>SHIRABE — Evidence-to-Opportunity Diagnostic</title>
+  <link rel="stylesheet" href="assets/css/shirabe.css">
+  <script src="assets/js/shirabe.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Shikigami Technologies home"><span>SHIKIGAMI</span><small>TECHNOLOGIES</small></a>
+    <div class="top-actions">
+      <button class="language" type="button" data-language="en" aria-pressed="true">EN</button>
+      <button class="language" type="button" data-language="es" aria-pressed="false">ES</button>
+      <a href="/" data-copy="exit">Exit diagnostic</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" id="intro">
+      <div class="eyebrow">SHIRABE / 01</div>
+      <h1 data-copy="headline">Tell us where work breaks.</h1>
+      <p class="lede" data-copy="lede">We trace what happens, what it costs, and what may be worth fixing—without asking you to purchase software first.</p>
+      <div class="boundary" role="note">
+        <strong data-copy="safeTitle">Keep sensitive material out of this intake.</strong>
+        <span data-copy="safeText">Do not enter passwords, customer records, health information, tax or banking data, CUI, classified information, or complete contracts. File uploads are intentionally disabled.</span>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-card" type="button" data-mode="signal">
+          <span class="mode-time" data-copy="signalTime">3–5 minutes</span>
+          <strong data-copy="signalTitle">Quick Signal</strong>
+          <span data-copy="signalText">Describe the problem and receive a preliminary evidence-quality result.</span>
+        </button>
+        <button class="mode-card featured" type="button" data-mode="guided">
+          <span class="mode-time" data-copy="guidedTime">8–12 minutes</span>
+          <strong data-copy="guidedTitle">Guided Diagnostic</strong>
+          <span data-copy="guidedText">Reconstruct the workflow, failure, consequence, evidence, and desired outcome.</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="diagnostic" id="diagnostic" hidden>
+      <aside class="rail" aria-label="Diagnostic progress">
+        <div class="rail-label" data-copy="progress">Diagnostic progress</div>
+        <ol id="progress-list">
+          <li class="active" data-step-label="1"><span>01</span><b data-copy="step1">Context</b></li>
+          <li data-step-label="2"><span>02</span><b data-copy="step2">Problem</b></li>
+          <li data-step-label="3"><span>03</span><b data-copy="step3">Workflow</b></li>
+          <li data-step-label="4"><span>04</span><b data-copy="step4">Consequence</b></li>
+          <li data-step-label="5"><span>05</span><b data-copy="step5">Review</b></li>
+        </ol>
+        <div class="draft-state"><span></span><span data-copy="draft">Draft stays in this browser until submitted.</span></div>
+      </aside>
+
+      <form id="shirabe-form" novalidate>
+        <input name="schema" value="shirabe-intake/v1" type="hidden">
+        <input name="language" value="en" type="hidden">
+        <input name="mode" value="guided" type="hidden">
+        <input name="started_at" type="hidden">
+        <label class="trap" aria-hidden="true" inert hidden>Website<input name="website" tabindex="-1" autocomplete="off" aria-hidden="true"></label>
+
+        <fieldset class="step active" data-step="1">
+          <div class="step-id">01 / <span data-copy="step1">Context</span></div>
+          <legend data-copy="contextQuestion">Who experiences this problem?</legend>
+          <p class="explain" data-copy="contextWhy">This lets us understand the operating environment—not judge company size.</p>
+          <div class="fields two">
+            <label><span data-copy="name">Your name</span><input name="name" required maxlength="120" autocomplete="name"></label>
+            <label><span data-copy="company">Company</span><input name="company" required maxlength="160" autocomplete="organization"></label>
+            <label><span data-copy="email">Work email</span><input name="email" required type="email" maxlength="254" autocomplete="email"></label>
+            <label><span data-copy="role">Your role</span><input name="role" required maxlength="120" autocomplete="organization-title"></label>
+            <label><span data-copy="industry">Industry</span><input name="industry" required maxlength="120"></label>
+            <label><span data-copy="size">Approximate team size</span><select name="company_size" required><option value="">—</option><option>1–9</option><option>10–49</option><option>50–199</option><option>200–499</option><option>500+</option></select></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="2">
+          <div class="step-id">02 / <span data-copy="step2">Problem</span></div>
+          <legend data-copy="problemQuestion">What consumes too much time, creates repeated mistakes, or prevents visibility?</legend>
+          <p class="explain" data-copy="problemWhy">Use ordinary language. We will classify the pattern without replacing your account.</p>
+          <label><span data-copy="category">Closest category</span><select name="problem_category" required>
+            <option value="">—</option><option value="documents" data-option="documents">Document overload</option><option value="delays" data-option="delays">Process delays</option><option value="systems" data-option="systems">Fragmented systems</option><option value="approvals" data-option="approvals">Missing approvals</option><option value="compliance" data-option="compliance">Compliance or evidence</option><option value="intake" data-option="intake">Customer intake</option><option value="visibility" data-option="visibility">Financial or operational visibility</option><option value="reporting" data-option="reporting">Reporting</option><option value="mixed" data-option="mixed">Mixed problem</option><option value="unknown" data-option="unknown">Not sure</option>
+          </select></label>
+          <label><span data-copy="problem">Describe the problem</span><textarea name="problem" required minlength="20" maxlength="2000" rows="5"></textarea><small data-copy="problemHint">What happens today, and why is it difficult?</small></label>
+          <label class="guided-only"><span data-copy="example">Describe the last safe, non-sensitive example</span><textarea name="last_example" maxlength="1500" rows="4"></textarea><small data-copy="exampleHint">Do not paste real customer, employee, contract, or financial data.</small></label>
+        </fieldset>
+
+        <fieldset class="step" data-step="3">
+          <div class="step-id">03 / <span data-copy="step3">Workflow</span></div>
+          <legend data-copy="workflowQuestion">How does the work move today?</legend>
+          <p class="explain" data-copy="workflowWhy">We are reconstructing the process before suggesting technology.</p>
+          <div class="fields two guided-only">
+            <label><span data-copy="trigger">What starts it?</span><textarea name="trigger" maxlength="1000" rows="3"></textarea></label>
+            <label><span data-copy="participants">Who touches it?</span><textarea name="participants" maxlength="1000" rows="3"></textarea></label>
+            <label><span data-copy="tools">Which tools are involved?</span><textarea name="tools" maxlength="1000" rows="3"></textarea></label>
+            <label><span data-copy="truth">Where is the official record?</span><textarea name="source_of_truth" maxlength="1000" rows="3"></textarea></label>
+          </div>
+          <label><span data-copy="failure">Where does it normally stop, fail, or require rework?</span><textarea name="failure_point" required minlength="10" maxlength="1500" rows="4"></textarea></label>
+          <div class="fields two">
+            <label><span data-copy="frequency">How often?</span><select name="frequency" required><option value="">—</option><option value="daily" data-option="daily">Daily</option><option value="weekly" data-option="weekly">Weekly</option><option value="monthly" data-option="monthly">Monthly</option><option value="quarterly" data-option="quarterly">Quarterly</option><option value="irregular" data-option="irregular">Irregular</option><option value="unknown" data-option="unknown">Unknown</option></select></label>
+            <label><span data-copy="volume">Approximate cases each month</span><input name="monthly_volume" type="number" min="0" max="10000000" inputmode="numeric"><small data-copy="estimate">An estimate is acceptable and will remain labeled as one.</small></label>
+          </div>
+          <div id="consistency-note" class="consistency" hidden></div>
+          <label id="consistency-confirm" class="consent consistency-confirm" hidden><input type="checkbox" name="consistency_confirm"><span data-copy="confirmScale">I confirm that the frequency and monthly volume describe the same process.</span></label>
+        </fieldset>
+
+        <fieldset class="step" data-step="4">
+          <div class="step-id">04 / <span data-copy="step4">Consequence</span></div>
+          <legend data-copy="consequenceQuestion">What does this failure affect?</legend>
+          <p class="explain" data-copy="consequenceWhy">Separate what has been measured from what is currently estimated.</p>
+          <label><span data-copy="consequence">Time, cost, delay, risk, customer, or management consequence</span><textarea name="consequence" maxlength="1500" rows="4"></textarea></label>
+          <label class="guided-only"><span data-copy="evidence">What safe evidence could verify this later?</span><textarea name="evidence_available" maxlength="1000" rows="3"></textarea><small data-copy="evidenceHint">For example: anonymized counts, timestamps, process exports, or policies. Do not upload them here.</small></label>
+          <label><span data-copy="outcome">What measurable outcome would make this worthwhile?</span><textarea name="desired_outcome" required minlength="10" maxlength="1500" rows="4"></textarea></label>
+          <div class="fields two guided-only">
+            <label><span data-copy="attempts">What have you already tried?</span><textarea name="attempts" maxlength="1200" rows="3"></textarea></label>
+            <label><span data-copy="constraints">Important constraints</span><textarea name="constraints" maxlength="1200" rows="3"></textarea></label>
+          </div>
+          <label><span data-copy="sensitivity">What kind of sensitive information could be involved later?</span><select name="sensitivity" required><option value="">—</option><option value="none" data-option="none">None expected</option><option value="personal" data-option="personal">Personal information</option><option value="financial" data-option="financial">Financial information</option><option value="health" data-option="health">Health information</option><option value="government" data-option="government">Government or CUI</option><option value="regulated" data-option="regulated">Other regulated information</option><option value="unknown" data-option="unknown">Unknown</option></select></label>
+        </fieldset>
+
+        <fieldset class="step" data-step="5">
+          <div class="step-id">05 / <span data-copy="step5">Review</span></div>
+          <legend data-copy="reviewQuestion">Here is what we heard.</legend>
+          <p class="explain" data-copy="reviewWhy">Correct anything that is inaccurate. Your submission remains a self-report until independently verified.</p>
+          <div id="review-summary" class="review-summary"></div>
+          <div class="classification">
+            <span data-copy="classification">Evidence classification</span>
+            <strong data-copy="selfReport">Owner/operator self-report · not independently verified</strong>
+          </div>
+          <label class="consent"><input type="checkbox" name="consent" required><span data-copy="consent">I authorize Shikigami Technologies to store and review this diagnostic for the purpose of evaluating a potential engagement. I confirm that I did not include prohibited sensitive information.</span></label>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </fieldset>
+
+        <div class="controls">
+          <button id="back" type="button" class="secondary" data-copy="back">Back</button>
+          <button id="next" type="button" data-copy="next">Continue</button>
+          <button id="submit" type="submit" hidden data-copy="submit">Submit diagnostic</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="result" class="result" hidden aria-live="polite">
+      <div class="eyebrow">SHIRABE / RECEIVED</div>
+      <h2 data-copy="received">Your diagnostic has been recorded.</h2>
+      <p data-copy="receivedText">This is a preliminary self-report, not an approved recommendation. Shikigami will review the evidence boundary before proposing a next step.</p>
+      <dl><div><dt data-copy="reference">Reference</dt><dd id="result-reference"></dd></div><div><dt data-copy="completeness">Diagnostic completeness</dt><dd id="result-completeness"></dd></div><div><dt data-copy="quality">Evidence quality</dt><dd id="result-quality"></dd></div></dl>
+      <a href="/" data-copy="home">Return home</a>
+    </section>
+  </main>
+</body>
+</html>
