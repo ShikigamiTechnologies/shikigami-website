@@ -30,6 +30,8 @@ function payload(overrides = {}) {
     participants: "Receiving, operations, and finance.", tools: "Email and spreadsheets.", source_of_truth: "No single source.",
     failure_point: "Ownership is lost after the first email handoff.", frequency: "daily", monthly_volume: 450,
     consequence: "The team estimates recurring delays and rework, but has not measured the total cost.",
+    claimed_loss_amount: 0, loss_currency: "USD", loss_basis: "unknown", integrity_concern: "none",
+    workforce_constraint: "adequate", evidence_conflict: "no", disruption: "none",
     evidence_available: "Anonymized counts and timestamps could be approved later.",
     desired_outcome: "Measure assignment time and reduce unresolved work by at least twenty percent.",
     attempts: "Shared tracker and inbox rules.", constraints: "Bilingual operators and limited IT support.", sensitivity: "financial", consent: true,

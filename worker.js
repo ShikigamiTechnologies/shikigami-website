@@ -1,4 +1,5 @@
 import { handleCypherSupabaseRoute } from "./lib/cypher-supabase-adapter.js";
+import { assessShirabe } from "./lib/shirabe-diagnostics.js";
 // Batch C's sandbox runner imports this named export. It deliberately is not a
 // public HTTP or queue handler, so no connector credentials can cross the edge.
 export { dispatchDelivery as dispatchCypherDelivery } from "./lib/cypher-batch-c.js";
@@ -132,6 +133,11 @@ const shirabeModes = new Set(["signal", "guided"]);
 const shirabeCategories = new Set(["documents", "delays", "systems", "approvals", "compliance", "intake", "visibility", "reporting", "mixed", "unknown"]);
 const shirabeFrequencies = new Set(["daily", "weekly", "monthly", "quarterly", "irregular", "unknown"]);
 const shirabeSensitivity = new Set(["none", "personal", "financial", "health", "government", "regulated", "unknown"]);
+const shirabeLossBasis = new Set(["measured", "estimated", "reported", "unknown"]);
+const shirabeIntegrity = new Set(["none", "unexplained_discrepancy", "allegation", "internal_investigation", "external_investigation", "unknown"]);
+const shirabeWorkforce = new Set(["adequate", "understaffed", "contractor_dependency", "unknown"]);
+const shirabeEvidenceConflict = new Set(["yes", "no", "unknown"]);
+const shirabeDisruptions = new Set(["none", "vendor_outage", "cyber_outage", "natural_disaster", "labor_disruption", "other", "unknown"]);
 
 function shirabeCompleteness(entry) {
   const guided = [
@@ -171,6 +177,10 @@ async function submitShirabe(request, env) {
     source_of_truth: clean(body.source_of_truth, 1000), failure_point: clean(body.failure_point, 1500),
     frequency: clean(body.frequency, 20), monthly_volume: Math.max(0, Math.min(10000000, Number(body.monthly_volume || 0))),
     consequence: clean(body.consequence, 1500), evidence_available: clean(body.evidence_available, 1000),
+    claimed_loss_minor: Math.round(Math.max(0, Math.min(1000000000000, Number(body.claimed_loss_amount || 0))) * 100),
+    loss_currency: "USD", loss_basis: clean(body.loss_basis, 20), integrity_concern: clean(body.integrity_concern, 30),
+    workforce_constraint: clean(body.workforce_constraint, 30), evidence_conflict: clean(body.evidence_conflict, 10),
+    disruption: clean(body.disruption, 30),
     desired_outcome: clean(body.desired_outcome, 1500), attempts: clean(body.attempts, 1200), constraints: clean(body.constraints, 1200),
     sensitivity: clean(body.sensitivity, 20), consent: body.consent === true ? 1 : 0,
   };
@@ -178,21 +188,26 @@ async function submitShirabe(request, env) {
     || entry.name.length < 2 || entry.company.length < 2 || entry.role.length < 2 || entry.industry.length < 2
     || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(entry.email) || !shirabeCategories.has(entry.category)
     || entry.problem.length < 20 || entry.failure_point.length < 10 || entry.desired_outcome.length < 10
-    || !shirabeFrequencies.has(entry.frequency) || !shirabeSensitivity.has(entry.sensitivity) || !entry.consent) {
+    || !shirabeFrequencies.has(entry.frequency) || !shirabeSensitivity.has(entry.sensitivity)
+    || !shirabeLossBasis.has(entry.loss_basis) || !shirabeIntegrity.has(entry.integrity_concern)
+    || !shirabeWorkforce.has(entry.workforce_constraint) || !shirabeEvidenceConflict.has(entry.evidence_conflict)
+    || !shirabeDisruptions.has(entry.disruption) || !Number.isSafeInteger(entry.claimed_loss_minor)
+    || (entry.claimed_loss_minor > 0 && entry.loss_basis === "unknown") || !entry.consent) {
     return json({ message: "Please complete every required field." }, 400);
   }
   const completeness = shirabeCompleteness(entry);
   const evidenceQuality = completeness >= 85 ? "substantial_self_report" : completeness >= 60 ? "preliminary_self_report" : "limited_self_report";
-  const routingTier = entry.mode === "guided" && completeness >= 80 && entry.consequence.length >= 40 ? "qualified_review" : "clarification_required";
+  const assessment = assessShirabe(entry);
+  const routingTier = assessment.routing_tier || (entry.mode === "guided" && completeness >= 80 && entry.consequence.length >= 40 ? "qualified_review" : "clarification_required");
   const { id: _reference, at: _receivedAt, ...evidence } = entry;
-  const payload = { ...evidence, completeness, evidence_quality: evidenceQuality };
+  const payload = { ...evidence, completeness, evidence_quality: evidenceQuality, assessment };
   const payloadJson = canonical(payload), payloadHash = await sha256(payloadJson);
   const ip = request.headers.get("cf-connecting-ip") || "";
   const ipHash = ip && env.LEAD_HASH_PEPPER ? await sha256(`${env.LEAD_HASH_PEPPER}:${ip}`) : null;
   try {
     await env.LEADS["batch"]([
-      env.LEADS.prepare("INSERT INTO shirabe_intakes(id,created_at,schema_version,language,mode,name,company,email,role,industry,company_size,problem_category,frequency,monthly_volume,sensitivity,completeness,evidence_quality,payload_json,payload_hash,ip_hash,consent,status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'received')")
-        .bind(entry.id, entry.at, entry.schema, entry.language, entry.mode, entry.name, entry.company, entry.email, entry.role, entry.industry, entry.company_size, entry.category, entry.frequency, entry.monthly_volume, entry.sensitivity, completeness, evidenceQuality, payloadJson, payloadHash, ipHash, entry.consent),
+      env.LEADS.prepare("INSERT INTO shirabe_intakes(id,created_at,schema_version,language,mode,name,company,email,role,industry,company_size,problem_category,frequency,monthly_volume,sensitivity,claimed_loss_minor,loss_currency,loss_basis,integrity_concern,workforce_constraint,evidence_conflict,disruption,completeness,evidence_quality,payload_json,payload_hash,ip_hash,consent,status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'received')")
+        .bind(entry.id, entry.at, entry.schema, entry.language, entry.mode, entry.name, entry.company, entry.email, entry.role, entry.industry, entry.company_size, entry.category, entry.frequency, entry.monthly_volume, entry.sensitivity, entry.claimed_loss_minor, entry.loss_currency, entry.loss_basis, entry.integrity_concern, entry.workforce_constraint, entry.evidence_conflict, entry.disruption, completeness, evidenceQuality, payloadJson, payloadHash, ipHash, entry.consent),
       env.LEADS.prepare("INSERT INTO shirabe_routing_queue(id,intake_id,created_at,routing_tier,status,payload_hash) VALUES(?,?,?,?,?,?)")
         .bind(crypto.randomUUID(), entry.id, entry.at, routingTier, "pending", payloadHash),
     ]);
@@ -210,7 +225,8 @@ async function submitShirabe(request, env) {
         "New SHIRABE diagnostic received.", "", `Reference: ${entry.id}`, `Payload SHA-256: ${payloadHash}`,
         `Received: ${entry.at}`, `Company: ${entry.company}`, `Contact: ${entry.name} (${entry.role})`,
         `Work email: ${entry.email}`, `Language: ${entry.language}`, `Mode: ${entry.mode}`,
-        `Completeness: ${completeness}%`, `Evidence quality: ${evidenceQuality}`, `Routing: ${routingTier}`, "",
+        `Completeness: ${completeness}%`, `Evidence quality: ${evidenceQuality}`, `Routing: ${routingTier}`,
+        `Deterministic signals: ${assessment.signals.map(({ code }) => code).join(", ") || "none"}`, assessment.guardrail, "",
         "Reported problem:", entry.problem, "", "Reported failure point:", entry.failure_point, "",
         "Desired outcome:", entry.desired_outcome, "",
         "This is a prospect self-report, not an independently verified diagnosis. No files or credentials were accepted.",

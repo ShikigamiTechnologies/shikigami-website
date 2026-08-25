@@ -42,9 +42,10 @@
     </section>
 
     <section class="diagnostic" id="diagnostic" hidden>
+      <h1 class="sr-only">SHIRABE diagnostic</h1>
       <aside class="rail" aria-label="Diagnostic progress">
         <div class="rail-label" data-copy="progress">Diagnostic progress</div>
-        <ol id="progress-list">
+        <ol id="progress-list" tabindex="0" aria-label="Diagnostic steps">
           <li class="active" data-step-label="1"><span>01</span><b data-copy="step1">Context</b></li>
           <li data-step-label="2"><span>02</span><b data-copy="step2">Problem</b></li>
           <li data-step-label="3"><span>03</span><b data-copy="step3">Workflow</b></li>
@@ -110,6 +111,14 @@
           <legend data-copy="consequenceQuestion">What does this failure affect?</legend>
           <p class="explain" data-copy="consequenceWhy">Separate what has been measured from what is currently estimated.</p>
           <label><span data-copy="consequence">Time, cost, delay, risk, customer, or management consequence</span><textarea name="consequence" maxlength="1500" rows="4"></textarea></label>
+          <div class="fields two">
+            <label><span data-copy="lossAmount">Reported financial loss (USD, optional)</span><input name="claimed_loss_amount" type="number" min="0" max="1000000000000" step="0.01" inputmode="decimal"><small data-copy="lossHint">A reported amount is not treated as independently verified.</small></label>
+            <label><span data-copy="lossBasis">Basis for that amount</span><select name="loss_basis" required><option value="unknown" data-option="unknown">Unknown / no amount</option><option value="measured" data-option="measured">Measured</option><option value="estimated" data-option="estimated">Estimated</option><option value="reported" data-option="reported">Reported by another party</option></select></label>
+            <label><span data-copy="integrity">Integrity concern status</span><select name="integrity_concern" required><option value="none" data-option="none">None reported</option><option value="unexplained_discrepancy" data-option="unexplained_discrepancy">Unexplained discrepancy</option><option value="allegation" data-option="allegation">Allegation only</option><option value="internal_investigation" data-option="internal_investigation">Internal investigation reported</option><option value="external_investigation" data-option="external_investigation">External investigation reported</option><option value="unknown" data-option="unknown">Unknown</option></select></label>
+            <label><span data-copy="workforce">Workforce condition</span><select name="workforce_constraint" required><option value="adequate" data-option="adequate">Adequate</option><option value="understaffed" data-option="understaffed">Understaffed</option><option value="contractor_dependency" data-option="contractor_dependency">Contractor dependency</option><option value="unknown" data-option="unknown">Unknown</option></select></label>
+            <label><span data-copy="conflict">Do available accounts or records conflict?</span><select name="evidence_conflict" required><option value="no" data-option="no">No</option><option value="yes" data-option="yes">Yes</option><option value="unknown" data-option="unknown">Unknown</option></select></label>
+            <label><span data-copy="disruption">Related disruption</span><select name="disruption" required><option value="none" data-option="none">None</option><option value="vendor_outage" data-option="vendor_outage">Vendor outage</option><option value="cyber_outage" data-option="cyber_outage">Cyber outage</option><option value="natural_disaster" data-option="natural_disaster">Natural disaster</option><option value="labor_disruption" data-option="labor_disruption">Labor disruption</option><option value="other" data-option="other">Other</option><option value="unknown" data-option="unknown">Unknown</option></select></label>
+          </div>
           <label class="guided-only"><span data-copy="evidence">What safe evidence could verify this later?</span><textarea name="evidence_available" maxlength="1000" rows="3"></textarea><small data-copy="evidenceHint">For example: anonymized counts, timestamps, process exports, or policies. Do not upload them here.</small></label>
           <label><span data-copy="outcome">What measurable outcome would make this worthwhile?</span><textarea name="desired_outcome" required minlength="10" maxlength="1500" rows="4"></textarea></label>
           <div class="fields two guided-only">
