@@ -12,7 +12,25 @@ const editions = new Set(["core", "operations", "enterprise", "government", "fed
 const sizes = new Set(["1–19", "20–49", "50–199", "200–500", "501+"]);
 const contracts = new Set(["None yet", "1–3", "4–10", "11–25", "26+"]);
 const encoder = new TextEncoder();
-const publicPaths = ["/", "/shirabe", "/cypher", "/anor", "/ironcrew", "/kizuna", "/pricing-themis", "/privacy", "/security", "/terms", "/acceptable-use"];
+const publicPaths = [
+  "/",
+  "/services/shirabe/",
+  "/es/servicios/shirabe/",
+  "/research/shirabe-process-diagnostic-comparison/",
+  "/es/investigacion/comparacion-diagnostico-procesos-shirabe/",
+  "/evidence/shirabe-synthetic-benchmark/",
+  "/es/evidencia/benchmark-sintetico-shirabe/",
+  "/shirabe",
+  "/cypher",
+  "/anor",
+  "/ironcrew",
+  "/kizuna",
+  "/pricing-themis",
+  "/privacy",
+  "/security",
+  "/terms",
+  "/acceptable-use"
+];
 const securityHeaders = {
   "content-security-policy": "default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests",
   "referrer-policy": "strict-origin-when-cross-origin", "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",

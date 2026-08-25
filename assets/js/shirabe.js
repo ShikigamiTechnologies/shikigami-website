@@ -144,5 +144,9 @@
     } catch (error) { status.textContent = error.message; submit.disabled = false; }
   });
   form.elements.started_at.value = Date.now();
+  const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
   restoreDraft();
+  if (!sessionStorage.getItem(draftKey) && ["en", "es"].includes(requestedLanguage)) {
+    setLanguage(requestedLanguage);
+  }
 })();
