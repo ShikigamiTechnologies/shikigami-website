@@ -1,0 +1,136 @@
+{
+  "schema": "shirabe-adversarial-benchmark/v1",
+  "synthetic_only": true,
+  "baseline_code_audit": 80,
+  "final_minimum": 95,
+  "final_average": 98.4,
+  "scenarios": [
+    {
+      "id": "EN-01",
+      "language": "en",
+      "complexity": 1,
+      "score": 95,
+      "routing": "standard",
+      "signals": [
+        "workforce_constraint"
+      ]
+    },
+    {
+      "id": "EN-02",
+      "language": "en",
+      "complexity": 2,
+      "score": 98,
+      "routing": "high_risk_governed_review",
+      "signals": [
+        "operational_disruption",
+        "restricted_evidence_boundary"
+      ]
+    },
+    {
+      "id": "EN-03",
+      "language": "en",
+      "complexity": 3,
+      "score": 100,
+      "routing": "high_risk_governed_review",
+      "signals": [
+        "workforce_constraint",
+        "conflicting_evidence",
+        "restricted_evidence_boundary"
+      ]
+    },
+    {
+      "id": "EN-04",
+      "language": "en",
+      "complexity": 4,
+      "score": 99,
+      "routing": "high_risk_governed_review",
+      "signals": [
+        "integrity_review_needed",
+        "conflicting_evidence",
+        "frequency_volume_conflict"
+      ]
+    },
+    {
+      "id": "EN-05",
+      "language": "en",
+      "complexity": 5,
+      "score": 100,
+      "routing": "high_risk_governed_review",
+      "signals": [
+        "reported_financial_loss",
+        "high_material_loss",
+        "loss_not_independently_measured",
+        "integrity_review_needed",
+        "investigation_reported",
+        "workforce_constraint",
+        "conflicting_evidence",
+        "operational_disruption",
+        "restricted_evidence_boundary"
+      ]
+    },
+    {
+      "id": "ES-01",
+      "language": "es",
+      "complexity": 1,
+      "score": 95,
+      "routing": "standard",
+      "signals": [
+        "workforce_constraint"
+      ]
+    },
+    {
+      "id": "ES-02",
+      "language": "es",
+      "complexity": 2,
+      "score": 98,
+      "routing": "high_risk_governed_review",
+      "signals": [
+        "restricted_evidence_boundary"
+      ]
+    },
+    {
+      "id": "ES-03",
+      "language": "es",
+      "complexity": 3,
+      "score": 100,
+      "routing": "high_risk_governed_review",
+      "signals": [
+        "conflicting_evidence",
+        "operational_disruption",
+        "restricted_evidence_boundary"
+      ]
+    },
+    {
+      "id": "ES-04",
+      "language": "es",
+      "complexity": 4,
+      "score": 99,
+      "routing": "high_risk_governed_review",
+      "signals": [
+        "integrity_review_needed",
+        "investigation_reported",
+        "workforce_constraint",
+        "conflicting_evidence",
+        "operational_disruption"
+      ]
+    },
+    {
+      "id": "ES-05",
+      "language": "es",
+      "complexity": 5,
+      "score": 100,
+      "routing": "high_risk_governed_review",
+      "signals": [
+        "reported_financial_loss",
+        "high_material_loss",
+        "loss_not_independently_measured",
+        "integrity_review_needed",
+        "investigation_reported",
+        "workforce_constraint",
+        "conflicting_evidence",
+        "operational_disruption",
+        "restricted_evidence_boundary"
+      ]
+    }
+  ]
+}
