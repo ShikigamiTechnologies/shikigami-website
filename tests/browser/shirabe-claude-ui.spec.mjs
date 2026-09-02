@@ -38,3 +38,14 @@ test("ten-step rail progresses and reduced motion remains readable", async ({ pa
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator(".process-step").first()).toHaveCSS("opacity", "1");
 });
+
+test("five-state navigation and mobile menu expose the approved experience", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/services/shirabe/index.html");
+  await expect(page.locator('[data-sh-anchor][aria-current="location"]')).toHaveCount(2);
+  await page.getByRole("button", { name: "Sections" }).click();
+  await expect(page.locator("#sh-mobile-menu")).toBeVisible();
+  await expect(page.locator("#sh-mobile-menu a")).toHaveCount(5);
+  await page.locator('#sh-mobile-menu a[href="#offer"]').click();
+  await expect(page.locator("#offer")).toBeInViewport();
+});

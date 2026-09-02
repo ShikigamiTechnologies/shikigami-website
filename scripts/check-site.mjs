@@ -42,6 +42,8 @@ const required = [
   ["SHIRABE sitemap routes", worker.includes('"/services/shirabe/"') && worker.includes('"/es/evidencia/benchmark-sintetico-shirabe/"')],
   ["SHIRABE Claude ten-step rail parity", (shirabeService.match(/class="process-step"/g) || []).length === 10 && (shirabeServiceEs.match(/class="process-step"/g) || []).length === 10],
   ["SHIRABE progressive motion script", shirabeService.includes('assets/js/shirabe-page.js') && shirabeServiceEs.includes('assets/js/shirabe-page.js')],
+  ["SHIRABE five-state anchors", ["bridge", "method", "boundary", "evidence", "offer"].every((id) => shirabeService.includes(`id="${id}"`))],
+  ["SHIRABE unsupported duration removed", !shirabeService.includes("8–12") && !shirabeServiceEs.includes("8–12")],
 ];
 
 await Promise.all([

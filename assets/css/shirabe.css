@@ -93,9 +93,16 @@ a {
   text-decoration: none;
 }
 .sh-links a:hover,
-.sh-links a:focus-visible {
+.sh-links a:focus-visible,
+.sh-links a[aria-current="location"] {
   color: var(--sh-text);
 }
+.sh-links a[aria-current="location"] { text-decoration: underline; text-underline-offset: 8px; text-decoration-color: var(--sh-trace); }
+.sh-menu, .sh-mobile-menu { display: none; }
+.sh-menu { min-height: 44px; padding: 0 14px; border: 1px solid var(--sh-line); border-radius: 8px; background: var(--sh-panel); color: var(--sh-text); font: 11px "IBM Plex Mono", monospace; }
+.sh-mobile-menu { position: absolute; top: calc(100% + 1px); left: 18px; right: 18px; padding: 12px; border: 1px solid var(--sh-line); background: rgba(6,10,16,.98); box-shadow: 0 18px 45px rgba(0,0,0,.38); }
+.sh-mobile-menu a { display: block; min-height: 44px; padding: 13px 10px; color: var(--sh-muted); font: 11px "IBM Plex Mono", monospace; text-decoration: none; }
+.sh-mobile-menu a[aria-current="location"] { color: var(--sh-trace); }
 .sh-lang {
   border: 1px solid var(--sh-line);
   padding: 9px 12px;
@@ -311,7 +318,7 @@ h1 span {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--sh-trace), transparent);
   transform-origin: left;
-  animation: tracePulse 4s ease-in-out infinite;
+  animation: tracePulse 4s ease-in-out 3;
 }
 .l1 {
   width: 37%;
@@ -739,6 +746,9 @@ textarea {
   .sh-links a:not(.sh-lang):not(.sh-cta) {
     display: none;
   }
+  .sh-menu { display: inline-flex; align-items: center; justify-content: center; order: 2; }
+  .sh-links { margin-left: auto; }
+  .sh-mobile-menu:not([hidden]) { display: block; }
   .sh-hero .sh-shell,
   .sh-intro,
   .intake {
