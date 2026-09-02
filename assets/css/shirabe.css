@@ -404,8 +404,28 @@ h1 span {
   font-size: 14px;
   line-height: 1.65;
 }
-.process-list {
+.method-rail {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: clamp(28px, 6vw, 82px);
   margin-top: 52px;
+  align-items: start;
+}
+.method-progress {
+  position: sticky;
+  top: 130px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  color: var(--sh-dim);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+}
+.method-progress strong { color: var(--sh-trace); font-size: 24px; font-weight: 500; }
+.method-progress i { grid-column: 1 / -1; height: 2px; background: var(--sh-line); overflow: hidden; }
+.method-progress b { display: block; width: 10%; height: 100%; background: var(--sh-trace); transform-origin: left; transition: width 180ms ease-out; }
+.process-list {
   border-top: 1px solid var(--sh-line);
 }
 .process-step {
@@ -415,7 +435,9 @@ h1 span {
   padding: 24px 0;
   border-bottom: 1px solid var(--sh-line);
   align-items: start;
+  transition: transform 240ms ease, border-color 240ms ease, background-color 240ms ease;
 }
+.process-step.is-current { border-color: rgba(67,215,197,.7); background: linear-gradient(90deg, rgba(67,215,197,.055), transparent 70%); transform: translateX(8px); }
 .process-step .step {
   font-family: "IBM Plex Mono", monospace;
   color: var(--sh-trace);
@@ -737,6 +759,8 @@ textarea {
   .boundary {
     grid-template-columns: 1fr;
   }
+  .method-rail { grid-template-columns: 1fr; }
+  .method-progress { position: sticky; top: 78px; z-index: 10; padding: 14px 16px; background: rgba(6,10,16,.94); border: 1px solid var(--sh-line); }
 }
 @media (max-width: 620px) {
   .sh-nav {
@@ -787,6 +811,7 @@ textarea {
   .process-step p {
     grid-column: 2;
   }
+  .method-progress { top: 70px; }
   .sh-shell {
     padding-left: 20px;
     padding-right: 20px;
@@ -802,6 +827,8 @@ textarea {
   .trace-line {
     animation: none;
   }
+  .process-step, .process-step.is-current { transform: none; transition: none; }
+  .method-progress b { transition: none; }
   .reveal {
     opacity: 1 !important;
     transform: none !important;

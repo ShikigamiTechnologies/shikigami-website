@@ -28,6 +28,7 @@
     "test:shirabe:delivery": "node --test internal/shirabe-delivery/tests/*.test.mjs",
     "benchmark:shirabe": "node scripts/run-shirabe-adversarial-benchmark.mjs",
     "test:shirabe:ui": "playwright test tests/browser/shirabe-adversarial-ui.spec.mjs",
+    "test:shirabe:claude-ui": "playwright test tests/browser/shirabe-claude-ui.spec.mjs",
     "test:shirabe:e2e": "playwright test tests/browser/shirabe-form-e2e.spec.mjs",
     "test:shirabe:live": "playwright test tests/browser/shirabe-live-production.spec.mjs",
     "verify:shirabe-release": "node scripts/verify-shirabe-release.mjs",

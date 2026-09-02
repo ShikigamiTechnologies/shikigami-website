@@ -40,6 +40,8 @@ const required = [
   ["SHIRABE synthetic benchmark is explicitly limited", shirabeEvidence.includes("synthetic internal") && shirabeEvidence.includes("do not establish customer outcomes")],
   ["SHIRABE comparison includes source freshness", shirabeComparison.includes("LAST VERIFIED") && shirabeComparison.includes("Not apples-to-apples")],
   ["SHIRABE sitemap routes", worker.includes('"/services/shirabe/"') && worker.includes('"/es/evidencia/benchmark-sintetico-shirabe/"')],
+  ["SHIRABE Claude ten-step rail parity", (shirabeService.match(/class="process-step"/g) || []).length === 10 && (shirabeServiceEs.match(/class="process-step"/g) || []).length === 10],
+  ["SHIRABE progressive motion script", shirabeService.includes('assets/js/shirabe-page.js') && shirabeServiceEs.includes('assets/js/shirabe-page.js')],
 ];
 
 await Promise.all([
@@ -53,6 +55,7 @@ await Promise.all([
   access(resolve(root, "assets/js/cypher-passkey.js")),
   access(resolve(root, "assets/css/shirabe-intake.css")),
   access(resolve(root, "assets/css/shirabe.css")),
+  access(resolve(root, "assets/js/shirabe-page.js")),
   access(resolve(root, "assets/docs/shirabe/SHIRABE_SYNTHETIC_BENCHMARK_REPORT_2026-08-25.pdf")),
 ]);
 
