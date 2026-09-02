@@ -63,7 +63,7 @@ describe("SHIRABE scheduled reconciliation safety", () => {
   it("keeps secrets out of tracked configuration and disables staging schedules", () => {
     expect(productionRaw).not.toMatch(/SHIRABE_ADMIN_TOKEN|LEAD_HASH_PEPPER|BEGIN (?:RSA |EC )?PRIVATE KEY/);
     expect(stagingRaw).not.toMatch(/SHIRABE_ADMIN_TOKEN|LEAD_HASH_PEPPER|BEGIN (?:RSA |EC )?PRIVATE KEY/);
-    expect(productionRaw).toContain('"SHIRABE_SCHEDULED_RECONCILIATION_ENABLED": "false"');
+    expect(productionRaw).toContain('"SHIRABE_SCHEDULED_RECONCILIATION_ENABLED": "true"');
     expect(stagingRaw).toContain('"crons": []');
   });
 });
