@@ -29,6 +29,7 @@
     "benchmark:shirabe": "node scripts/run-shirabe-adversarial-benchmark.mjs",
     "test:shirabe:ui": "playwright test tests/browser/shirabe-adversarial-ui.spec.mjs",
     "test:shirabe:e2e": "playwright test tests/browser/shirabe-form-e2e.spec.mjs",
+    "test:shirabe:live": "playwright test tests/browser/shirabe-live-production.spec.mjs",
     "verify:shirabe-release": "node scripts/verify-shirabe-release.mjs",
     "qualify:shirabe:local": "npm run test:shirabe && npm run test:shirabe:delivery && npm run test:shirabe:ui && npm run check && npm run build",
     "check:site": "node scripts/check-site.mjs",
