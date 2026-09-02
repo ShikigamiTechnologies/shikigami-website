@@ -33,8 +33,10 @@ export async function verifyShirabeRelease({ checkDirty = true, root: rootOverri
   const head = git(root, "rev-parse", "HEAD");
   const branch = git(root, "branch", "--show-current");
   const expectedGitSha = process.env.SHIRABE_EXPECTED_GIT_SHA || manifest.expected_git_sha;
+  const expectedBranch = process.env.SHIRABE_EXPECTED_BRANCH || manifest.expected_branch;
+  const cloudflareVersionId = process.env.SHIRABE_CLOUDFLARE_VERSION_ID || manifest.cloudflare_version_id;
   if (expectedGitSha && head !== expectedGitSha) failures.push(`git_sha:${head}`);
-  if (branch !== manifest.expected_branch) failures.push(`branch:${branch}`);
+  if (branch !== expectedBranch) failures.push(`branch:${branch}`);
 
   const ignoreRules = (await readFile(pathAt(root, ".assetsignore"), "utf8"))
     .split(/\r?\n/)
@@ -72,6 +74,19 @@ export async function verifyShirabeRelease({ checkDirty = true, root: rootOverri
     }
   }
 
+  let liveAssetVerified = false;
+  if (process.env.SHIRABE_VERIFY_LIVE === "1") {
+    const checks = await Promise.all(artifactResults.map(async (artifact) => {
+      const response = await fetch(`${manifest.public_origin}${artifact.public_path}`, { cache: "no-store" });
+      if (!response.ok) { failures.push(`live_http:${artifact.public_path}:${response.status}`); return false; }
+      const liveHash = sha256(Buffer.from(await response.arrayBuffer()));
+      if (liveHash !== artifact.sha256) { failures.push(`live_hash:${artifact.public_path}`); return false; }
+      return true;
+    }));
+    liveAssetVerified = checks.every(Boolean);
+    if (!cloudflareVersionId) failures.push("cloudflare_version_id:missing");
+  }
+
   const dirtyPaths = gitRaw(root, "status", "--porcelain=v1")
     .split(/\r?\n/)
     .filter(Boolean)
@@ -83,19 +98,20 @@ export async function verifyShirabeRelease({ checkDirty = true, root: rootOverri
   const unexpectedDirtyPaths = dirtyPaths.filter((path) => !declaredCandidatePaths.has(path));
   if (checkDirty && unexpectedDirtyPaths.length) failures.push(`unexpected_dirty:${unexpectedDirtyPaths.join(",")}`);
 
+  const releaseReady = failures.length === 0 && Boolean(expectedGitSha) && Boolean(cloudflareVersionId) && liveAssetVerified;
   return {
     schema: manifest.schema,
-    status: failures.length ? "failed" : "verified_local_candidate",
+    status: failures.length ? "failed" : releaseReady ? "verified_live_release" : "verified_local_candidate",
     exact_sha: head,
     expected_git_sha: expectedGitSha,
     sha_bound: Boolean(expectedGitSha),
     branch,
-    cloudflare_version_id: manifest.cloudflare_version_id,
+    cloudflare_version_id: cloudflareVersionId,
     artifacts: artifactResults,
     dirty_paths: dirtyPaths,
     unexpected_dirty_paths: unexpectedDirtyPaths,
-    live_asset_verified: false,
-    release_ready: false,
+    live_asset_verified: liveAssetVerified,
+    release_ready: releaseReady,
     failures,
     limitations: manifest.limitations,
   };

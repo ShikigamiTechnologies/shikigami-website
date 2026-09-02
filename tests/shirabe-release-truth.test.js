@@ -18,7 +18,9 @@ describe("SHIRABE release truth", () => {
     expect(checker).toContain("source_deployment_mismatch");
     expect(checker).toContain("SHIRABE_EXPECTED_GIT_SHA");
     expect(checker).toContain("sha_bound: Boolean(expectedGitSha)");
-    expect(checker).toContain("live_asset_verified: false");
-    expect(checker).toContain("release_ready: false");
+    expect(checker).toContain("SHIRABE_VERIFY_LIVE");
+    expect(checker).toContain("SHIRABE_CLOUDFLARE_VERSION_ID");
+    expect(checker).toContain("live_asset_verified: liveAssetVerified");
+    expect(checker).toContain("release_ready: releaseReady");
   });
 });
