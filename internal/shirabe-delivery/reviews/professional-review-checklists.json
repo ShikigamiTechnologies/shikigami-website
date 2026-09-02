@@ -1,0 +1,57 @@
+{
+  "schema": "shirabe-professional-review/v1",
+  "disclosure": "Preparation checklist only. No professional approval is represented.",
+  "reviews": [
+    {
+      "discipline": "legal",
+      "status": "pending",
+      "reviewer_name": null,
+      "reviewer_qualification": null,
+      "scope": "MSA, SOW, DPA, confidentiality, IP, limitation of liability, non-audit and non-legal-advice language, change control and customer evidence authority.",
+      "questions": ["Does the service description match actual delivery?", "Are professional-services and software obligations separated?", "Are customer decisions and SHIRABE recommendations clearly distinguished?", "Do Puerto Rico and customer-jurisdiction terms require local counsel?"],
+      "required_evidence": ["reviewed contract set", "issue log", "written disposition", "reviewer identity and qualification", "dated signoff or rejection"],
+      "self_approved": false
+    },
+    {
+      "discipline": "privacy",
+      "status": "pending",
+      "reviewer_name": null,
+      "reviewer_qualification": null,
+      "scope": "Prospect intake, engagement evidence, data minimization, subprocessors, transfers, retention, deletion, access requests and incident notice.",
+      "questions": ["Is each data purpose and authority documented?", "Are public intake and engagement evidence physically separated?", "Can return, deletion and lawful retention be proven?", "Are prohibited classes excluded before provider access?"],
+      "required_evidence": ["data inventory", "flow diagram", "retention schedule", "subprocessor list", "deletion and access rehearsal", "dated signoff or rejection"],
+      "self_approved": false
+    },
+    {
+      "discipline": "tax_accounting",
+      "status": "pending",
+      "reviewer_name": null,
+      "reviewer_qualification": null,
+      "scope": "Puerto Rico service revenue, invoicing, sales/use tax applicability, expense classification, revenue recognition and customer-jurisdiction questions.",
+      "questions": ["What taxes and registrations apply to each offer and buyer location?", "When is revenue recognized?", "How are deposits, refunds, subcontractors and provider costs recorded?", "Does proposed pricing cover labor, taxes, insurance and support?"],
+      "required_evidence": ["pricing and cost model", "invoice specimen", "jurisdiction analysis", "accounting treatment memorandum", "dated signoff or rejection"],
+      "self_approved": false
+    },
+    {
+      "discipline": "insurance",
+      "status": "pending",
+      "reviewer_name": null,
+      "reviewer_qualification": null,
+      "scope": "Professional liability, cyber liability, general liability, contractual limits, exclusions and incident obligations.",
+      "questions": ["Does coverage match diagnostic and data-handling activities?", "Are AI, cyber, professional-services or regulated-data exclusions material?", "Do contract limits conflict with coverage?", "What controls or notices are policy conditions?"],
+      "required_evidence": ["broker coverage analysis", "policy declarations and exclusions", "contract insurance mapping", "dated signoff or rejection"],
+      "self_approved": false
+    },
+    {
+      "discipline": "security",
+      "status": "pending",
+      "reviewer_name": null,
+      "reviewer_qualification": null,
+      "scope": "Threat model, engagement isolation, evidence custody, access, encryption, secrets, logging, provider boundaries, backup, restoration, deletion and incident response.",
+      "questions": ["Is tenant and engagement isolation technically enforced?", "Are original bytes immutable and derivatives traceable?", "Can prompt injection or a compromised provider cross authority boundaries?", "Are recovery, deletion and incident claims independently reproducible?"],
+      "required_evidence": ["threat model", "negative-test report", "access review", "restore and deletion receipts", "incident tabletop", "dated signoff or rejection"],
+      "self_approved": false
+    }
+  ]
+}
+

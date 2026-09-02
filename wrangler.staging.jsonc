@@ -17,6 +17,10 @@
   },
   "vars": {
     "DEPLOYMENT_ENV": "staging",
+    "SHIRABE_SCHEDULED_RECONCILIATION_ENABLED": "false",
+    "SHIRABE_RECONCILIATION_BATCH_LIMIT": "10",
+    "SHIRABE_RETENTION_DAYS": "1",
+    "SHIRABE_RATE_LIMIT_PER_HOUR": "5",
     "CYPHER_MAX_UPLOAD_BYTES": "15728640",
     "CYPHER_AZURE_ENABLED": "false",
     "CYPHER_OPENAI_ENABLED": "false",
@@ -27,6 +31,9 @@
     "SUPABASE_PROJECT_ORIGIN": "https://svfdvbtqbaiyefcojroe.supabase.co",
     "CYPHER_STAGING_MODE": "synthetic_only",
     "CYPHER_LIVE_CONNECTORS_ENABLED": "false"
+  },
+  "triggers": {
+    "crons": []
   },
   "observability": {
     "enabled": true,

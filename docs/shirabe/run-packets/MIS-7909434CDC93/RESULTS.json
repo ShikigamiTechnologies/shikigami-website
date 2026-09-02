@@ -1,0 +1,22 @@
+{
+  "schema": "magi.results.v1",
+  "mission_id": "MIS-7909434CDC93",
+  "decision": "withheld",
+  "internal_local_qualification": "passed",
+  "gates": {
+    "D0_identity_and_release_truth": "passed_local_candidate",
+    "D1_intake_reliability": "passed_local_D1",
+    "D2_delivery_OS": "passed_synthetic",
+    "D3_full_synthetic_engagement": "passed",
+    "D4_security_and_recovery": "passed_bounded_synthetic",
+    "D5_commercial_and_comparative_protocol": "prepared_not_human_approved",
+    "D6_controlled_design_partner": "withheld_external_participant_required",
+    "D7_limited_paid_launch": "withheld"
+  },
+  "verification": {"shirabe_tests":41,"delivery_tests":12,"full_repository_tests":113,"responsive_browser_tests":3,"browser_form_tests":1,"site_assertions":25,"dry_run_build":true},
+  "external_actions": 0,
+  "customer_data_records": 0,
+  "provider_cost_usd": 0,
+  "memory_admissions": 0,
+  "known_live_defect": "public benchmark PDF was previously observed 404; no authorized deployment performed"
+}

@@ -9,6 +9,7 @@ export default defineConfig({
       miniflare: {
         bindings: {
           TEST_CYPHER_MIGRATIONS: await readD1Migrations(path.join(import.meta.dirname, "migrations/cypher")),
+          TEST_SHIRABE_MIGRATIONS: await readD1Migrations(path.join(import.meta.dirname, "migrations")),
           CYPHER_AUTH_PEPPER: "integration-test-pepper",
           PLATFORM_AUTH_PEPPER: "platform-integration-test-pepper",
         },

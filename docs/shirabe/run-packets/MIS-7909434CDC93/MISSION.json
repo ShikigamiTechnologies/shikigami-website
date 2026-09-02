@@ -1,0 +1,12 @@
+{
+  "schema": "magi.mission-run.v1",
+  "mission_id": "MIS-7909434CDC93",
+  "objective": "Implement and independently verify SHIRABE D0-D5 with synthetic data and prepare D6-D7 for their required human and external gates.",
+  "project_id_at_freeze": "website",
+  "corrected_project_id": "shirabe",
+  "repository": "C:/Users/ranto/orca/workspaces/shikigami-website/shirabe-direction-a-production",
+  "external_actions_allowed": false,
+  "cost_budget_usd": 0,
+  "data_boundary": "synthetic only; no customer records, credentials, live connectors, publication, deployment, outreach, spending, or memory admission",
+  "approval_holds": ["remote D1 migration", "secret configuration", "deployment", "design partner", "customer evidence", "paid offer", "public claims"]
+}

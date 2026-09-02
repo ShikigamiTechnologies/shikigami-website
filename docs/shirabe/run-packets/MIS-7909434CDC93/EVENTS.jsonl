@@ -1,0 +1,8 @@
+{"event":"mission_frozen","mission_id":"MIS-7909434CDC93","external_actions_allowed":false}
+{"event":"baseline_verified","tests":105,"site_assertions":25,"build":"passed"}
+{"event":"D0_completed","passport":"shirabe","release_truth":"verified_local_candidate"}
+{"event":"D1_completed","shirabe_tests":41,"full_vitest":113,"real_local_D1":true}
+{"event":"D2_D4_completed","delivery_tests":12,"package_hash":"c12da3a857a92294f59af09584a375b82efc131ca1e8b9975f0fa7d10798515c"}
+{"event":"browser_UI_completed","responsive_cases":3,"full_form_case":1}
+{"event":"recovery_completed","restore":true,"deletion_receipt":true,"target_absent":true}
+{"event":"promotion_withheld","reasons":["remote migration not applied","live deployment drift","design partner absent","human legal and security approvals absent"]}

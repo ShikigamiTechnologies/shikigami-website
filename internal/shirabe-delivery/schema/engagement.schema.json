@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shikigamitechnologies.com/schemas/shirabe-engagement-v1.json",
+  "title": "SHIRABE diagnostic engagement",
+  "type": "object",
+  "required": ["schema", "engagement", "authority", "data_boundary", "evidence", "events", "conflicts", "findings", "roi", "reports"],
+  "properties": {
+    "schema": {"const": "shirabe-engagement/v1"},
+    "engagement": {
+      "type": "object",
+      "required": ["id", "name", "workflow", "status", "synthetic", "stop_point"],
+      "properties": {
+        "id": {"pattern": "^SHR-ENG-[A-Z0-9-]+$"},
+        "status": {"enum": ["draft", "evidence_review", "qa", "delivered", "closed"]},
+        "synthetic": {"type": "boolean"}
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "custodian", "classification", "content", "sha256"],
+        "properties": {
+          "id": {"pattern": "^EV-[A-F0-9]{12}$"},
+          "status": {"enum": ["received_untrusted", "admitted", "rejected", "quarantined", "withdrawn", "superseded"]},
+          "correction_of": {"pattern": "^EV-[A-F0-9]{12}$"},
+          "corrected_by": {"type": "string"},
+          "correction_reason": {"type": "string", "minLength": 1},
+          "corrected_at": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "events": {"type": "array"},
+    "conflicts": {"type": "array"},
+    "findings": {"type": "array"},
+    "roi": {"type": "object"},
+    "reports": {"type": "object"}
+  },
+  "additionalProperties": true
+}

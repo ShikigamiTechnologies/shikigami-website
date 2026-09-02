@@ -1,0 +1,68 @@
+{
+  "schema": "shirabe.release-truth.v1",
+  "status": "local_candidate_not_deployed",
+  "expected_git_sha": null,
+  "expected_branch": "codex/shirabe-direction-a-production",
+  "public_origin": "https://shikigamitechnologies.com",
+  "cloudflare_version_id": null,
+  "evidence_source_root": "C:/Users/ranto/OneDrive/Desktop/Command Center/output/shirabe-data-room",
+  "artifacts": [
+    {
+      "source": "SHIRABE_SYNTHETIC_BENCHMARK_REPORT_2026-08-25.pdf",
+      "deployment_path": "assets/docs/shirabe/SHIRABE_SYNTHETIC_BENCHMARK_REPORT_2026-08-25.pdf",
+      "public_path": "/assets/docs/shirabe/SHIRABE_SYNTHETIC_BENCHMARK_REPORT_2026-08-25.pdf",
+      "sha256": "867a2a494e7050a8c1c074e059e1c48bd323506fb188c9fe6cbfc9a2a3d2ce26"
+    }
+  ],
+  "referencing_pages": [
+    "evidence/shirabe-synthetic-benchmark/index.html",
+    "es/evidencia/benchmark-sintetico-shirabe/index.html"
+  ],
+  "preexisting_allowed_dirty_paths": [
+    "reports/shirabe/SHIRABE_ADVERSARIAL_BENCHMARK_2026-08-24.json",
+    "reports/shirabe/SHIRABE_ADVERSARIAL_BENCHMARK_2026-08-24.md"
+  ],
+  "candidate_machinery_paths": [
+    "docs/shirabe-release-truth.json",
+    "package.json",
+    "scripts/verify-shirabe-release.mjs",
+    "tests/shirabe-release-truth.test.js",
+    "docs/shirabe/SHIRABE_COMMERCIAL_OPERATING_PACKET.md",
+    "docs/shirabe/SHIRABE_COMPARATIVE_QUALIFICATION.md",
+    "internal/",
+    "migrations/0005_shirabe_intake_reliability.sql",
+    "tests/shirabe-d1-integration.test.js",
+    "tests/shirabe-intake.test.js",
+    "tests/shirabe-adversarial-benchmark.test.js",
+    "vitest.config.mjs",
+    "worker.js"
+    ,"tests/browser/shirabe-form-e2e.spec.mjs"
+    ,".assetsignore"
+    ,"docs/shirabe/run-packets/"
+    ,".gitignore"
+    ,"worker-configuration.d.ts"
+    ,"wrangler.jsonc"
+    ,"wrangler.staging.jsonc"
+    ,"docs/shirabe-deployment-rollback-evidence.md"
+    ,"tests/shirabe-scheduled-safety.test.js"
+    ,"benchmarks/"
+    ,"reports/shirabe/SHIRABE_COMPARATIVE_QUALIFICATION_2026-09-02.json"
+    ,"reports/shirabe/SHIRABE_COMPARATIVE_QUALIFICATION_2026-09-02.md"
+    ,"scripts/run-shirabe-comparative-qualification.mjs"
+    ,"scripts/run-shirabe-pm4py.py"
+    ,"tests/fixtures/shirabe-comparative-cases.js"
+    ,"tests/shirabe-comparative-qualification.test.js"
+  ],
+  "required_checks": [
+    "npm run verify:shirabe-release",
+    "npm run test:shirabe",
+    "npm run test:shirabe:ui",
+    "npm run build"
+  ],
+  "limitations": [
+    "A matching local asset and dry-run build do not prove that the live Cloudflare version contains the asset.",
+    "A deployment must provide SHIRABE_EXPECTED_GIT_SHA from the immutable release payload; a commit cannot truthfully embed its own SHA.",
+    "cloudflare_version_id remains null until a separately authorized deployment produces a receipt.",
+    "The public URL must remain a failed gate until it returns 200 and its downloaded SHA-256 matches this manifest."
+  ]
+}

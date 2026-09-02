@@ -1,0 +1,256 @@
+{
+  "schema": "shirabe-comparative-qualification/v3",
+  "benchmark_date": "2026-09-02",
+  "synthetic_only": true,
+  "external_uploads": 0,
+  "paid_services": 0,
+  "customer_data": 0,
+  "architecture_boundary": {
+    "intake": "self-report only",
+    "delivery_os": "admitted evidence, events, conflicts, evidence-native corrections, findings and packages",
+    "boundary_preserved": true
+  },
+  "configurations": {
+    "shirabe": "public intake plus internal delivery OS for fragmented cases",
+    "pm4py": "PM4Py 2.7.22 on isolated Python 3.11.15",
+    "manual": "deterministic checklist"
+  },
+  "measurement_limits": {
+    "actual_human_minutes": null,
+    "customer_value": null,
+    "platform_trials_not_activated": true,
+    "latency_note": "local execution only"
+  },
+  "cases": [
+    {
+      "id": "CASE-A-CLEAN-LOG",
+      "title": "Clean structured approval log",
+      "language": "en",
+      "synthetic_only": true,
+      "shirabe": {
+        "intake": {
+          "applicability": "bounded_self_report",
+          "latency_ms": 0.078,
+          "signals": [],
+          "routing_tier": null,
+          "native_claim_level_provenance": false,
+          "detailed_conflicts_preserved": false
+        },
+        "delivery": {
+          "applicability": "not_run_clean_log_pm4py_reference"
+        }
+      },
+      "pm4py": {
+        "case_id": "CASE-A-CLEAN-LOG",
+        "applicability": "full",
+        "input_events": 12,
+        "valid_events": 12,
+        "source_row_ids": [
+          "A-01",
+          "A-02",
+          "A-03",
+          "A-04",
+          "A-05",
+          "A-06",
+          "A-07",
+          "A-08",
+          "A-09",
+          "A-10",
+          "A-11",
+          "A-12"
+        ],
+        "cases": 4,
+        "variants": 3,
+        "dfg_edges": 4,
+        "start_activities": 1,
+        "end_activities": 2,
+        "mean_case_duration_seconds": 13500,
+        "latency_ms": 16.713
+      },
+      "manual": {
+        "applicability": "full_synthetic_checklist",
+        "labor_operations_proxy": 2,
+        "actual_human_minutes": null
+      },
+      "observation": "PM4Py provides substantially richer event-log analytics; SHIRABE intake only routes a bounded self-report."
+    },
+    {
+      "id": "CASE-B-FRAGMENTED",
+      "title": "Fragmented evidence with conflicting timestamps",
+      "language": "en",
+      "synthetic_only": true,
+      "shirabe": {
+        "intake": {
+          "applicability": "bounded_self_report",
+          "latency_ms": 0.02,
+          "signals": [
+            "conflicting_evidence"
+          ],
+          "routing_tier": "high_risk_governed_review",
+          "native_claim_level_provenance": false,
+          "detailed_conflicts_preserved": false
+        },
+        "delivery": {
+          "applicability": "full_synthetic_delivery_fixture",
+          "validation_passed": true,
+          "validation_errors": [],
+          "evidence": {
+            "total": 4,
+            "admitted": 4,
+            "rejected": 0,
+            "superseded": 0,
+            "hash_complete": true
+          },
+          "material_findings": 2,
+          "material_provenance_rate": 1,
+          "conflicts_input": 1,
+          "conflicts_preserved": 1,
+          "silent_conflicts": 0,
+          "corrections_input": 0,
+          "corrections_preserved": 0,
+          "correction_linkage_validated_by_current_validator": true,
+          "correction_negative_test_passed": true,
+          "human_approved_findings": 2,
+          "autonomous_approvals": 0,
+          "deterministic_roi": {
+            "current_monthly_cost": 0,
+            "projected_monthly_benefit": 0,
+            "projected_monthly_net": 0,
+            "break_even_months": null,
+            "disclosure": "Deterministic scenario output; projected values are not observed savings."
+          },
+          "package": {
+            "created": true,
+            "verified": true,
+            "restored": true,
+            "deleted": true,
+            "package_hash": "c74004e1a0e555813f6c713b21aee731dce50d20aef8c109a079a2f5ccb53cca"
+          },
+          "latency_ms": 33.134
+        }
+      },
+      "pm4py": {
+        "case_id": "CASE-B-FRAGMENTED",
+        "applicability": "partial",
+        "input_events": 8,
+        "valid_events": 5,
+        "source_row_ids": [
+          "B-EMAIL-ROW-1",
+          "B-SHEET-ROW-1",
+          "B-EMAIL-ROW-2",
+          "B-SHEET-ROW-2",
+          "B-EMAIL-ROW-3"
+        ],
+        "cases": 3,
+        "variants": 3,
+        "dfg_edges": 2,
+        "start_activities": 2,
+        "end_activities": 2,
+        "mean_case_duration_seconds": 3000,
+        "latency_ms": 11.17
+      },
+      "manual": {
+        "applicability": "full_synthetic_checklist",
+        "labor_operations_proxy": 10,
+        "actual_human_minutes": null
+      },
+      "observation": "PM4Py analyzes only the valid event subset; SHIRABE delivery preserves the admitted-source conflict and complete finding provenance."
+    },
+    {
+      "id": "CASE-C-BILINGUAL-RESTRICTED",
+      "title": "Bilingual fragmented evidence and restricted-data boundary",
+      "language": "es",
+      "synthetic_only": true,
+      "shirabe": {
+        "intake": {
+          "applicability": "bounded_self_report",
+          "latency_ms": 0.012,
+          "signals": [
+            "workforce_constraint",
+            "conflicting_evidence",
+            "restricted_evidence_boundary"
+          ],
+          "routing_tier": "high_risk_governed_review",
+          "native_claim_level_provenance": false,
+          "detailed_conflicts_preserved": false
+        },
+        "delivery": {
+          "applicability": "full_synthetic_delivery_fixture",
+          "validation_passed": true,
+          "validation_errors": [],
+          "evidence": {
+            "total": 4,
+            "admitted": 2,
+            "rejected": 1,
+            "superseded": 1,
+            "hash_complete": true
+          },
+          "material_findings": 2,
+          "material_provenance_rate": 1,
+          "conflicts_input": 1,
+          "conflicts_preserved": 1,
+          "silent_conflicts": 0,
+          "corrections_input": 1,
+          "corrections_preserved": 1,
+          "correction_linkage_validated_by_current_validator": true,
+          "correction_negative_test_passed": true,
+          "human_approved_findings": 2,
+          "autonomous_approvals": 0,
+          "deterministic_roi": {
+            "current_monthly_cost": 0,
+            "projected_monthly_benefit": 0,
+            "projected_monthly_net": 0,
+            "break_even_months": null,
+            "disclosure": "Deterministic scenario output; projected values are not observed savings."
+          },
+          "package": {
+            "created": true,
+            "verified": true,
+            "restored": true,
+            "deleted": true,
+            "package_hash": "b9e41c887de313fd126ffa7f9d542895770aa786b2319e66c4b50ced00c55b95"
+          },
+          "latency_ms": 28.297
+        }
+      },
+      "pm4py": {
+        "case_id": "CASE-C-BILINGUAL-RESTRICTED",
+        "applicability": "not_applicable",
+        "reason": "insufficient valid case/activity/timestamp rows",
+        "input_events": 0,
+        "valid_events": 0,
+        "latency_ms": 0.001
+      },
+      "manual": {
+        "applicability": "full_synthetic_checklist",
+        "labor_operations_proxy": 11,
+        "actual_human_minutes": null
+      },
+      "observation": "PM4Py is not applicable; SHIRABE delivery preserves admitted/rejected evidence, the open conflict, and evidence-native correction lineage; the validator rejects an unknown predecessor."
+    }
+  ],
+  "conclusions": [
+    {
+      "classification": "observation",
+      "text": "PM4Py remains superior for the clean event log."
+    },
+    {
+      "classification": "observation",
+      "text": "SHIRABE delivery validates 100% provenance for material findings and preserves every declared conflict in fragmented Cases B and C."
+    },
+    {
+      "classification": "observation",
+      "text": "Case C preserves evidence-native correction lineage, and the current validator rejects an unknown predecessor."
+    },
+    {
+      "classification": "hypothesis",
+      "text": "SHIRABE may add value before process-mining adoption if real delivery labor remains economical."
+    },
+    {
+      "classification": "unknown",
+      "text": "Customer value, willingness to pay, independent reviewer agreement, and real time-to-value remain unknown."
+    }
+  ],
+  "verdict": "no_overall_superiority_claim; fragmented-evidence delivery and correction-lineage hypotheses strengthened synthetically; design-partner evidence required",
+  "report_sha256": "a5e39c0c320778afabf679133edef0fdee7faddcbb9598d3062121447fc993aa"
+}

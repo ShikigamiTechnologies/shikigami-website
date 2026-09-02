@@ -156,6 +156,140 @@ const shirabeIntegrity = new Set(["none", "unexplained_discrepancy", "allegation
 const shirabeWorkforce = new Set(["adequate", "understaffed", "contractor_dependency", "unknown"]);
 const shirabeEvidenceConflict = new Set(["yes", "no", "unknown"]);
 const shirabeDisruptions = new Set(["none", "vendor_outage", "cyber_outage", "natural_disaster", "labor_disruption", "other", "unknown"]);
+const shirabeIntakeStates = new Set(["received", "clarification_required", "qualified_review", "closed"]);
+const shirabeRoutingTransitions = {
+  pending: new Set(["claimed", "failed"]),
+  claimed: new Set(["completed", "failed"]),
+  failed: new Set(["pending"]),
+  completed: new Set(),
+};
+const SHIRABE_RATE_WINDOW_MS = 60 * 60 * 1000;
+const SHIRABE_RATE_LIMIT_DEFAULT = 5;
+const SHIRABE_RETENTION_DAYS_DEFAULT = 180;
+const SHIRABE_NOTIFICATION_MAX_ATTEMPTS = 5;
+
+async function recordShirabeEvent(env, intakeId, payloadHash, eventType, fromState = null, toState = null, details = {}) {
+  await env.LEADS.prepare("INSERT INTO shirabe_lifecycle_events(id,intake_id,payload_hash,event_type,from_state,to_state,details_json,created_at) VALUES(?,?,?,?,?,?,?,?)")
+    .bind(crypto.randomUUID(), intakeId, payloadHash, eventType, fromState, toState, canonical(details), new Date().toISOString()).run();
+}
+
+async function enforceShirabeRateLimit(env, subjectHash, now = Date.now()) {
+  if (!subjectHash) return { allowed: true, remaining: null };
+  const configured = Number(env.SHIRABE_RATE_LIMIT_PER_HOUR || SHIRABE_RATE_LIMIT_DEFAULT);
+  const limit = Number.isSafeInteger(configured) && configured > 0 ? Math.min(configured, 100) : SHIRABE_RATE_LIMIT_DEFAULT;
+  const bucket = Math.floor(now / SHIRABE_RATE_WINDOW_MS) * SHIRABE_RATE_WINDOW_MS;
+  const result = await env.LEADS.prepare("INSERT INTO shirabe_rate_limits(subject_hash,bucket_start,request_count,updated_at) VALUES(?,?,1,?) ON CONFLICT(subject_hash,bucket_start) DO UPDATE SET request_count=request_count+1,updated_at=excluded.updated_at RETURNING request_count")
+    .bind(subjectHash, bucket, new Date(now).toISOString()).first();
+  const count = Number(result?.request_count || 1);
+  return { allowed: count <= limit, remaining: Math.max(0, limit - count), retryAfter: Math.ceil((bucket + SHIRABE_RATE_WINDOW_MS - now) / 1000) };
+}
+
+function shirabeNotificationMessage(row) {
+  const payload = JSON.parse(row.payload_json);
+  return {
+    to: "tengen@shikigamitechnologies.com",
+    from: { email: "website@shikigamitechnologies.com", name: "SHIRABE by Shikigami" },
+    replyTo: row.email,
+    subject: `SHIRABE diagnostic — ${row.company}`,
+    text: [
+      "New SHIRABE diagnostic received.", "", `Reference: ${row.id}`, `Payload SHA-256: ${row.payload_hash}`,
+      `Received: ${row.created_at}`, `Company: ${row.company}`, `Contact: ${row.name} (${row.role})`,
+      `Work email: ${row.email}`, `Language: ${row.language}`, `Mode: ${row.mode}`,
+      `Completeness: ${row.completeness}%`, `Evidence quality: ${row.evidence_quality}`, `Routing: ${row.routing_tier}`,
+      `Deterministic signals: ${payload.assessment?.signals?.map(({ code }) => code).join(", ") || "none"}`,
+      payload.assessment?.guardrail || "Human review remains authoritative.", "", "Reported problem:", payload.problem, "",
+      "Reported failure point:", payload.failure_point, "", "Desired outcome:", payload.desired_outcome, "",
+      "This is a prospect self-report, not an independently verified diagnosis. No files or credentials were accepted.",
+    ].join("\n"),
+  };
+}
+
+async function deliverShirabeNotification(env, intakeId, now = new Date()) {
+  const timestamp = now.toISOString();
+  const claim = await env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status='sending',attempts=attempts+1,locked_at=?,updated_at=? WHERE intake_id=? AND status IN ('pending','retry') AND next_attempt_at<=? AND attempts<?")
+    .bind(timestamp, timestamp, intakeId, timestamp, SHIRABE_NOTIFICATION_MAX_ATTEMPTS).run();
+  if (Number(claim?.meta?.changes || 0) !== 1) return { status: "not_due" };
+  const row = await env.LEADS.prepare("SELECT i.id,i.created_at,i.name,i.company,i.email,i.role,i.language,i.mode,i.completeness,i.evidence_quality,i.payload_json,i.payload_hash,q.routing_tier,o.attempts FROM shirabe_intakes i JOIN shirabe_routing_queue q ON q.intake_id=i.id JOIN shirabe_notification_outbox o ON o.intake_id=i.id WHERE i.id=?").bind(intakeId).first();
+  if (!row) return { status: "missing" };
+  await recordShirabeEvent(env, row.id, row.payload_hash, "notification_claimed", null, "sending", { attempt: row.attempts });
+  try {
+    const result = await env.PILOT_EMAIL.send(shirabeNotificationMessage(row));
+    const deliveredAt = new Date().toISOString();
+    await env.LEADS["batch"]([
+      env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status='delivered',message_id=?,delivered_at=?,last_error=NULL,locked_at=NULL,updated_at=? WHERE intake_id=? AND status='sending'").bind(result.messageId, deliveredAt, deliveredAt, row.id),
+      env.LEADS.prepare("UPDATE shirabe_intakes SET notification_message_id=?,notification_error=NULL,notified_at=?,updated_at=? WHERE id=?").bind(result.messageId, deliveredAt, deliveredAt, row.id),
+    ]);
+    await recordShirabeEvent(env, row.id, row.payload_hash, "notification_delivered", "sending", "delivered", { attempt: row.attempts });
+    return { status: "delivered", messageId: result.messageId };
+  } catch (error) {
+    const message = clean(error?.message || "Email notification failed.", 300);
+    const dead = Number(row.attempts) >= SHIRABE_NOTIFICATION_MAX_ATTEMPTS;
+    const retryAt = new Date(now.getTime() + Math.min(60, 2 ** Number(row.attempts)) * 60_000).toISOString();
+    await env.LEADS["batch"]([
+      env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status=?,next_attempt_at=?,last_error=?,locked_at=NULL,updated_at=? WHERE intake_id=? AND status='sending'").bind(dead ? "dead" : "retry", retryAt, message, timestamp, row.id),
+      env.LEADS.prepare("UPDATE shirabe_intakes SET notification_error=?,updated_at=? WHERE id=?").bind(message, timestamp, row.id),
+    ]);
+    await recordShirabeEvent(env, row.id, row.payload_hash, dead ? "notification_dead" : "notification_retry", "sending", dead ? "dead" : "retry", { attempt: row.attempts, retry_at: dead ? null : retryAt });
+    console.error(JSON.stringify({ event: "shirabe_email_failed", message, reference: row.id, attempt: row.attempts }));
+    return { status: dead ? "dead" : "retry", retryAt: dead ? null : retryAt };
+  }
+}
+
+export async function reconcileShirabeNotifications(env, limit = 10, now = new Date()) {
+  const bounded = Math.max(1, Math.min(25, Number(limit) || 10));
+  const staleBefore = new Date(now.getTime() - 5 * 60_000).toISOString();
+  await env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status='retry',locked_at=NULL,next_attempt_at=?,last_error='stale_claim_recovered',updated_at=? WHERE status='sending' AND locked_at<=?")
+    .bind(now.toISOString(), now.toISOString(), staleBefore).run();
+  const due = await env.LEADS.prepare("SELECT intake_id FROM shirabe_notification_outbox WHERE status IN ('pending','retry') AND next_attempt_at<=? ORDER BY next_attempt_at,id LIMIT ?")
+    .bind(now.toISOString(), bounded).all();
+  const results = [];
+  for (const row of due.results || []) results.push({ intake_id: row.intake_id, ...(await deliverShirabeNotification(env, row.intake_id, now)) });
+  return results;
+}
+
+export async function transitionShirabeRouting(env, intakeId, nextState) {
+  const row = await env.LEADS.prepare("SELECT i.status AS intake_status,i.payload_hash,q.status AS routing_status FROM shirabe_intakes i JOIN shirabe_routing_queue q ON q.intake_id=i.id WHERE i.id=?").bind(intakeId).first();
+  if (!row) throw new Error("shirabe_intake_not_found");
+  if (!shirabeRoutingTransitions[row.routing_status]?.has(nextState)) throw new Error("shirabe_invalid_routing_transition");
+  const intakeState = nextState === "completed" ? "closed" : row.intake_status;
+  if (!shirabeIntakeStates.has(intakeState)) throw new Error("shirabe_invalid_intake_state");
+  const at = new Date().toISOString();
+  await env.LEADS["batch"]([
+    env.LEADS.prepare("UPDATE shirabe_routing_queue SET status=?,claimed_at=CASE WHEN ?='claimed' THEN ? ELSE claimed_at END,completed_at=CASE WHEN ?='completed' THEN ? ELSE completed_at END,error=CASE WHEN ?='failed' THEN 'governed_review_required' ELSE NULL END WHERE intake_id=? AND status=?").bind(nextState, nextState, at, nextState, at, nextState, intakeId, row.routing_status),
+    env.LEADS.prepare("UPDATE shirabe_intakes SET status=?,updated_at=? WHERE id=? AND status=?").bind(intakeState, at, intakeId, row.intake_status),
+  ]);
+  await recordShirabeEvent(env, intakeId, row.payload_hash, "routing_transitioned", row.routing_status, nextState);
+  return { intake_id: intakeId, routing_state: nextState, intake_state: intakeState };
+}
+
+export async function purgeExpiredShirabeIntakes(env, now = new Date(), limit = 25) {
+  const rows = await env.LEADS.prepare("SELECT id,payload_hash,status FROM shirabe_intakes WHERE retention_expires_at<=? ORDER BY retention_expires_at,id LIMIT ?").bind(now.toISOString(), Math.max(1, Math.min(100, Number(limit) || 25))).all();
+  for (const row of rows.results || []) {
+    await env.LEADS["batch"]([
+      env.LEADS.prepare("UPDATE shirabe_lifecycle_events SET intake_id=NULL,details_json='{}' WHERE intake_id=?").bind(row.id),
+      env.LEADS.prepare("INSERT INTO shirabe_lifecycle_events(id,intake_id,payload_hash,event_type,from_state,to_state,details_json,created_at) VALUES(?,NULL,?,'retention_expired',?,'deleted','{}',?)").bind(crypto.randomUUID(), row.payload_hash, row.status, now.toISOString()),
+      env.LEADS.prepare("DELETE FROM shirabe_intakes WHERE id=? AND retention_expires_at<=?").bind(row.id, now.toISOString()),
+    ]);
+  }
+  await env.LEADS.prepare("DELETE FROM shirabe_rate_limits WHERE updated_at<?").bind(new Date(now.getTime() - 2 * SHIRABE_RATE_WINDOW_MS).toISOString()).run();
+  return { purged: (rows.results || []).length };
+}
+
+export async function runShirabeScheduledMaintenance(env, now = new Date()) {
+  if (env.DEPLOYMENT_ENV !== "production") return { status: "disabled", reason: "non_production_environment" };
+  if (env.SHIRABE_SCHEDULED_RECONCILIATION_ENABLED !== "true") return { status: "disabled", reason: "feature_flag_off" };
+  if (!env.LEADS || !env.PILOT_EMAIL) throw new Error("shirabe_scheduled_bindings_missing");
+  const configuredLimit = Number(env.SHIRABE_RECONCILIATION_BATCH_LIMIT || 10);
+  const limit = Math.max(1, Math.min(25, Number.isSafeInteger(configuredLimit) ? configuredLimit : 10));
+  const notifications = await reconcileShirabeNotifications(env, limit, now);
+  const retention = await purgeExpiredShirabeIntakes(env, now, limit);
+  return {
+    status: "completed",
+    at: now.toISOString(),
+    notification_count: notifications.length,
+    purged_count: retention.purged,
+  };
+}
 
 function shirabeCompleteness(entry) {
   const guided = [
@@ -222,42 +356,71 @@ async function submitShirabe(request, env) {
   const payloadJson = canonical(payload), payloadHash = await sha256(payloadJson);
   const ip = request.headers.get("cf-connecting-ip") || "";
   const ipHash = ip && env.LEAD_HASH_PEPPER ? await sha256(`${env.LEAD_HASH_PEPPER}:${ip}`) : null;
+  let existing;
+  try {
+    existing = await env.LEADS.prepare("SELECT i.id,i.completeness,i.evidence_quality,i.status,i.notification_message_id,q.routing_tier FROM shirabe_intakes i JOIN shirabe_routing_queue q ON q.intake_id=i.id WHERE i.payload_hash=?").bind(payloadHash).first();
+  } catch (error) {
+    console.error(JSON.stringify({ event: "shirabe_intake_lookup_failed", message: error?.message }));
+    return json({ message: "Your diagnostic could not be saved right now." }, 503);
+  }
+  if (existing) {
+    await recordShirabeEvent(env, existing.id, payloadHash, "duplicate_replayed", existing.status, existing.status);
+    if (!existing.notification_message_id) await deliverShirabeNotification(env, existing.id);
+    return json({ ok: true, replayed: true, reference: existing.id, completeness: existing.completeness, evidence_quality: existing.evidence_quality, next_state: existing.routing_tier }, 200);
+  }
+  let rate;
+  try { rate = await enforceShirabeRateLimit(env, ipHash); }
+  catch (error) {
+    console.error(JSON.stringify({ event: "shirabe_rate_limit_failed", message: error?.message }));
+    return json({ message: "Your diagnostic could not be saved right now." }, 503);
+  }
+  if (!rate.allowed) return json({ message: "Too many requests. Please try again later." }, 429, { "retry-after": String(rate.retryAfter) });
+  const retentionDays = Math.max(1, Math.min(3650, Number(env.SHIRABE_RETENTION_DAYS || SHIRABE_RETENTION_DAYS_DEFAULT)));
+  const retentionExpiresAt = new Date(Date.parse(entry.at) + retentionDays * 86400000).toISOString();
   try {
     await env.LEADS["batch"]([
-      env.LEADS.prepare("INSERT INTO shirabe_intakes(id,created_at,schema_version,language,mode,name,company,email,role,industry,company_size,problem_category,frequency,monthly_volume,sensitivity,claimed_loss_minor,loss_currency,loss_basis,integrity_concern,workforce_constraint,evidence_conflict,disruption,completeness,evidence_quality,payload_json,payload_hash,ip_hash,consent,status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'received')")
-        .bind(entry.id, entry.at, entry.schema, entry.language, entry.mode, entry.name, entry.company, entry.email, entry.role, entry.industry, entry.company_size, entry.category, entry.frequency, entry.monthly_volume, entry.sensitivity, entry.claimed_loss_minor, entry.loss_currency, entry.loss_basis, entry.integrity_concern, entry.workforce_constraint, entry.evidence_conflict, entry.disruption, completeness, evidenceQuality, payloadJson, payloadHash, ipHash, entry.consent),
+      env.LEADS.prepare("INSERT INTO shirabe_intakes(id,created_at,schema_version,language,mode,name,company,email,role,industry,company_size,problem_category,frequency,monthly_volume,sensitivity,claimed_loss_minor,loss_currency,loss_basis,integrity_concern,workforce_constraint,evidence_conflict,disruption,completeness,evidence_quality,payload_json,payload_hash,ip_hash,consent,status,updated_at,retention_expires_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'received',?,?)")
+        .bind(entry.id, entry.at, entry.schema, entry.language, entry.mode, entry.name, entry.company, entry.email, entry.role, entry.industry, entry.company_size, entry.category, entry.frequency, entry.monthly_volume, entry.sensitivity, entry.claimed_loss_minor, entry.loss_currency, entry.loss_basis, entry.integrity_concern, entry.workforce_constraint, entry.evidence_conflict, entry.disruption, completeness, evidenceQuality, payloadJson, payloadHash, ipHash, entry.consent, entry.at, retentionExpiresAt),
       env.LEADS.prepare("INSERT INTO shirabe_routing_queue(id,intake_id,created_at,routing_tier,status,payload_hash) VALUES(?,?,?,?,?,?)")
         .bind(crypto.randomUUID(), entry.id, entry.at, routingTier, "pending", payloadHash),
+      env.LEADS.prepare("INSERT INTO shirabe_notification_outbox(id,intake_id,idempotency_key,created_at,updated_at,status,next_attempt_at,payload_hash) VALUES(?,?,?,?,?,'pending',?,?)")
+        .bind(crypto.randomUUID(), entry.id, `shirabe-owner-notification:${payloadHash}`, entry.at, entry.at, entry.at, payloadHash),
+      env.LEADS.prepare("INSERT INTO shirabe_lifecycle_events(id,intake_id,payload_hash,event_type,from_state,to_state,details_json,created_at) VALUES(?,?,?,'received',NULL,'received','{}',?)")
+        .bind(crypto.randomUUID(), entry.id, payloadHash, entry.at),
     ]);
   } catch (error) {
+    if (String(error).toLowerCase().includes("unique")) {
+      const replay = await env.LEADS.prepare("SELECT i.id,i.completeness,i.evidence_quality,q.routing_tier FROM shirabe_intakes i JOIN shirabe_routing_queue q ON q.intake_id=i.id WHERE i.payload_hash=?").bind(payloadHash).first();
+      if (replay) return json({ ok: true, replayed: true, reference: replay.id, completeness: replay.completeness, evidence_quality: replay.evidence_quality, next_state: replay.routing_tier }, 200);
+    }
     console.error(JSON.stringify({ event: "shirabe_intake_insert_failed", message: error?.message }));
     return json({ message: "Your diagnostic could not be saved right now." }, 503);
   }
-  try {
-    const result = await env.PILOT_EMAIL.send({
-      to: "tengen@shikigamitechnologies.com",
-      from: { email: "website@shikigamitechnologies.com", name: "SHIRABE by Shikigami" },
-      replyTo: entry.email,
-      subject: `SHIRABE diagnostic — ${entry.company}`,
-      text: [
-        "New SHIRABE diagnostic received.", "", `Reference: ${entry.id}`, `Payload SHA-256: ${payloadHash}`,
-        `Received: ${entry.at}`, `Company: ${entry.company}`, `Contact: ${entry.name} (${entry.role})`,
-        `Work email: ${entry.email}`, `Language: ${entry.language}`, `Mode: ${entry.mode}`,
-        `Completeness: ${completeness}%`, `Evidence quality: ${evidenceQuality}`, `Routing: ${routingTier}`,
-        `Deterministic signals: ${assessment.signals.map(({ code }) => code).join(", ") || "none"}`, assessment.guardrail, "",
-        "Reported problem:", entry.problem, "", "Reported failure point:", entry.failure_point, "",
-        "Desired outcome:", entry.desired_outcome, "",
-        "This is a prospect self-report, not an independently verified diagnosis. No files or credentials were accepted.",
-      ].join("\n"),
-    });
-    await env.LEADS.prepare("UPDATE shirabe_intakes SET notification_message_id=?,notified_at=? WHERE id=?")
-      .bind(result.messageId, new Date().toISOString(), entry.id).run();
-  } catch (error) {
-    const message = clean(error?.message || "Email notification failed.", 300);
-    await env.LEADS.prepare("UPDATE shirabe_intakes SET notification_error=? WHERE id=?").bind(message, entry.id).run();
-    console.error(JSON.stringify({ event: "shirabe_email_failed", message, reference: entry.id }));
+  const notification = await deliverShirabeNotification(env, entry.id);
+  return json({ ok: true, reference: entry.id, completeness, evidence_quality: evidenceQuality, next_state: routingTier, notification: notification.status }, 201);
+}
+
+async function handleShirabeAdmin(request, env, path) {
+  if (!env.SHIRABE_ADMIN_TOKEN) return json({ message: "SHIRABE administration is not configured." }, 503);
+  const provided = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") || "";
+  if (!(await secretMatches(provided, env.SHIRABE_ADMIN_TOKEN))) return json({ message: "Unauthorized." }, 401);
+  if (!request.headers.get("content-type")?.includes("application/json")) return json({ message: "Expected JSON." }, 415);
+  let body; try { body = await request.json(); } catch { return json({ message: "Invalid request." }, 400); }
+  const transitionMatch = path.match(/^\/api\/shirabe\/admin\/intakes\/([^/]+)\/routing$/);
+  if (transitionMatch) {
+    try { return json(await transitionShirabeRouting(env, decodeURIComponent(transitionMatch[1]), clean(body.next_state, 20))); }
+    catch (error) {
+      if (error?.message === "shirabe_intake_not_found") return json({ message: "Diagnostic not found." }, 404);
+      if (error?.message === "shirabe_invalid_routing_transition") return json({ message: "Invalid routing transition." }, 409);
+      throw error;
+    }
   }
-  return json({ ok: true, reference: entry.id, completeness, evidence_quality: evidenceQuality, next_state: routingTier }, 201);
+  if (path === "/api/shirabe/admin/reconcile") {
+    const notifications = await reconcileShirabeNotifications(env, body.limit);
+    const retention = body.purge_expired === true ? await purgeExpiredShirabeIntakes(env, new Date(), body.limit) : { purged: 0 };
+    return json({ notifications, retention });
+  }
+  return json({ message: "Not found." }, 404);
 }
 
 async function activateCypher(request, env) {
@@ -308,6 +471,7 @@ export default {
       if (path === "/api/anor-beta") return request.method === "POST" ? submitAnor(request, env) : methodNotAllowed("POST");
       if (path === "/api/pilot-interest") return request.method === "POST" ? submitPilotInterest(request, env) : methodNotAllowed("POST");
       if (path === "/api/shirabe-intake") return request.method === "POST" ? submitShirabe(request, env) : methodNotAllowed("POST");
+      if (path.startsWith("/api/shirabe/admin/")) return request.method === "POST" ? handleShirabeAdmin(request, env, path) : methodNotAllowed("POST");
       if (path === "/api/cypher/v1/activate") return request.method === "POST" ? activateCypher(request, env) : methodNotAllowed("POST");
       if (path === "/api/cypher/admin/v1/product-keys/batch") return request.method === "POST" ? createBatch(request, env) : methodNotAllowed("POST");
       if (path === "/api/cypher/v1" || path.startsWith("/api/cypher/v1/")) return await handleCypherSupabaseRoute(request, env);
@@ -318,5 +482,8 @@ export default {
       console.error(JSON.stringify({ event: "worker_request_failed", path, message: error?.message }));
       return json({ message: "The service is temporarily unavailable." }, 503);
     }
+  },
+  async scheduled(_controller, env, context) {
+    context.waitUntil(runShirabeScheduledMaintenance(env));
   },
 };

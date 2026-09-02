@@ -1,0 +1,12 @@
+{
+  "schema":"magi.recovery.v1",
+  "mission_id":"MIS-7909434CDC93",
+  "synthetic_package_hash":"c12da3a857a92294f59af09584a375b82efc131ca1e8b9975f0fa7d10798515c",
+  "source_verification":"passed",
+  "clean_restore":"passed",
+  "tamper_detection":"passed",
+  "missing_file_detection":"passed",
+  "deletion_rehearsal":"passed",
+  "deletion_target_absent":true,
+  "remote_rollback":"not_exercised_no_deployment"
+}

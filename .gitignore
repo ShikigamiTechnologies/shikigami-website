@@ -7,6 +7,7 @@ Thumbs.db
 .dev.vars.*
 .wrangler/
 .wrangler-dry-run/
+.wrangler-dry-run*/
 .cypher-migration-test*/
 .cypher-migration-guard-test/
 node_modules/

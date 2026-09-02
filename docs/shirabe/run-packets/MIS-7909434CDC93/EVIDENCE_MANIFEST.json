@@ -1,0 +1,13 @@
+{
+  "schema": "magi.evidence-manifest.v1",
+  "mission_id": "MIS-7909434CDC93",
+  "evidence": [
+    {"path":"worker.js","sha256":"02988a8926764661c41c3263e9d119e7e0aa7f5c322d27a15670b843000e0820","class":"repository_implementation","claim":"durable intake lifecycle"},
+    {"path":"migrations/0005_shirabe_intake_reliability.sql","sha256":"0fb9b0cf372c3ea8b53b04dc2b1c99182aafa8c4e80461b320f38c45d8377046","class":"repository_implementation","claim":"D1 lifecycle schema"},
+    {"path":"internal/shirabe-delivery/fixtures/adversarial-bilingual-engagement.json","sha256":"028fdbbb9280303e5bfc16739c3c13c7a78d2a1e0a3009d8dd909308ba10c21a","class":"synthetic_fixture","claim":"bounded bilingual engagement"},
+    {"path":"docs/shirabe-release-truth.json","sha256":"ee93b9f7bb75db329b5522a0853f051e9f9b8ff015db13bb35a302c01da27752","class":"release_manifest","claim":"local artifact identity and held live gate"},
+    {"path":"docs/shirabe/SHIRABE_COMMERCIAL_OPERATING_PACKET.md","sha256":"bb123bbe87c300b31ec8d3399e1649798309e36365030bfaaaf4cd7ccd16ecd2","class":"proposal","claim":"commercial gate contract"},
+    {"path":"docs/shirabe/SHIRABE_COMPARATIVE_QUALIFICATION.md","sha256":"fc3e6db4605a79825dcccd07a2aa296ca3035db1f582802ee76f19cb25aa8e30","class":"frozen_protocol","claim":"competitive evaluation rules"},
+    {"path":"tests/browser/shirabe-form-e2e.spec.mjs","sha256":"03a14fa8e495d5ba9f0452fea91575aaafb8200baf26ff6f32553d1c434932cf","class":"test_source","claim":"browser form lifecycle"}
+  ]
+}

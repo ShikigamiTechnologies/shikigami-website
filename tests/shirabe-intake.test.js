@@ -4,16 +4,41 @@ import html from "../shirabe.html?raw";
 import script from "../assets/js/shirabe.js?raw";
 
 function createEnv({ emailFailure = false, batchFailure = false } = {}) {
-  const statements = [];
+  const statements = [], state = { intake: null, routingTier: null, rateCount: 0, outboxStatus: "pending", attempts: 0 };
   const prepare = vi.fn((sql) => ({
     bind(...values) {
-      const statement = { sql, values, async run() { statements.push(statement); return { success: true }; } };
+      const statement = {
+        sql, values,
+        async first() {
+          if (sql.startsWith("SELECT i.id,i.completeness")) return state.intake && state.intake.payload_hash === values[0] ? { ...state.intake, routing_tier: state.routingTier } : null;
+          if (sql.startsWith("INSERT INTO shirabe_rate_limits")) return { request_count: ++state.rateCount };
+          if (sql.startsWith("SELECT i.id,i.created_at")) return state.intake ? { ...state.intake, routing_tier: state.routingTier, attempts: state.attempts } : null;
+          if (sql.startsWith("SELECT i.status AS intake_status")) return state.intake ? { intake_status: state.intake.status, payload_hash: state.intake.payload_hash, routing_status: state.outboxStatus === "delivered" ? "pending" : "pending" } : null;
+          return null;
+        },
+        async all() { return { results: [] }; },
+        async run() {
+          statements.push(statement);
+          if (sql.startsWith("UPDATE shirabe_notification_outbox SET status='sending'")) { state.attempts += 1; state.outboxStatus = "sending"; return { success: true, meta: { changes: 1 } }; }
+          return { success: true, meta: { changes: 1 } };
+        },
+      };
       return statement;
     },
   }));
   const batch = vi.fn(async (items) => {
     if (batchFailure) throw new Error("database unavailable");
     statements.push(...items);
+    const intake = items.find(({ sql }) => sql.startsWith("INSERT INTO shirabe_intakes"));
+    if (intake) state.intake = {
+      id: intake.values[0], created_at: intake.values[1], language: intake.values[3], mode: intake.values[4],
+      name: intake.values[5], company: intake.values[6], email: intake.values[7], role: intake.values[8],
+      completeness: intake.values[22], evidence_quality: intake.values[23], payload_json: intake.values[24], payload_hash: intake.values[25], status: "received",
+    };
+    const routing = items.find(({ sql }) => sql.startsWith("INSERT INTO shirabe_routing_queue"));
+    if (routing) state.routingTier = routing.values[3];
+    const delivered = items.find(({ sql }) => sql.startsWith("UPDATE shirabe_notification_outbox SET status='delivered'"));
+    if (delivered) state.outboxStatus = "delivered";
     return items.map(() => ({ success: true }));
   });
   const send = emailFailure ? vi.fn().mockRejectedValue(new Error("provider unavailable")) : vi.fn().mockResolvedValue({ messageId: "shirabe-message-1" });
@@ -56,11 +81,11 @@ describe("SHIRABE intake", () => {
     expect(result).toMatchObject({ ok: true, evidence_quality: "substantial_self_report", next_state: "qualified_review" });
     expect(result.reference).toMatch(/^SHR-[A-F0-9]{16}$/);
     expect(result.completeness).toBeGreaterThanOrEqual(85);
-    expect(batch).toHaveBeenCalledTimes(1);
-    expect(batch.mock.calls[0][0]).toHaveLength(2);
+    expect(batch).toHaveBeenCalledTimes(2);
+    expect(batch.mock.calls[0][0]).toHaveLength(4);
     expect(batch.mock.calls[0][0][0].sql).toContain("INSERT INTO shirabe_intakes");
     expect(batch.mock.calls[0][0][1].sql).toContain("INSERT INTO shirabe_routing_queue");
-    expect(batch.mock.calls[0][0][0].values.at(-2)).toMatch(/^[a-f0-9]{64}$/);
+    expect(batch.mock.calls[0][0][0].values[25]).toMatch(/^[a-f0-9]{64}$/);
     expect(send).toHaveBeenCalledTimes(1);
     expect(send.mock.calls[0][0].text).toContain("not an independently verified diagnosis");
     expect(statements.some((entry) => entry.sql.startsWith("UPDATE shirabe_intakes SET notification_message_id"))).toBe(true);
@@ -77,8 +102,8 @@ describe("SHIRABE intake", () => {
     const first = createEnv(), second = createEnv();
     const one = await (await worker.fetch(request(), first.env)).json();
     const two = await (await worker.fetch(request(), second.env)).json();
-    const firstHash = first.batch.mock.calls[0][0][0].values.at(-3);
-    const secondHash = second.batch.mock.calls[0][0][0].values.at(-3);
+    const firstHash = first.batch.mock.calls[0][0][0].values[25];
+    const secondHash = second.batch.mock.calls[0][0][0].values[25];
     expect(one.reference).not.toBe(two.reference);
     expect(firstHash).toBe(secondHash);
   });

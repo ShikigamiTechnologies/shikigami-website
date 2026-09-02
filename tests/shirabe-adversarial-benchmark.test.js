@@ -4,9 +4,29 @@ import { assessShirabe, scoreDiagnosticCapability } from "../lib/shirabe-diagnos
 import { shirabeScenarios } from "./fixtures/shirabe-adversarial-scenarios.js";
 
 function environment() {
-  const statements = [];
-  const prepare = vi.fn((sql) => ({ bind(...values) { return { sql, values, async run() { statements.push({ sql, values }); return { success: true }; } }; } }));
-  const batch = vi.fn(async (items) => { statements.push(...items); return items.map(() => ({ success: true })); });
+  const statements = [], state = { intake: null, routingTier: null, attempts: 0 };
+  const prepare = vi.fn((sql) => ({ bind(...values) { return { sql, values,
+    async first() {
+      if (sql.startsWith("SELECT i.id,i.completeness")) return null;
+      if (sql.startsWith("INSERT INTO shirabe_rate_limits")) return { request_count: 1 };
+      if (sql.startsWith("SELECT i.id,i.created_at")) return { ...state.intake, routing_tier: state.routingTier, attempts: state.attempts };
+      return null;
+    },
+    async all() { return { results: [] }; },
+    async run() {
+      statements.push({ sql, values });
+      if (sql.startsWith("UPDATE shirabe_notification_outbox SET status='sending'")) { state.attempts += 1; return { success: true, meta: { changes: 1 } }; }
+      return { success: true, meta: { changes: 1 } };
+    },
+  }; } }));
+  const batch = vi.fn(async (items) => {
+    statements.push(...items);
+    const intake = items.find(({ sql }) => sql.startsWith("INSERT INTO shirabe_intakes"));
+    if (intake) state.intake = { id: intake.values[0], created_at: intake.values[1], language: intake.values[3], mode: intake.values[4], name: intake.values[5], company: intake.values[6], email: intake.values[7], role: intake.values[8], completeness: intake.values[22], evidence_quality: intake.values[23], payload_json: intake.values[24], payload_hash: intake.values[25] };
+    const routing = items.find(({ sql }) => sql.startsWith("INSERT INTO shirabe_routing_queue"));
+    if (routing) state.routingTier = routing.values[3];
+    return items.map(() => ({ success: true }));
+  });
   return { env: { LEADS: { prepare, batch }, PILOT_EMAIL: { send: vi.fn().mockResolvedValue({ messageId: "synthetic-benchmark" }) }, LEAD_HASH_PEPPER: "synthetic-only" }, batch };
 }
 
@@ -41,7 +61,7 @@ describe("SHIRABE bilingual adversarial benchmark", () => {
     const response = await worker.fetch(request, env);
     const result = await response.json();
     expect(response.status, JSON.stringify(result)).toBe(201);
-    expect(batch).toHaveBeenCalledOnce();
+    expect(batch.mock.calls[0][0]).toHaveLength(4);
     if (complexity >= 3) expect(result.next_state).toBe("high_risk_governed_review");
   });
 

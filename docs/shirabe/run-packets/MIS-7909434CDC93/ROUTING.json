@@ -1,0 +1,13 @@
+{
+  "schema": "magi.routing.v1",
+  "mission_id": "MIS-7909434CDC93",
+  "workers": [
+    {"role":"coordinator_and_final_verifier","provider":"OpenAI","worker":"Codex","authority":"implement_test_and_withhold_promotion"},
+    {"role":"hostile_governance_and_release_truth","worker":"M.A.G.I. review worker","authority":"propose_and_test_only"},
+    {"role":"intake_reliability","worker":"competitor-audit engineering worker","authority":"implement_and_test_D1_only"},
+    {"role":"delivery_operating_system","worker":"delivery-architecture worker","authority":"implement_and_test_D2_D4_only"},
+    {"role":"market_scout","provider":"Perplexity","authority":"research_only"}
+  ],
+  "unavailable": [{"provider":"Gemini Code Assist CLI","reason":"unsupported client; no analysis admitted"}],
+  "worker_self_approval": false
+}
