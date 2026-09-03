@@ -49,3 +49,22 @@ test("five-state navigation and mobile menu expose the approved experience", asy
   await page.locator('#sh-mobile-menu a[href="#offer"]').click();
   await expect(page.locator("#offer")).toBeInViewport();
 });
+
+test("service page preserves the exported Claude visual contract", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/services/shirabe/index.html");
+  await expect(page.locator("body")).toHaveClass(/shirabe-service/);
+  await expect(page.locator(".sh-graph")).toHaveCount(1);
+  await expect(page.locator(".sh-hero")).toHaveCSS("min-height", "810px");
+  await expect(page.locator("h1")).toHaveCSS("font-size", "80.64px");
+  await expect(page.locator(".sh-hero .sh-cta")).toHaveCSS("border-radius", "999px");
+  await expect(page.locator("#deliverables")).toBeHidden();
+  const sectionOrder = await page.locator("main > [id]").evaluateAll((nodes) =>
+    nodes.filter((node) => getComputedStyle(node).display !== "none").map((node) => node.id),
+  );
+  expect(sectionOrder).toEqual(["bridge", "method", "boundary", "offer", "evidence", "intake"]);
+  const visualOrder = await page.locator("main > [id]").evaluateAll((nodes) =>
+    nodes.filter((node) => getComputedStyle(node).display !== "none").sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top).map((node) => node.id),
+  );
+  expect(visualOrder).toEqual(["bridge", "method", "boundary", "evidence", "offer", "intake"]);
+});

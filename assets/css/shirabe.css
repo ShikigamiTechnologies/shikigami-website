@@ -845,3 +845,212 @@ textarea {
     transition: none !important;
   }
 }
+
+/* Claude Design source-of-truth layer. Reference SHA-256:
+   77C55EC374BE474E6B2C2EACD53985E0AFFBCCF18B6375A115F4B700E3B7FCE4 */
+.shirabe-service {
+  --sh-bg: #06080c;
+  --sh-panel: rgba(111, 211, 224, 0.035);
+  --sh-panel-2: rgba(221, 230, 239, 0.018);
+  --sh-line: rgba(221, 230, 239, 0.13);
+  --sh-text: #dde6ef;
+  --sh-muted: rgba(221, 230, 239, 0.6);
+  --sh-dim: rgba(221, 230, 239, 0.42);
+  --sh-trace: #6fd3e0;
+  --sh-max: 1240px;
+  overflow-x: clip;
+  background: var(--sh-bg);
+  color: var(--sh-text);
+  font-family: "Space Grotesk", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.shirabe-service main { display: flex; flex-direction: column; }
+.shirabe-service .sh-hero { order: 0; }
+.shirabe-service #bridge { order: 1; }
+.shirabe-service #method,
+.shirabe-service #metodo { order: 2; }
+.shirabe-service #deliverables,
+.shirabe-service #entregables { display: none; }
+.shirabe-service #boundary { order: 3; }
+.shirabe-service #evidence { order: 4; }
+.shirabe-service #offer { order: 5; }
+.shirabe-service #intake { order: 6; }
+.shirabe-service .sh-footer { order: 7; }
+.shirabe-service a { text-decoration: none; }
+.shirabe-service .sh-page-progress { position: fixed; top: 0; left: 0; z-index: 70; width: 0; height: 2px; background: linear-gradient(90deg,#6fd3e0,#a8e6ef); }
+.shirabe-service a:hover { color: var(--sh-trace); }
+.shirabe-service .sh-nav {
+  padding: 18px 40px;
+  border-bottom: 1px solid rgba(221,230,239,.09);
+  background: rgba(6,8,12,.72);
+  backdrop-filter: blur(18px);
+}
+.shirabe-service .sh-brand {
+  gap: 0;
+  color: var(--sh-text);
+  font: 500 12px "IBM Plex Mono", monospace;
+  letter-spacing: .18em;
+  white-space: nowrap;
+}
+.shirabe-service .sh-mark { display: none; }
+.shirabe-service .sh-links {
+  gap: 26px;
+  color: rgba(221,230,239,.6);
+  font: 400 11px "IBM Plex Mono", monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.shirabe-service .sh-links a[aria-current="location"] {
+  color: var(--sh-text);
+  text-decoration: none;
+}
+.shirabe-service .sh-lang {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+.shirabe-service .sh-cta,
+.shirabe-service .sh-secondary {
+  min-height: 0;
+  padding: 16px 28px;
+  border-radius: 999px;
+  font: 500 12px "IBM Plex Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: box-shadow .4s ease, transform .4s cubic-bezier(.16,1,.3,1), border-color .4s ease;
+}
+.shirabe-service .sh-nav .sh-cta { padding: 10px 18px; }
+.shirabe-service .sh-cta { background: var(--sh-trace); color: var(--sh-bg) !important; }
+.shirabe-service .sh-secondary { border: 1px solid rgba(221,230,239,.24); color: var(--sh-text); }
+.shirabe-service .sh-cta:hover,
+.shirabe-service .sh-cta:focus-visible { color: var(--sh-bg); box-shadow: 0 0 44px rgba(111,211,224,.5); transform: translateY(-3px); }
+.shirabe-service .sh-secondary:hover,
+.shirabe-service .sh-secondary:focus-visible { color: var(--sh-text); border-color: var(--sh-text); transform: translateY(-3px); }
+.shirabe-service .sh-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--sh-bg);
+}
+.shirabe-service .sh-graph,
+.shirabe-service .sh-hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+.shirabe-service .sh-graph { display: block; }
+.shirabe-service .sh-hero-shade { background: radial-gradient(115% 80% at 18% 42%,rgba(6,8,12,.12) 0%,rgba(6,8,12,.93) 60%); }
+.shirabe-service .sh-hero .sh-shell {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 1180px;
+  padding: 90px 40px;
+}
+.shirabe-service .sh-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+  border: 1px solid rgba(111,211,224,.28);
+  border-radius: 999px;
+  color: var(--sh-trace);
+  font: 400 11px "IBM Plex Mono", monospace;
+  letter-spacing: .2em;
+}
+.shirabe-service .sh-kicker::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sh-trace); animation: shPulse 2s ease-in-out infinite; }
+.shirabe-service h1 {
+  max-width: 17ch;
+  margin: 32px 0 0;
+  color: var(--sh-text);
+  font-size: clamp(40px,5.6vw,84px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.037em;
+  text-wrap: pretty;
+}
+.shirabe-service .sh-hero .sh-lede { max-width: 620px; margin-top: 34px; color: rgba(221,230,239,.66); font-size: 17.5px; line-height: 1.65; }
+.shirabe-service .sh-actions { margin-top: 38px; gap: 14px; }
+.shirabe-service .sh-hero-meta { display: flex; flex-wrap: wrap; gap: 34px; margin-top: 64px; color: rgba(221,230,239,.4); font: 400 10.5px "IBM Plex Mono", monospace; letter-spacing: .16em; text-transform: uppercase; }
+.shirabe-service .sh-governance-note { max-width: 76ch; margin: 24px 0 0; color: rgba(221,230,239,.64); font: 400 11px/1.7 "IBM Plex Mono", monospace; }
+.shirabe-service .sh-shell { max-width: 1240px; padding: 120px 40px; }
+.shirabe-service .sh-band { border: 0; background: transparent; }
+.shirabe-service .sh-label { color: var(--sh-trace); font: 400 11px "IBM Plex Mono", monospace; letter-spacing: .22em; }
+.shirabe-service .sh-intro { display: block; }
+.shirabe-service .sh-intro h2,
+.shirabe-service .sh-section-head h2 { max-width: 24ch; margin: 20px 0 0; color: var(--sh-text); font-size: clamp(30px,3.7vw,54px); font-weight: 500; line-height: 1.06; letter-spacing: -.03em; }
+.shirabe-service .question-grid { gap: 22px; margin-top: 66px; }
+.shirabe-service .sh-card { padding: 36px 32px 40px; border: 1px solid rgba(221,230,239,.11); border-radius: 20px; background: linear-gradient(180deg,rgba(111,211,224,.055),rgba(221,230,239,.012)); transition: border-color .45s ease, box-shadow .45s ease, transform .8s cubic-bezier(.16,1,.3,1); }
+.shirabe-service .sh-card:hover { border-color: rgba(111,211,224,.45); box-shadow: 0 26px 70px -34px rgba(111,211,224,.55); }
+.shirabe-service .sh-card h3 { margin: 20px 0 12px; font-size: 24px; font-weight: 500; letter-spacing: -.018em; }
+.shirabe-service .sh-card p { color: rgba(221,230,239,.6); font-size: 15.5px; line-height: 1.62; }
+.shirabe-service #method .sh-shell,
+.shirabe-service #metodo .sh-shell { padding-top: 0; padding-bottom: 130px; }
+.shirabe-service .method-rail { grid-template-columns: .4fr .6fr; gap: 60px; margin-top: 52px; }
+.shirabe-service .method-progress { top: 130px; color: rgba(221,230,239,.62); font-size: 11px; letter-spacing: .16em; }
+.shirabe-service .method-progress strong { font-size: inherit; }
+.shirabe-service .method-progress i { height: 1px; background: rgba(221,230,239,.14); }
+.shirabe-service .process-list { position: relative; padding-left: 34px; border: 0; }
+.shirabe-service .process-list::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: rgba(221,230,239,.13); }
+.shirabe-service .process-step { position: relative; display: block; padding: 22px 24px 24px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 16px; }
+.shirabe-service .process-step::before { content: ""; position: absolute; left: -34px; top: 28px; width: 11px; height: 11px; border: 1px solid rgba(221,230,239,.35); border-radius: 50%; background: var(--sh-bg); }
+.shirabe-service .process-step.is-current { border-color: rgba(111,211,224,.3); background: rgba(111,211,224,.07); transform: none; }
+.shirabe-service .process-step.is-current::before { border-color: var(--sh-trace); background: var(--sh-trace); box-shadow: 0 0 0 5px rgba(111,211,224,.16); }
+.shirabe-service .process-step .step { display: inline-block; margin-right: 14px; color: var(--sh-trace); font-size: 11px; }
+.shirabe-service .process-step h3 { display: inline; font-size: 20px; font-weight: 500; letter-spacing: -.014em; }
+.shirabe-service .process-step p { margin: 10px 0 0 38px; color: rgba(221,230,239,.58); font-size: 15px; line-height: 1.6; }
+.shirabe-service #boundary .sh-shell { padding-top: 0; padding-bottom: 130px; }
+.shirabe-service .boundary { gap: 22px; margin-top: 54px; }
+.shirabe-service .boundary article { padding: 40px 38px; border: 1px solid rgba(221,230,239,.12); border-radius: 20px; background: rgba(111,211,224,.025); }
+.shirabe-service .boundary .never { border-color: rgba(255,125,117,.24); background: rgba(255,125,117,.025); }
+.shirabe-service .boundary h3 { font-size: 24px; font-weight: 500; }
+.shirabe-service .boundary li { margin: 10px 0; color: rgba(221,230,239,.62); font-size: 15px; }
+.shirabe-service #evidence { background: linear-gradient(180deg,rgba(111,211,224,.05),rgba(6,8,12,0)); }
+.shirabe-service #evidence .sh-shell { padding-top: 100px; padding-bottom: 100px; }
+.shirabe-service #evidence .sh-section-head h2 { font-size: clamp(26px,2.9vw,38px); }
+.shirabe-service .benchmark-strip { gap: 30px; margin-top: 46px; border: 0; border-radius: 0; overflow: visible; }
+.shirabe-service .benchmark-strip div { padding: 0; border: 0; background: transparent; text-align: left; }
+.shirabe-service .benchmark-strip div::after { content: ""; display: block; height: 1px; margin: 16px 0 12px; background: rgba(221,230,239,.15); }
+.shirabe-service .benchmark-strip strong { font-size: clamp(34px,4vw,54px); font-weight: 500; letter-spacing: -.035em; }
+.shirabe-service .benchmark-strip span { color: rgba(221,230,239,.55); font-size: 10px; letter-spacing: .16em; }
+.shirabe-service #offer .sh-shell { padding-top: 0; padding-bottom: 130px; }
+.shirabe-service .price-grid { display: block; margin-top: 54px; border-top: 1px solid rgba(221,230,239,.16); }
+.shirabe-service .price-card { display: grid; grid-template-columns: .3fr .24fr .46fr; gap: 36px; align-items: baseline; padding: 34px 10px; border: 0; border-bottom: 1px solid rgba(221,230,239,.1); border-radius: 0; background: transparent; transition: padding-left .5s cubic-bezier(.16,1,.3,1), background-color .5s ease; }
+.shirabe-service .price-card:hover { padding-left: 28px; background: rgba(111,211,224,.05); }
+.shirabe-service .price-card.featured { border-color: rgba(221,230,239,.1); box-shadow: none; }
+.shirabe-service .price-card .sh-label { color: var(--sh-text); font: 500 24px "Space Grotesk", sans-serif; letter-spacing: -.02em; text-transform: none; }
+.shirabe-service .price { margin: 0; color: var(--sh-trace); font: 400 15px "IBM Plex Mono", monospace; }
+.shirabe-service .price-card p { margin: 0; color: rgba(221,230,239,.6); font-size: 15px; line-height: 1.6; }
+.shirabe-service .disclosure { color: rgba(221,230,239,.64); font-size: 13px; line-height: 1.65; }
+.shirabe-service #intake .sh-shell { display: block; padding-top: 0; padding-bottom: 140px; }
+.shirabe-service #intake .sh-shell > div:first-child { display: none; }
+.shirabe-service .intake-form { padding: 88px 46px; border: 1px solid rgba(111,211,224,.22); border-radius: 26px; background: radial-gradient(80% 130% at 50% 0%,rgba(111,211,224,.14) 0%,rgba(6,8,12,0) 62%); text-align: center; }
+.shirabe-service .intake-form h3 { max-width: 20ch; margin: 22px auto 0; font-size: clamp(32px,4.6vw,66px); font-weight: 500; line-height: 1.02; letter-spacing: -.035em; }
+.shirabe-service .intake-form > .disclosure { max-width: 64ch; margin: 30px auto 0; font-size: 16.5px; color: rgba(221,230,239,.6); }
+.shirabe-service .intake-form .sh-actions { justify-content: center; margin-top: 40px; }
+.shirabe-service .sh-footer { border-top: 1px solid rgba(221,230,239,.09); background: var(--sh-bg); }
+.shirabe-service .sh-footer .sh-shell { padding: 40px; color: rgba(221,230,239,.64); font: 400 11px "IBM Plex Mono", monospace; letter-spacing: .14em; }
+@keyframes shPulse { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+@media (max-width: 900px) {
+  .shirabe-service .sh-nav { padding: 16px 22px; }
+  .shirabe-service .sh-menu { display: inline-flex; align-items: center; border-radius: 999px; }
+  .shirabe-service .sh-mobile-menu { border-color: rgba(221,230,239,.13); border-radius: 18px; background: rgba(6,8,12,.98); }
+  .shirabe-service .sh-shell,
+  .shirabe-service .sh-hero .sh-shell { padding-left: 24px; padding-right: 24px; }
+  .shirabe-service .method-rail { grid-template-columns: 1fr; }
+  .shirabe-service .method-progress { position: static; }
+  .shirabe-service .question-grid { grid-template-columns: 1fr; }
+  .shirabe-service .price-card { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 620px) {
+  .shirabe-service .sh-hero { min-height: 84vh; }
+  .shirabe-service h1 { font-size: clamp(42px,13vw,62px); }
+  .shirabe-service .sh-kicker { max-width: 100%; font-size: 9px; line-height: 1.5; }
+  .shirabe-service .sh-hero-meta { gap: 16px 24px; }
+  .shirabe-service .boundary,
+  .shirabe-service .benchmark-strip { grid-template-columns: 1fr; }
+  .shirabe-service .intake-form { padding: 64px 24px; }
+  .shirabe-service .process-step p { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shirabe-service .sh-graph { display: none; }
+  .shirabe-service .sh-kicker::before { animation: none; }
+}
