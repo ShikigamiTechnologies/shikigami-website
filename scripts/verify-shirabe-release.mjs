@@ -98,10 +98,12 @@ export async function verifyShirabeRelease({ checkDirty = true, root: rootOverri
   const unexpectedDirtyPaths = dirtyPaths.filter((path) => !declaredCandidatePaths.has(path));
   if (checkDirty && unexpectedDirtyPaths.length) failures.push(`unexpected_dirty:${unexpectedDirtyPaths.join(",")}`);
 
-  const releaseReady = failures.length === 0 && Boolean(expectedGitSha) && Boolean(cloudflareVersionId) && liveAssetVerified;
+  // A supplied version ID and a matching PDF do not attest the deployed Worker.
+  // This checker has no independently observed version-to-source attestation.
+  const releaseReady = false;
   return {
     schema: manifest.schema,
-    status: failures.length ? "failed" : releaseReady ? "verified_live_release" : "verified_local_candidate",
+    status: failures.length ? "failed" : liveAssetVerified ? "verified_live_assets_only" : "verified_local_candidate",
     exact_sha: head,
     expected_git_sha: expectedGitSha,
     sha_bound: Boolean(expectedGitSha),
@@ -112,6 +114,8 @@ export async function verifyShirabeRelease({ checkDirty = true, root: rootOverri
     unexpected_dirty_paths: unexpectedDirtyPaths,
     live_asset_verified: liveAssetVerified,
     release_ready: releaseReady,
+    runtime_source_binding_verified: false,
+    qualification_hold: "independent_active_version_to_source_attestation_required",
     failures,
     limitations: manifest.limitations,
   };
