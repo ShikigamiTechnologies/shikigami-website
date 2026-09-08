@@ -212,8 +212,13 @@ async function deliverShirabeNotification(env, intakeId, now = new Date()) {
   const row = await env.LEADS.prepare("SELECT i.id,i.created_at,i.name,i.company,i.email,i.role,i.language,i.mode,i.completeness,i.evidence_quality,i.payload_json,i.payload_hash,q.routing_tier,o.attempts FROM shirabe_intakes i JOIN shirabe_routing_queue q ON q.intake_id=i.id JOIN shirabe_notification_outbox o ON o.intake_id=i.id WHERE i.id=?").bind(intakeId).first();
   if (!row) return { status: "missing" };
   await recordShirabeEvent(env, row.id, row.payload_hash, "notification_claimed", null, "sending", { attempt: row.attempts });
+  let sendStarted = false;
   try {
-    const result = await env.PILOT_EMAIL.send(shirabeNotificationMessage(row));
+    if (typeof env.PILOT_EMAIL?.send !== "function") throw new Error("notification_transport_unavailable_before_dispatch");
+    const message = shirabeNotificationMessage(row);
+    sendStarted = true;
+    const result = await env.PILOT_EMAIL.send(message);
+    if (typeof result?.messageId !== "string" || !result.messageId.trim()) throw new Error("notification_receipt_missing");
     const deliveredAt = new Date().toISOString();
     await env.LEADS["batch"]([
       env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status='delivered',message_id=?,delivered_at=?,last_error=NULL,locked_at=NULL,updated_at=? WHERE intake_id=? AND status='sending'").bind(result.messageId, deliveredAt, deliveredAt, row.id),
@@ -222,8 +227,10 @@ async function deliverShirabeNotification(env, intakeId, now = new Date()) {
     await recordShirabeEvent(env, row.id, row.payload_hash, "notification_delivered", "sending", "delivered", { attempt: row.attempts });
     return { status: "delivered", messageId: result.messageId };
   } catch (error) {
-    const message = clean(error?.message || "Email notification failed.", 300);
-    const dead = Number(row.attempts) >= SHIRABE_NOTIFICATION_MAX_ATTEMPTS;
+    // Once dispatch starts, failure may mean acceptance without a durable receipt.
+    // No provider idempotency guarantee exists here: never automatically resend.
+    const message = sendStarted ? "delivery_outcome_uncertain_owner_review_required" : "notification_transport_unavailable_before_dispatch";
+    const dead = sendStarted || Number(row.attempts) >= SHIRABE_NOTIFICATION_MAX_ATTEMPTS;
     const retryAt = new Date(now.getTime() + Math.min(60, 2 ** Number(row.attempts)) * 60_000).toISOString();
     await env.LEADS["batch"]([
       env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status=?,next_attempt_at=?,last_error=?,locked_at=NULL,updated_at=? WHERE intake_id=? AND status='sending'").bind(dead ? "dead" : "retry", retryAt, message, timestamp, row.id),
@@ -238,7 +245,7 @@ async function deliverShirabeNotification(env, intakeId, now = new Date()) {
 export async function reconcileShirabeNotifications(env, limit = 10, now = new Date()) {
   const bounded = Math.max(1, Math.min(25, Number(limit) || 10));
   const staleBefore = new Date(now.getTime() - 5 * 60_000).toISOString();
-  await env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status='retry',locked_at=NULL,next_attempt_at=?,last_error='stale_claim_recovered',updated_at=? WHERE status='sending' AND locked_at<=?")
+  await env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status='dead',locked_at=NULL,next_attempt_at=?,last_error='delivery_outcome_uncertain_owner_review_required',updated_at=? WHERE status='sending' AND locked_at<=?")
     .bind(now.toISOString(), now.toISOString(), staleBefore).run();
   const due = await env.LEADS.prepare("SELECT intake_id FROM shirabe_notification_outbox WHERE status IN ('pending','retry') AND next_attempt_at<=? ORDER BY next_attempt_at,id LIMIT ?")
     .bind(now.toISOString(), bounded).all();

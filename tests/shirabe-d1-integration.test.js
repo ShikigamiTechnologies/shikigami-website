@@ -39,6 +39,39 @@ beforeEach(async () => {
 });
 
 describe("SHIRABE D1 reliability", () => {
+  it("concurrent identical submissions create one intake and one notification", async () => {
+    const send=vi.fn().mockResolvedValue({messageId:"synthetic-concurrent"});
+    const fixed={started_at:Date.now()-6000};
+    const responses=await Promise.all(Array.from({length:10},()=>worker.fetch(intakeRequest(fixed),{...runtime(send),SHIRABE_RATE_LIMIT_PER_HOUR:"100"})));
+    expect(responses.every(r=>[200,201].includes(r.status))).toBe(true);
+    expect(new Set(await Promise.all(responses.map(async r=>(await r.json()).reference))).size).toBe(1);
+    expect(send).toHaveBeenCalledTimes(1);
+  });
+
+  it.each(["rejected","empty-receipt"])("holds ambiguous %s transport outcomes without retry",async(kind)=>{
+    const send=kind==="rejected"?vi.fn().mockRejectedValue(new Error("unknown acceptance")):vi.fn().mockResolvedValue({});
+    const created=await worker.fetch(intakeRequest(),runtime(send));
+    const {reference}=await created.json();
+    expect(created.status).toBe(201);
+    await reconcileShirabeNotifications(runtime(send),10,new Date(Date.now()+600000));
+    expect(send).toHaveBeenCalledTimes(1);
+    expect(await env.LEADS.prepare("SELECT status FROM shirabe_notification_outbox WHERE intake_id=?").bind(reference).first()).toMatchObject({status:"dead"});
+  });
+  it("never automatically resends when delivery succeeded but its D1 receipt failed", async () => {
+    const send = vi.fn().mockResolvedValue({ messageId: "synthetic-accepted-before-db-failure" });
+    let batches = 0;
+    const db = { prepare: (...args) => env.LEADS.prepare(...args), batch: (...args) => {
+      batches++;
+      if (batches === 2) throw new Error("synthetic receipt persistence failure");
+      return env.LEADS.batch(...args);
+    } };
+    const first = await worker.fetch(intakeRequest(), { ...runtime(send), LEADS: db });
+    expect(first.status).toBe(201);
+    const { reference } = await first.json();
+    await reconcileShirabeNotifications(runtime(send), 10, new Date(Date.now() + 600000));
+    expect(send).toHaveBeenCalledTimes(1);
+    expect(await env.LEADS.prepare("SELECT status,last_error FROM shirabe_notification_outbox WHERE intake_id=?").bind(reference).first()).toMatchObject({ status: "dead", last_error: "delivery_outcome_uncertain_owner_review_required" });
+  });
   it("persists one intake/outbox and deterministically replays an identical submission", async () => {
     const send = vi.fn().mockResolvedValue({ messageId: "synthetic-message-1" }), body = { started_at: Date.now() - 6000 };
     const first = await worker.fetch(intakeRequest(body), runtime(send));
@@ -53,8 +86,8 @@ describe("SHIRABE D1 reliability", () => {
   });
 
   it("retains a failed notification and reconciles it exactly once", async () => {
-    const failed = vi.fn().mockRejectedValue(new Error("synthetic provider outage"));
-    const created = await worker.fetch(intakeRequest(), runtime(failed));
+    // A missing transport is known to fail before dispatch and is safe to retry.
+    const created = await worker.fetch(intakeRequest(), { ...runtime(), PILOT_EMAIL: undefined });
     const { reference } = await created.json();
     expect((await env.LEADS.prepare("SELECT status,attempts FROM shirabe_notification_outbox WHERE intake_id=?").bind(reference).first())).toMatchObject({ status: "retry", attempts: 1 });
     await env.LEADS.prepare("UPDATE shirabe_notification_outbox SET next_attempt_at='2000-01-01T00:00:00.000Z' WHERE intake_id=?").bind(reference).run();
@@ -65,13 +98,13 @@ describe("SHIRABE D1 reliability", () => {
     expect((await env.LEADS.prepare("SELECT status,attempts,message_id FROM shirabe_notification_outbox WHERE intake_id=?").bind(reference).first())).toMatchObject({ status: "delivered", attempts: 2, message_id: "synthetic-recovered" });
   });
 
-  it("recovers a stale sending claim after an interrupted worker", async () => {
+  it("holds a stale sending claim for owner reconciliation without resending", async () => {
     const { reference } = await (await worker.fetch(intakeRequest(), runtime())).json();
     await env.LEADS.prepare("UPDATE shirabe_notification_outbox SET status='sending',message_id=NULL,delivered_at=NULL,locked_at='2000-01-01T00:00:00.000Z' WHERE intake_id=?").bind(reference).run();
     const send = vi.fn().mockResolvedValue({ messageId: "synthetic-stale-recovery" });
     const result = await reconcileShirabeNotifications(runtime(send), 10, new Date());
-    expect(result).toHaveLength(1); expect(send).toHaveBeenCalledTimes(1);
-    expect((await env.LEADS.prepare("SELECT status,message_id FROM shirabe_notification_outbox WHERE intake_id=?").bind(reference).first())).toMatchObject({ status: "delivered", message_id: "synthetic-stale-recovery" });
+    expect(result).toHaveLength(0); expect(send).not.toHaveBeenCalled();
+    expect((await env.LEADS.prepare("SELECT status,message_id FROM shirabe_notification_outbox WHERE intake_id=?").bind(reference).first())).toMatchObject({ status: "dead", message_id: null });
   });
 
   it("enforces routing transitions and rejects skips", async () => {

@@ -1,0 +1,136 @@
+{
+  "observed_at": "2026-09-08T12:37:35.225Z",
+  "scope": "20 sequential public page GETs from one operator machine; not customer transaction latency",
+  "thresholds": {
+    "p95_ms": 3000,
+    "maximum_errors": 0
+  },
+  "rows": [
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 489,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 272,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 208,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 97,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 103,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 116,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 94,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 102,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 118,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 102,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 104,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 125,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 88,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 93,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 99,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 87,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 97,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 88,
+      "bytes": 17768
+    },
+    {
+      "language": "en",
+      "status": 200,
+      "ms": 107,
+      "bytes": 18246
+    },
+    {
+      "language": "es",
+      "status": 200,
+      "ms": 95,
+      "bytes": 17768
+    }
+  ],
+  "p50_ms": 102,
+  "p95_ms": 272,
+  "errors": 0,
+  "actual_cost_usd": null,
+  "cost_status": "not attributable from GET receipts; no zero-cost assertion",
+  "passed": true
+}

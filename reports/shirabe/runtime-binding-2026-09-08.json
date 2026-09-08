@@ -1,0 +1,25 @@
+{
+  "schema": "shirabe.runtime-content-observation.v1",
+  "observed_date": "2026-09-08",
+  "worker": "shikigami-tech",
+  "active_version_before": "48cf1f56-ae6f-4f8f-af90-3c363139d9d8",
+  "active_version_after": "48cf1f56-ae6f-4f8f-af90-3c363139d9d8",
+  "traffic_percent": 100,
+  "source_commit": "a1410fbab3e588768a4be621eeb1f196778c1b96",
+  "source_worker_unchanged_from": "7d3bf19c8ebe061e3a092794794e725433335583",
+  "build_command": "wrangler deploy --dry-run --env= --outdir .wrangler-identity-check",
+  "wrangler_version": "4.123.0",
+  "observed_module": "worker.js",
+  "module_bytes": 238676,
+  "cloudflare_content_sha256": "d390ad5c9cd9fa990d36fffadb4a169c567c7e1ca5634c29ca0d708a5a626ee5",
+  "local_build_sha256": "d390ad5c9cd9fa990d36fffadb4a169c567c7e1ca5634c29ca0d708a5a626ee5",
+  "module_byte_equivalence_verified": true,
+  "collection_method": "Authenticated Cloudflare deployments GET before and after content/v2 GET; SHA256 of the worker.js multipart body; independent local dry-run build hash",
+  "limitations": [
+    "Point-in-time observation, not a reusable authorization token",
+    "Equivalent source builds do not establish a unique historical Git commit used by the original uploader",
+    "Does not attest every static asset, secret value, D1 state, email delivery or full deployment configuration",
+    "The new delivery-uncertainty fix changes Worker source and is NOT deployed by this observation"
+  ],
+  "production_authorized": false
+}

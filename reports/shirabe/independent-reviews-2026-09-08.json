@@ -1,0 +1,30 @@
+{
+  "scope": "Independent static source review; not deployment approval or full execution verification",
+  "reviews": [
+    {
+      "scope": "website-independent-review",
+      "passed": true,
+      "blocking_findings": [],
+      "source_hashes": {
+        "scripts/verify-shirabe-release.mjs": "ab50dacd495aca17116b1ef2bd699d8377ede466bee7beb60b363ace1ec4b35f",
+        "scripts/verify-shirabe-release-boundary.test.mjs": "d07c7bbf3e97ba2074b134e6e55daf4bc92ca736c4264e4c7d4bdcc37f09e9f2",
+        "tests/shirabe-acceptance-72.test.js": "78f3bef8d11a2e08c2c693b8c098f2ed0448c2cadc1ff20e81b6093ff5a0fb3e"
+      }
+    },
+    {
+      "scope": "website-bounded-review",
+      "passed": true,
+      "blocking_findings": [],
+      "source_hashes": {
+        "worker.js": "77abdc54231acaeb8832113387ec4c7a0bc7019be2f1db8c7f0bd6842287c7bf",
+        "tests/shirabe-d1-integration.test.js": "48c0ea9afa5bd2f2899f27da23b1ff47809b22d95df1c02c37d1abd0c4f8c6dc"
+      }
+    }
+  ],
+  "limitations": [
+    "Only supplied source was independently reviewed. Test execution was separately performed by the coordinator.",
+    "The initial release verifier intentionally holds production qualification; its local checks alone cannot authorize a release.",
+    "A reviewer statement concerning D1 rollback was rejected against official documentation.",
+    "Raw receipts and internal orchestration details remain in the private evidence packet."
+  ]
+}
