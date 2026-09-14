@@ -466,8 +466,8 @@ summary:focus-visible {
     gap: 18px !important;
     flex-wrap: nowrap !important;
   }
-  nav > div > a:nth-child(4),
-  nav > div > a:nth-child(5) {
+  nav > div > a[href="#core"],
+  nav > div > a[href="#qualifications"] {
     display: none;
   }
   nav > div > a:last-child {
