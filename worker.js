@@ -14,6 +14,8 @@ const contracts = new Set(["None yet", "1–3", "4–10", "11–25", "26+"]);
 const encoder = new TextEncoder();
 const publicPaths = [
   "/",
+  "/school",
+  "/es/school",
   "/services/shirabe/",
   "/es/servicios/shirabe/",
   "/research/shirabe-process-diagnostic-comparison/",
