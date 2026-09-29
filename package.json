@@ -7,7 +7,7 @@
     "@types/node": "^26.1.2",
     "axe-core": "^4.13.0",
     "supabase": "2.114.0",
-    "vitest": "^4.1.10",
+    "vitest": "^4.1.11",
     "wrangler": "^4.118.0"
   },
   "overrides": {
